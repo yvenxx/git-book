@@ -1,0 +1,367 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一些我的计算机笔记，JAVA/Python/Linux/后端/计算机基础"><title>计算机网络(自顶向下)第二章 | 懒人瑜恩</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2059a4484fb666484cf5e9fba7e20ce6';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">计算机网络(自顶向下)第二章</h1><a id="logo" href="/.">懒人瑜恩</a><p class="description">sometimes code, sometimes English</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/history/"><i class="fa fa-book"> 历史</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">计算机网络(自顶向下)第二章</h1><div class="post-meta">2021-09-28<span> | </span><span class="category"><a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">1.应用层协议原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.</span> <span class="toc-text">进程通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.2.</span> <span class="toc-text">应用层协议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-and-HTTP"><span class="toc-number">2.</span> <span class="toc-text">Web and HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-%E6%A6%82%E6%8B%AC"><span class="toc-number">2.1.</span> <span class="toc-text">HTTP 概括</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FTP"><span class="toc-number">3.</span> <span class="toc-text">FTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EMail"><span class="toc-number">4.</span> <span class="toc-text">EMail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS"><span class="toc-number">5.</span> <span class="toc-text">DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS%E6%80%BB%E4%BD%93%E6%80%9D%E8%B7%AF%E5%92%8C%E7%9B%AE%E6%A0%87"><span class="toc-number">5.1.</span> <span class="toc-text">DNS总体思路和目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS%E5%8D%8F%E8%AE%AE%EF%BC%8C%E6%8A%A5%E6%96%87"><span class="toc-number">5.2.</span> <span class="toc-text">DNS协议，报文</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#P2P%E5%BA%94%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">P2P应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#P2P%E6%96%87%E4%BB%B6%E5%88%86%E5%8F%91%EF%BC%9ABitTorrent"><span class="toc-number">6.1.</span> <span class="toc-text">P2P文件分发：BitTorrent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#P2P%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB"><span class="toc-number">6.2.</span> <span class="toc-text">P2P文件共享</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CDN%E5%92%8C%E8%A7%86%E9%A2%91"><span class="toc-number">7.</span> <span class="toc-text">CDN和视频</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%AA%92%E4%BD%93%E6%B5%81%E5%8C%96%E6%9C%8D%E5%8A%A1%EF%BC%9ADASH"><span class="toc-number">7.1.</span> <span class="toc-text">多媒体流化服务：DASH</span></a></li></ol></li></ol></div></div><div class="post-content"><a id="more"></a>
+
+
+
+
+
+<h2 id="1-应用层协议原理"><a href="#1-应用层协议原理" class="headerlink" title="1.应用层协议原理"></a>1.应用层协议原理</h2><p><strong>可能的应用架构</strong></p>
+<ul>
+<li><p>客户-服务器模式（C/S：client/server）</p>
+<ul>
+<li>服务器：一直运行，固定的 Ip 地址和周知的端口号（约定），扩展性差</li>
+<li>客户端：主动与服务器通信，与互联网有间歇性的连接，可能是动态Ip地址，不直接与其他客户端通信</li>
+</ul>
+</li>
+<li><p>对等模式（P2P：Peer To Peer）</p>
+<ul>
+<li>（几乎）没有一直运行的服务器，任意端系统之间可以进行通信，每一个节点既是客户端又是服务器</li>
+<li>自扩展性-新peer节点带来新的服务能力，也带来新的服务请求</li>
+<li>参与的主机间歇性连接且可以改变Ip地址，但是难以管理</li>
+</ul>
+</li>
+<li><p>混合体：客户-服务器和对等体系结构，C/S和P2P体系结构的混合体</p>
+<ul>
+<li><p>Napster：文件搜索：集中，主机在中心服务器上注册其资源，在中心服务器查询资源位置。</p>
+<p>文件传输P2P：任意Peer节点之间</p>
+</li>
+<li><p>即时通信：在线检测：集中，当用户上线向服务器注册ip地址，用户与中心服务器连接，找到在线好友位置。</p>
+<p>两个用户聊天：P2P</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h3><p>进程：在主机上运行的应用程序。分为客户端和服务器</p>
+<ul>
+<li>客户端：发起通信的进程</li>
+<li>服务器：等待连接的进程</li>
+</ul>
+<p>同一个主机内，使用进程间的通信机制进行通信</p>
+<p>不同主机，通过交换<strong>报文（Message）</strong>来通信</p>
+<ul>
+<li>使用OS提供的通信服务</li>
+<li>按照应用协议交换报文，借助传输层提供的服务</li>
+</ul>
+<p><strong>但是这样进行通信，会有通信的问题需要解决</strong></p>
+<ol>
+<li>进程标示和寻址问题（服务用户）</li>
+<li>传输层-应用层提供服务是如何（服务）<ul>
+<li>位置：层间界面的SAP（TCP/IP：socket）</li>
+<li>形式：应用程序接口API（TCP/IP：socket API）</li>
+</ul>
+</li>
+<li>如何使用传输层提供的服务，实现应用进程之间的报文交换，实现应用（用户使用服务）<ul>
+<li>定义应用层想协议：报文格式，解释，时序等</li>
+<li>编制程序，使用OS提供的API，调用网络基础设施提供通信服务传报文，实现应用时序等；</li>
+</ul>
+</li>
+</ol>
+<p><strong>解决</strong></p>
+<ol>
+<li><p><strong>标识（Ip+Port）每个主机都有IP地址，和端口号，IP地址找到主机，端口号找到具体进程</strong></p>
+</li>
+<li><p><strong>传输层提供的服务-需要穿过层间的信息</strong></p>
+<ul>
+<li><p>层间接口必须携带各种信息</p>
+<p>要传输的报文，谁传的，对方的IP+TCP/UDP端口，传给谁：对方的IP+TCP(UDP）端口号。传输层实体根据信息进行TCP报文段UDP数据报封装。等等</p>
+</li>
+</ul>
+<p>每次传输这么多信息很麻烦。可以用socket代号标示双方或单方。用一个整数表示两个应用实体之间的通信关系，放在本地进行标示。</p>
+<p><strong>TCP之上的套接字</strong>：对于TCP而言，套接字是4元组（源ip，源port，目标ip，目标port）的一个具有本地意义的标示，唯一的指定一个会话，应用只需要使用这个标示就可以进行通信。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210924144012076.png" alt="image-20210924144012076"></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210924144035137.png" alt="image-20210924144035137"></p>
+<p><strong>UDP socket</strong></p>
+<p>UDP服务是不需要建立连接的。每个报文都独立传输，可以只用一个整数就可以标示本应用实体的标示，socket只需要IP+本端口，传输报文时，需要对方的IP+Port</p>
+<p>所以使用的是2元组具有本地意义的标示</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210924144435203.png" alt="image-20210924144435203"></p>
+<blockquote>
+<p>套接字的发送和接收进程都在传输层的设施中</p>
+</blockquote>
+</li>
+<li><p><strong>如何使用传输层提供的服务实现应用</strong></p>
+<ul>
+<li>定义应用层协议：报文格式，解释，时序等</li>
+<li>编制程序，通过API调用网络基础设施提供通信服务传报文，解析报文，实现应用时序等</li>
+</ul>
+</li>
+</ol>
+<h3 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h3><p><strong>定义了：运行在不同端系统上的应用进程，如何交换报文</strong>。如HTTP协议，SMTP等</p>
+<p>分为公开协议和专用（私有）协议</p>
+<p><strong>应用需要传输层提供的服务</strong></p>
+<p>延迟，吞吐，数据丢失率，安全性等的要求</p>
+<p><strong>传输层提供的服务</strong></p>
+<ul>
+<li><p>TCP服务</p>
+</li>
+<li><p>UDP服务</p>
+<p>UDP必要性，能够区分不同的进程，IP服务不能。无需建立连接。不做可靠性的工作，应用能够按照设定的速度发送数据。</p>
+</li>
+</ul>
+<p><strong>TCP安全</strong></p>
+<p>TCP和UDP都是不加密的协议，明文传输密码等</p>
+<p>SSL协议可以解决此问题，采用SSL库，在TCP上实现，提供加密的TCP连接。</p>
+<h2 id="Web-and-HTTP"><a href="#Web-and-HTTP" class="headerlink" title="Web and HTTP"></a>Web and HTTP</h2><p>术语</p>
+<ul>
+<li>Web页：由一些对象组成</li>
+<li>对象可以是HTML文件，JPEG图像，Java小程序，声音剪辑文件等</li>
+<li>web页有一个基本的HTML文件，该基本HTMl文件又包含若干对象的引用（链接）</li>
+<li>URL格式</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://user%40psw@blog.yvenxx.cn/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.html">https://user@psw@blog.yvenxx.cn/计算机网络.html</a> : port</p>
+<p>协议名://用户:口令@主机名/路径名 : port</p>
+<h3 id="HTTP-概括"><a href="#HTTP-概括" class="headerlink" title="HTTP 概括"></a>HTTP 概括</h3><p>HTTP：超文本传输协议</p>
+<ul>
+<li>Web的应用层协议</li>
+<li>客户/服务器模式</li>
+</ul>
+<blockquote>
+<p>HTTP是无状态的</p>
+<p>服务器并不维护关于客户的任何信息</p>
+</blockquote>
+<p><strong>使用TCP</strong></p>
+<ol>
+<li>客户发起一个与服务器的TCP连接（建立套接字）80端口</li>
+<li>服务器接手客户的TCP连接</li>
+<li>在浏览器（HTTP客户端）与Web服务器交换HTTP报文（应用层协议报文）</li>
+<li>TCP连接关闭</li>
+</ol>
+<p><strong>HTTP连接</strong></p>
+<p>分为，非持久HTTP，持久HTTP</p>
+<p>区别就是，持久HTTP多个对象可以在一个TCP连接上传输（HTTP/1.1默认使用持久连接）</p>
+<p>非持久HTTP的 缺点 ，每个对象要2个RTT，操作系统必须为每个TCP连接分配资源。但浏览器通常并行的打开TCP连接，以获取资源。</p>
+<p>持久化HTTP，在服务器发送响应后，保持TCP连接。之后的通信都用这个连接。分为流水和非流水</p>
+<ul>
+<li>流水方式的持久HTTP：HTTP/1.1默认模式，客户端遇到一个引用对象就立即产生一个请求，所有引用对象只花费一个RTT是可能的</li>
+<li>非流水方式的持久HTTP：客户端只能在收到前一个响应后才能发出新的请求，每个引用对象话费一个RTT</li>
+</ul>
+<p><strong>HTTP具体笔记暂未写  后续放连接</strong></p>
+<p><strong>Web缓存（代理服务器）</strong></p>
+<p>不访问原始服务器，就满足客户的请求</p>
+<p>具体实现</p>
+<ol>
+<li>用户设置浏览器：通过缓存访问Web</li>
+<li>浏览器将所有的HTTP请求发给缓存<ul>
+<li>在缓存中的对象：缓存直接返回对象</li>
+<li>若对象不在缓存，缓存请求原始服务器，然后再将对象返回给客户端</li>
+</ul>
+</li>
+</ol>
+<p><strong>好处</strong></p>
+<p>降低客户端的请求响应时间，减少一个机构内部网络与Internet接入链路上的流量，使用了缓存之后，较弱的ICP也能够有效提供内容</p>
+<h2 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h2><p>文件传输协议，端口号21。向远程服务器传输文件或下载文件</p>
+<p><strong>控制连接与数据连接分开</strong></p>
+<p>有状态的连接。</p>
+<p>一个连接保持控制状态，一个连接进行传输文件。</p>
+<p><strong>FTP返回码样例</strong></p>
+<p>状态码和状态信息（同HTTP）</p>
+<ul>
+<li>331 Username OK, password required</li>
+<li>125 data connection already open; transfer starting</li>
+<li>425 Can’t open data connection</li>
+<li>452 Error writing file</li>
+</ul>
+<h2 id="EMail"><a href="#EMail" class="headerlink" title="EMail"></a>EMail</h2><p>三个主要组成部分</p>
+<ul>
+<li>用户代理<ul>
+<li>又名 邮件阅读器</li>
+<li>输出和输入邮件保存在服务器</li>
+</ul>
+</li>
+<li>邮件服务器<ul>
+<li>邮箱中管理和维护发送给用户的邮件</li>
+<li>输出报文队列保持待发送的报文</li>
+<li>邮件服务器之间的SMTP协议：发送email报文。客户（发送方邮件服务器），服务器（接收端邮件服务器）</li>
+</ul>
+</li>
+<li>简单邮件传输协议：SMTP<ul>
+<li>使用TCP在客户端和服务器之间传送报文，端口为25。直接传输</li>
+<li>三个阶段：握手-》传输报文-》关闭</li>
+<li>命令/响应交互：命令（ASCII文本），响应（状态码和状态信息）</li>
+<li>报文必须七位ASCII码</li>
+<li>服务器使用，CRLF.CRLF决定报文的尾部</li>
+</ul>
+</li>
+</ul>
+<p>多媒体扩展：MIME多媒体邮件扩展</p>
+<p>在报文首部使用额外的行申明MIME内容类型</p>
+<p>SMTP与HTTP比较</p>
+<ul>
+<li><p>HTTP：拉（pull）</p>
+</li>
+<li><p>SMTP：推（push）</p>
+</li>
+<li><p>二者都是ASCII形式的命令/响应交互，状态码</p>
+</li>
+<li><p>HTTP：每个对象封装在各自的响应报文中</p>
+</li>
+<li><p>SMTP：多个对象包含在一个报文中</p>
+</li>
+</ul>
+<p>邮件访问协议</p>
+<p>用户代理<strong><strong>smtp</strong></strong>&gt;发送方邮件服务器<strong><strong>smtp</strong></strong>&gt;接收方邮件服务器____pop3、IMAP、HTTP_______&gt;用户代理</p>
+<p>SMTP：传送到接收方的邮件服务器</p>
+<p>邮件访问协议：从服务器访问邮件</p>
+<ul>
+<li>POP：邮局访问协议，用户身份确认（代理&lt;—&gt;服务器）并下载</li>
+<li>IMAP：Internet邮件访问协议<ul>
+<li>更多特性（更复杂），在服务器上处理存储的报文</li>
+</ul>
+</li>
+<li>HTTP：Hotmail,Yahoo! Mail等<ul>
+<li>方便</li>
+</ul>
+</li>
+</ul>
+<p>POP3（续）与 IMAP</p>
+<p>POP3（续）本地管理文件夹</p>
+<ul>
+<li>下载并删除 模式，看完之后删除，改变了客户机，就不能访问了</li>
+<li>下载并保留 模式，不同客户机上为报文的拷贝</li>
+<li>POP3在会话中是无状态</li>
+</ul>
+<p>IMAP  远程管理文件夹</p>
+<ul>
+<li>IMAP服务器将每个报文与一个文件夹联系起来</li>
+<li>允许用户用目录来组织报文</li>
+<li>允许用户读取报文组件</li>
+<li>IMAP在会话过程中保留用户状态，目录名，报文ID与目录名之间映射</li>
+</ul>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>必要性</p>
+<ul>
+<li>IP地址标识主机，服务器。由于数字不好记，所以就定义一些有意义的字符串来标识Internet上的设备</li>
+<li>存在着“字符串”—-IP地址转换的必要性，由DNS负责转换成为二进制的网络地址</li>
+</ul>
+<h3 id="DNS总体思路和目标"><a href="#DNS总体思路和目标" class="headerlink" title="DNS总体思路和目标"></a>DNS总体思路和目标</h3><p><strong>DNS主要思路</strong></p>
+<ul>
+<li><strong>分层</strong>的，基于域的命名机制</li>
+<li>若干分布式的数据库完成名字到IP地址的转换</li>
+<li>运行在UDP之上端口号为53的<strong>应用</strong>服务</li>
+<li>核心的Internet功能，但以应用层协议实现，在网络边缘处理复杂性</li>
+</ul>
+<p>DNS<strong>主要目的</strong></p>
+<ul>
+<li>实现主机名-IP地址的转黄</li>
+<li>主机别名到规范名字的转换，邮件服务器别名到邮件邮件服务器的正规名字的转换，负载均衡</li>
+</ul>
+<p><strong>DNS域名结构</strong></p>
+<p>DNS采用层次树状结构的命名方法，Internet根被划分为几百个顶级域，分为通用的和国家的。每个子域下面可划分为若干子域，树叶是主机。</p>
+<p>域名的管理</p>
+<p>一个域管理其下的子域(.cn 可以划分为edu.cn  ,   com.cn)，域遵从组织界限，不是物理网络</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210928143223926.png" alt="image-20210928143223926"></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210928143204644.png" alt="image-20210928143204644"></p>
+<p>根服务器下面还有很多其他的二级服务器，二级服务器往下还有下级等</p>
+<p>TLD服务器：负责顶级域名和所有国家级顶级域名</p>
+<p><strong>区域名字服务器维护资源记录</strong></p>
+<p>资源记录：维护域名-ip地址的映射关系</p>
+<p>RR格式（domain_name，ttl，type，class，value）</p>
+<ul>
+<li><p>domain_name:域名</p>
+</li>
+<li><p>TTL: time to live 生存时间（权威，缓冲记录）决定了资源记录应当从缓存中删除的时间</p>
+</li>
+<li><p>Class类别：对于Internet，值为In</p>
+</li>
+<li><p>Value值：可以是数字，域名或ASCII串</p>
+</li>
+<li><p>Type类别：</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210928153000820.png" alt="image-20210928153000820"></p>
+</li>
+</ul>
+<p>DNS大致工作过程</p>
+<p>应用调用解析器（resolver），解析器为客户 向Name Server发出查询报文（封装在UDP），Name Server 返回响应报文</p>
+<p>本地名字服务器（Local Name Server）</p>
+<p>其实并不严格属于层次结构，每个ISP都有一个本地DNS服务器，当一个主机发送DNS查询时，查询被送到DNS服务器。当本地服务器不能解析时，就顺着根-TLD找到权威名字服务器</p>
+<p>有两种查询方法</p>
+<ul>
+<li><p>递归查询：</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210928153710375.png" alt="image-20210928153710375"></p>
+</li>
+<li><p>迭代查询：根服务器返回的不是查询结果，而是下一个DNS的地址，最后由名字服务器给出解析结果</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210928153737545.png" alt="image-20210928153737545"></p>
+</li>
+</ul>
+<h3 id="DNS协议，报文"><a href="#DNS协议，报文" class="headerlink" title="DNS协议，报文"></a>DNS协议，报文</h3><p>DNS协议：查询和响应报文的报文格式相同</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210928153951029.png" alt="image-20210928153951029"></p>
+<ul>
+<li>identification：标识符（ID）16位</li>
+<li>flags：查询/应答，希望递归……</li>
+<li>questions：一个查询的Name，type字段</li>
+<li>answers：对应查询的RR记录</li>
+<li>authority：权威服务器的记录</li>
+<li>additional info：附加的有用信息</li>
+</ul>
+<h2 id="P2P应用"><a href="#P2P应用" class="headerlink" title="P2P应用"></a>P2P应用</h2><p>每一个Peer节点都可以当客户端和服务器。</p>
+<h3 id="P2P文件分发：BitTorrent"><a href="#P2P文件分发：BitTorrent" class="headerlink" title="P2P文件分发：BitTorrent"></a>P2P文件分发：BitTorrent</h3><p>文件被分为一个个块，网络中的这些peers发送接收文件块，相互服务</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210928154612096.png" alt="image-20210928154612096"></p>
+<p>Peer加入torrent：</p>
+<ul>
+<li>一开始没有块，但是将会通过其他节点处积累文件块</li>
+<li>向跟踪服务器注册，获得peer节点列表，和部分peer节点构成邻居关系</li>
+<li>当peer下载时，该peer可以同时向其他节点提供上载服务，peer可能会变换用于交换块的节点。</li>
+<li>一旦一个peer拥有整个文件，他会离开或者保留在torrent中</li>
+</ul>
+<p><strong>请求块</strong></p>
+<ul>
+<li>在任何给定时间，不同peer节点拥有一个文件块的子集</li>
+<li>周期性的，Alice节点向邻居询问它们拥有哪些块的信息。</li>
+<li>Alice向peer节点请求它希望的块，稀缺的块。</li>
+</ul>
+<p><strong>发送块</strong></p>
+<ul>
+<li>Alice向4个peer发送块，这些服务向她提供过最大带宽服务。（其他的peer被Alice阻塞，不会从Alice处获得服务，每10秒评估一个前四位）</li>
+<li>每隔30秒，随机选择其他peer节点，向这个节点发送块。</li>
+<li>谁帮过我，我就优先帮谁（tit-for-tat)</li>
+</ul>
+<h3 id="P2P文件共享"><a href="#P2P文件共享" class="headerlink" title="P2P文件共享"></a>P2P文件共享</h3><p><strong>查询洪泛Gnutella</strong>（协议）</p>
+<ul>
+<li>全分布式，没有中心服务器</li>
+<li>开放文件共享协议</li>
+<li>许多Gnutella客户端实现了Gnutella协议。利用图来覆盖网络</li>
+</ul>
+<p><strong>Gnutella：协议</strong></p>
+<p>在已有的TCP连接上发送查询报文，对等发转发查询报文，如果查到由最终的服务器返回。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210928161023284.png" alt="image-20210928161023284"></p>
+<p><strong>利用不匀称性：KaZaA</strong></p>
+<ul>
+<li>每个对等方要么是一个组长，要么隶属一个组长。对等方与组长之间有TCP连接，组长对之间有TCP连接</li>
+<li>组长跟踪所有的孩子的内容</li>
+<li>组长与其他组长联系。转发查询到其他组长，活的其他组长的数据拷贝。</li>
+</ul>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210928161211361.png" alt="image-20210928161211361"></p>
+<ol>
+<li>每个文件有一个散列标识码和一个描述符，客户端向其组长发送关键字查询。</li>
+<li>组长用匹配进行响应（元数据，散列标识码，IP地址）</li>
+<li>如果组长将查询发送给其他组长，其他组长以匹配进行响应。</li>
+<li>客户端选择要下载的文件（向拥有文件的对等方发送一个带散列标识符的HTTP请求）</li>
+</ol>
+<h2 id="CDN和视频"><a href="#CDN和视频" class="headerlink" title="CDN和视频"></a>CDN和视频</h2><p>视频编码</p>
+<p>CBR（constant bit rate）：以固定速率编码</p>
+<p>VBR（variable bit rate）：视频编码速率随时间变化而变化</p>
+<h3 id="多媒体流化服务：DASH"><a href="#多媒体流化服务：DASH" class="headerlink" title="多媒体流化服务：DASH"></a>多媒体流化服务：DASH</h3><p>DASH：Dynamic，Adaptive Streaming over HTTP</p>
+<p>服务器：</p>
+<ul>
+<li>将视频文件分隔为多个块</li>
+<li>每个块独立存储，编码于不同码率</li>
+<li>告示文件（manifest file）：提供不同块的URL</li>
+</ul>
+<p>客户端：客户端自适应决定</p>
+<ul>
+<li>先获取告示文件</li>
+<li>周期性的测量服务器到客户端的带宽</li>
+<li>查询告示文件，在一个时刻请求一个块，HTTP头部指定字节范围</li>
+</ul>
+<p>CDN，全网部署缓存节点，存储服务内容，就近为用户提供服务，提高用户体验。两种方式</p>
+<ul>
+<li>enter deep：将CDN服务器深入到许多接入网。更接近用户，数量多。离用户近，管理困难。</li>
+<li>bring home ：部署在少数关键位置。采用租用线路，将服务器连接起来</li>
+</ul>
+<p>CDN：在CDN节点中存储内容的拷贝。用户从CDN请求内容。</p>
+<p>案例Netflix</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210928172552365.png" alt="image-20210928172552365"></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css"><p><span>本文标题：</span>计算机网络(自顶向下)第二章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-09-28</p><p><span>最后更新：</span>2021-09-28</p><p><span>原始链接：</span><a href="/2021/计算机网络-自顶向下-第二章/">https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B-%E7%AC%AC%E4%BA%8C%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B-%E7%AC%AC%E4%BA%8C%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B-%E7%AC%AC%E4%BA%8C%E7%AB%A0/" data-id="cl1p05sgc00113ku36yp88adx" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEp0lEQVR42u3aS27bQBAFQN//0gqQbSz6vW4a0UjFlUFJ5LBooKc/X1/x8fh7tN+//tW/33n2q2ffvF7h459j9ixfmDBhwoTpcKbH5ZHc8nop+bKeffOaMnklydWePQsmTJgwYXoPptni8oB9zZeE8+Sa1y8vf4WYMGHChOkzmZLF5WF49p0kkN/7OjFhwoQJ06cx5cXTFjpPiWdFXkyYMGHC9MlMbVjNW5jJdZJkdZ/KJkXqG2rhmDBhwoTpxZhmLcD3+PvmAxMmTJgwvRjTozzy1mbSFs03BO2zXJ+vnxoTJkyYMB3L1BZtN+XXu4ZKc6bZHYsKASZMmDBhenmmtqiahNVNUj07syGISsaYMGHChOlwpjx9TRLg60XnbctZIp20POsXhgkTJkyYDmfK08X9Q84WvQn/yUp++CfAhAkTJkyHM7UPuU8v20eahfN8DieqgmPChAkTpmOZrm+woWyHZmZ8eeo7HDnChAkTJkzHMuWJZTvAmhd220ZmW3SeJeFPx3cwYcKECdOxTEkjcBPa86S0DdWbAm7x2jBhwoQJ04FMm3Zjnvpes7a/mhWXV0k+JkyYMGE6linp2eXl0WSUJ0mnZ1uHfD35GUyYMGHCdDrTJi3MEfO0dlYyzpums+QZEyZMmDCdzrQhaBc0G/eZJbr7zUG9XEyYMGHC9MJMm+RzttA8PN91ZvgpJkyYMGE6likP8PmyknQ0D+2/cSZJ9YtJXkyYMGHC9MJMyRJvC6jxp5vkPC86F3fHhAkTJkzHMiXNvHtHP9vAPGt5thuXOvXFhAkTJkyHMM1GbdrQnqTBm1GevBKb3GtVgcaECRMmTAcyJYFzlui2G4LZCtuNTlQFx4QJEyZMxzLlAb5tZLa4bRE2acEOETFhwoQJ07FMm5R1VpbNf3tXqzLf0AwHdjFhwoQJ01FMd90+Lxy3JeC2Rdo+S/EfhAkTJkyYDmHKi555UM+D8eyF/XY6/bTUiwkTJkyYjmLK09ekrdg2MjejPAn0rJ35zXowYcKECdPhTO1SZsXWfcE3b1u2ED+8ZkyYMGHC9EZM+7bfXYibMwlEUf/GhAkTJkzHMuUhPx+dyYuzUdq5gMgbq1GxGBMmTJgwHciUP3xe6t2P3cwapfnmpk3vMWHChAnTuUztAE0evGftz3zRs6R6k3JjwoQJE6YTmWYhf0PQ5pL59qJtiNaTPpgwYcKE6UCmPJXNG5ybB2gLwe02JU/Cv/kUEyZMmDAdyJQM3OQhPC/UtleYTdHkhd0fEDFhwoQJ01sw5Y3J2fDNDLTdQFyvJHk9wyIvJkyYMGF6SaZZstoOx8xQZoXjfDQnfw2YMGHChOlcpkd5zMjaKySP124L2u3ON/smTJgwYcJ0INNsxGeWErdpc76S/WDQZhuBCRMmTJhenynZBLQQs81Be9/ZoM+sXYoJEyZMmE5nasdc8hGcTek2fw31HqdNpzFhwoQJ0wcwzZLbthzcsm5apMVvMWHChAkTpllKWbYY22Zqkn4XM02YMGHChOlYpt8o8rYBPklu7xoqqtNpTJgwYcJ0LNNscCcP2DPW/GrtmQTuhjoxJkyYMGH6/0x/APb7gBFHvA7JAAAAAElFTkSuQmCC">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B-%E7%AC%AC%E4%B8%89%E7%AB%A0/">计算机网络(自顶向下)第三章</a><a class="next" href="/2021/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E5%9B%BE-%E7%AC%94%E8%AE%B0/">数据结构-图-笔记</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%94%E7%AB%A0/">操作系统 第五章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/">操作系统-第三章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/">计算机组成原理-第七章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by Hexo.</div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

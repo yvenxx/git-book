@@ -1,0 +1,142 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一些我的计算机笔记，JAVA/Python/Linux/后端/计算机基础"><title>计算机组成原理-第四章 | 懒人瑜恩</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2059a4484fb666484cf5e9fba7e20ce6';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">计算机组成原理-第四章</h1><a id="logo" href="/.">懒人瑜恩</a><p class="description">sometimes code, sometimes English</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/history/"><i class="fa fa-book"> 历史</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">计算机组成原理-第四章</h1><div class="post-meta">2021-10-21<span> | </span><span class="category"><a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">指令系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E6%93%8D%E4%BD%9C%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">扩展操作码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E5%AF%BB%E5%9D%80"><span class="toc-number">1.2.</span> <span class="toc-text">指令寻址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E5%AF%BB%E5%9D%80"><span class="toc-number">1.2.1.</span> <span class="toc-text">顺序寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%B3%E8%B7%83%E5%AF%BB%E5%9D%80"><span class="toc-number">1.2.2.</span> <span class="toc-text">跳跃寻址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AF%BB%E5%9D%80"><span class="toc-number">1.3.</span> <span class="toc-text">数据寻址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="toc-number">1.3.1.</span> <span class="toc-text">直接寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="toc-number">1.3.2.</span> <span class="toc-text">间接寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E5%AF%BB%E5%9D%80"><span class="toc-number">1.3.3.</span> <span class="toc-text">寄存器寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80"><span class="toc-number">1.3.4.</span> <span class="toc-text">寄存器间接寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E5%90%AB%E5%9C%B0%E5%9D%80"><span class="toc-number">1.3.5.</span> <span class="toc-text">隐含地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E5%9D%80%E5%AF%BB%E5%9D%80-%E5%81%8F%E7%A7%BB%E5%AF%BB%E5%9D%80"><span class="toc-number">1.3.6.</span> <span class="toc-text">基址寻址-偏移寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80-%E5%81%8F%E7%A7%BB%E5%AF%BB%E5%9D%80"><span class="toc-number">1.3.7.</span> <span class="toc-text">变址寻址-偏移寻址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E5%9D%80-%E5%9F%BA%E5%9D%80%E8%BF%9B%E8%A1%8C%E5%A4%8D%E5%90%88%E7%BC%96%E5%9D%80"><span class="toc-number">1.3.7.1.</span> <span class="toc-text">变址+基址进行复合编址</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80-%E5%81%8F%E7%A7%BB%E5%AF%BB%E5%9D%80"><span class="toc-number">1.3.8.</span> <span class="toc-text">相对寻址-偏移寻址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A0%86%E6%A0%88%E5%AF%BB%E5%9D%80"><span class="toc-number">1.3.9.</span> <span class="toc-text">堆栈寻址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CISC%E5%92%8CRISC"><span class="toc-number">1.4.</span> <span class="toc-text">CISC和RISC</span></a></li></ol></li></ol></div></div><div class="post-content"><a id="more"></a>
+
+
+
+<h1 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h1><p>指令（机器指令）（操作码+地址码）：指示计算机执行某种操作的命令，是计算机运行的最小功能单位。一台计算机所有指令的集合构成该机的<strong>指令系统</strong>，也成为<strong>指令集</strong></p>
+<ul>
+<li><p><strong>零地址指令OP：</strong>不需要操作数：如空操作，停机，关中断等指令。</p>
+<p>堆栈计算机，两个操作数隐含存放在栈顶和次栈顶，计算结果压回栈顶</p>
+</li>
+<li><p>一地址指令</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211020165247381.png" alt="image-20211020165247381"></p>
+<p>只需要单操作数，如 加1，减1，取反，求补等。OP（A1）—&gt;A1，完成一条指令需要 3次访存：取指–》读A1—》写A1</p>
+<p>需要两个操作数：但其中一个操作数隐含在某个寄存器中，不需要取，例如ACC。(ACC) OP (A1)—-&gt;ACC 完成一条指令需要 2次访存：取指–》读A1</p>
+</li>
+<li><p>二地址指令</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211020165534846.png" alt="image-20211020165534846"></p>
+<p>常用于需要两个操作数的算数运算，逻辑运算相关指令。指令含义：(A1)OP(A2)—-A1，完成一条指令需要访存4次：取指—》读A1—》读A2—》写A1</p>
+</li>
+<li><p>三地址指令</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211020165656426.png" alt="image-20211020165656426"></p>
+<p>常用语需要两个操作数的算数运算，逻辑运算。指令含义：(A1)OP(A2)—&gt;A3，完成指令需要访存4次，取指—&gt;读A1—读A2—》写A3</p>
+</li>
+<li><p>四地址指令</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211020165817834.png" alt="image-20211020165817834"></p>
+<p>指令含义：(A1)OP(A2)—&gt;A3，A4指向下一条需要执行指令的地址，正常情况执行完操作之后，PC+1，指向下一条指令。在四地址指令中：执行指令后，将PC的值修改为A4所指的地址</p>
+</li>
+</ul>
+<blockquote>
+<p>n位地址码的直接寻址范围=2^n</p>
+<p>若指令总长度固定不变，则d地址码数量越多，寻址能力越差</p>
+</blockquote>
+<p><strong>指令–按指令长度分类</strong></p>
+<p><strong>指令字长：一条指令的总长度（可能会变）</strong></p>
+<p>半字长指令，单字长指令，双字长指令—指令长度是机器字长的倍数，指令字长会影响取指令所需时间。如：机器字长=存储字长=16bit，则取一条双字长指令需要两次访存</p>
+<p><strong>定长指令字结构：</strong>指令系统中所有指令的长度都相等</p>
+<p><strong>变长指令字结构：</strong>指令系统中各种指令的长度不等</p>
+<p><strong>按操作码长度分类</strong></p>
+<p><strong>定长操作码</strong>：指令系统中所有指令的操作码长度都相同，n位—&gt;2^n条指令</p>
+<p><strong>可变长操作码</strong>：指令系统中各指令的操作码长度可变</p>
+<p>定长指令字结构+可变长操作码—-》扩展操作码指令格式</p>
+<p><strong>按操作类型分类</strong></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211020170617716.png" alt="image-20211020170617716"></p>
+<h2 id="扩展操作码"><a href="#扩展操作码" class="headerlink" title="扩展操作码"></a>扩展操作码</h2><p>注：不允许短码是长码的前缀，也就是短操作码不能与长操作码的前面部分的代码相同。各指令的操作码一定不能重复</p>
+<p>通常对使用频率较高的指令，分配较短的操作码；对使用频率较低的指令，分配较长的操作码，尽可能减少指令译码和分析的时间</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021093816000.png" alt="image-20211021093816000"></p>
+<p>另一种扩展方法</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021094157897.png" alt="image-20211021094157897"></p>
+<p><strong>指令操作码</strong></p>
+<p>操作码指出指令中该指令应该执行什么性质的操作和具有何种功能</p>
+<p>分类</p>
+<ul>
+<li>定长操作码：在指令字的最高位部分分配固定的若干位（定长）表示操作码，一般n位操作码字段的指令系统最大能够表示2^n条指令<ul>
+<li>优：定长操作码对于简化计算机硬件设计，提高指令译码和识别速度有利</li>
+<li>缺：指令数量增加时会占用更多固定位，留给表示操作数地址的位数受限</li>
+</ul>
+</li>
+<li>扩展操作码：全部指令的操作码字段的位数不固定，且分散的放在指令字的不同位置。指令可以具有不同长度的操作码，从而在满足需要的前提下，有效的缩短指令字长<ul>
+<li>优：在指令字长有限的前提下保持比较丰富的指令种类</li>
+<li>缺：增加了指令译码和分析的难度，使控制器的设计复杂化</li>
+</ul>
+</li>
+</ul>
+<h2 id="指令寻址"><a href="#指令寻址" class="headerlink" title="指令寻址"></a>指令寻址</h2><p>顺序寻址，跳跃寻址</p>
+<h3 id="顺序寻址"><a href="#顺序寻址" class="headerlink" title="顺序寻址"></a><strong>顺序寻址</strong></h3><blockquote>
+<p>PC+”1”,这里的1不一定真的是+1，这里的1理解为1个指令字长，实际加的值会因指令长度，编址方式而不同</p>
+</blockquote>
+<p>采用<strong>定长指令字结构</strong>，指令字长=存储字长=16bit=2B。</p>
+<ul>
+<li><strong>主存按字寻址</strong>：pc每次+1.为一个字</li>
+<li><strong>主存按字节寻址：</strong>如果为4个字节，就是2字。所以pc需要+2</li>
+</ul>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021114345613.png" alt="image-20211021114345613"></p>
+<h3 id="跳跃寻址"><a href="#跳跃寻址" class="headerlink" title="跳跃寻址"></a><strong>跳跃寻址</strong></h3><p><strong>由转移指令指出。</strong>例如 JMP 7，实际上不是pc+1了。实际上 JMP=无条件转移。将PC中的内容改为7的地址，类似与goto</p>
+<h2 id="数据寻址"><a href="#数据寻址" class="headerlink" title="数据寻址"></a>数据寻址</h2><p>这里是一地址指令，如果是二地址，后面的寻址特征和形式地址，也会相应的增加。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021115007780.png" alt="image-20211021115007780"></p>
+<h3 id="直接寻址"><a href="#直接寻址" class="headerlink" title="直接寻址"></a>直接寻址</h3><p><strong>指令字中的形式地址A就是操作数的真实地址EA，即EA=A</strong>。直接对地址进行访存</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021115255216.png" alt="image-20211021115255216"></p>
+<h3 id="间接寻址"><a href="#间接寻址" class="headerlink" title="间接寻址"></a>间接寻址</h3><p>指令的地址字段给出的形式地址，不是操作数的真正地址，而是操作数y有效地址所在的存储单元的地址，也就是操作数地址的地址。也就是A中存放的不是真实地址，存的是主存的一个地址，主存的地址又指向其他地址。</p>
+<ul>
+<li><p>优：可扩大寻址范围（有效地址EA的位数大于形式地址A的位数），便于编址程序（用于间接寻址可以方便的完成子程序返回）</p>
+</li>
+<li><p>缺：指令在执行阶段要多次访存（一次间接寻址需要两次访存，多次寻址需要根据存储字的最高位确定几次访存）</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021115509120.png" alt="image-20211021115509120"></p>
+<h3 id="寄存器寻址"><a href="#寄存器寻址" class="headerlink" title="寄存器寻址"></a>寄存器寻址</h3><p>在指令字中直接给出操作数所在的寄存器编号，即EA=Ri，其操作数在由Ri所指的寄存器中。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021141216818.png" alt="image-20211021141216818"></p>
+<h3 id="寄存器间接寻址"><a href="#寄存器间接寻址" class="headerlink" title="寄存器间接寻址"></a>寄存器间接寻址</h3><p>寄存器Ri中给出的不是一个操作数，而是操作数所在主存单元的地址，即EA=(Ri)</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021141551219.png" alt="image-20211021141551219"></p>
+<h3 id="隐含地址"><a href="#隐含地址" class="headerlink" title="隐含地址"></a>隐含地址</h3><p>不是明显的给出操作数的地址，而是指令隐含着操作数的地址。例如上面的一地址的时候，有一个情况是，取一个操作数和ACC中的数据进行操作。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021141809437.png" alt="image-20211021141809437"></p>
+<h3 id="基址寻址-偏移寻址"><a href="#基址寻址-偏移寻址" class="headerlink" title="基址寻址-偏移寻址"></a>基址寻址-偏移寻址</h3><p>将CPU中基址寄存器（BR）或者是由通用寄存器 的内容加上指令格式中的形式地址A，而形成操作数的有效地址，即EA=(BR)+A</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021142217997.png" alt="image-20211021142217997"></p>
+<blockquote>
+<p>基址寄存器是<strong>面向操作系统</strong>的，其<strong>内容由操作系统或管理程序确定</strong>。在程序执行过程中，基址寄存器的内容不变（作为基地址），形式地址可变（作为偏移量）。</p>
+<p>当采用通用寄存器作为基址寄存器时，可由<strong>用户决定哪个寄存器作为基址寄存器</strong>，但其<strong>内容仍由操作系统确定</strong></p>
+</blockquote>
+<p>优点：可扩大寻址范围（基址寄存器的位数大于形式地址A的位数）；用户不必考虑自己程序存于主存的哪一空间，<strong>有利于多道程序设计</strong>，以及编制浮动程序（整个程序在内存里浮动）</p>
+<p>例</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这里一个循环程序，基址寄存器存程序的地址，假如要用到其中的数组，只需要程序基址加上偏移量即可。不需要考虑程序地址位置</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="变址寻址-偏移寻址"><a href="#变址寻址-偏移寻址" class="headerlink" title="变址寻址-偏移寻址"></a>变址寻址-偏移寻址</h3><p>有效地址EA等于指令字中的形式地址A与<strong>变址寄存器IX</strong>的内容相加之和。即EA=(IX)+A，其中<strong>IX可变为变址寄存器（专用）</strong>，也<strong>可用通用寄存器作为变址寄存器</strong></p>
+<p><strong>变址寄存器是面向用户的，</strong>在程序执行过程中，变址寄存器的**内容可由用户改变（作为偏移量），形式地址A不变（作为基地址），如果没看懂就看下面的例子。</p>
+<p>优点：在数组处理过程中，可设定A为数组的首地址，不断改变变址寄存器IX的内容，便可很容易形成数组中任一数据的地址，特别<strong>适合编制循环程序</strong></p>
+<p><strong>注：右边的那个是基址寻址的图</strong></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021143740973.png" alt="image-20211021143740973"></p>
+<p>例，还是上面的那个C语言程序。变址寄存器存放IX，A存放数组的a[0]，然后A每次加上IX偏移量。IX每次循环都会对应 i++，所以正好实现地址偏移。这样省去了直接寻址a数组需要 10个空间。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021144355262.png" alt="image-20211021144355262"></p>
+<h4 id="变址-基址进行复合编址"><a href="#变址-基址进行复合编址" class="headerlink" title="变址+基址进行复合编址"></a>变址+基址进行复合编址</h4><p>在一个程序中，先进行基址，后进行变址。来进行寻址。EA = (IX) + ((BR)+A)。具体思路就是，A还是存的数组初始地址a[0]，基址寻址+A为上面图中的变址寻址的位置，然后再加上IX的偏移量，就可以得到a的数组后面的数据。</p>
+<h3 id="相对寻址-偏移寻址"><a href="#相对寻址-偏移寻址" class="headerlink" title="相对寻址-偏移寻址"></a>相对寻址-偏移寻址</h3><p>把<strong>程序计数器PC</strong>的内容加上指令格式中的形式地址A，而形成操作数的有效地址，即EA=(PC)+A，其中<strong>A是相对于PC</strong>所指地址的<strong>位移量</strong>可正可负，<strong>补码表示</strong></p>
+<blockquote>
+<p>A可正可负，所以PC的偏移量可以向前也可以向后。而且如果按照一字 pc+1，那么如果A占了2字，PC就会直接+2；</p>
+</blockquote>
+<p>优点：操作数的地址不是固定的，他随着PC值的变化而变化，并且与指令地址之间总是相差一个固定值，因此<strong>便于程序浮动</strong>（一段代码在程序内部的浮动），相对寻址<strong>广泛用于转移指令</strong>。</p>
+<p>例如C语言中的 if语句，如果成功就运行一些东西，而这些东西地址不一定跟if相连。所以可以相对寻址直接跳转。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021150306322.png" alt="image-20211021150306322"></p>
+<h3 id="堆栈寻址"><a href="#堆栈寻址" class="headerlink" title="堆栈寻址"></a>堆栈寻址</h3><p>操作数存放在堆栈中，隐含使用堆栈指针（SP）作为操作数地址。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021154430575.png" alt="image-20211021154430575"></p>
+<p>当前指针指向01，假如进行一个加法操作。R1先出栈进入ACC中，Sp+1，指向R2，R2再出栈。与ACC中的数据进行增加。然后将加出来的结果再入栈</p>
+<ul>
+<li><p>硬堆栈：在硬件中弄一个专用的寄存器</p>
+</li>
+<li><p>软堆栈：在主存中用一部分地址来作为堆栈（缺点是每次操作需要访存，硬堆栈不用）</p>
+</li>
+</ul>
+<h2 id="CISC和RISC"><a href="#CISC和RISC" class="headerlink" title="CISC和RISC"></a>CISC和RISC</h2><p><strong>CISC:Complex Instruction Set Computer</strong></p>
+<p>设计思路：一条指令完成一个复杂的基本功能（x86架构，主要用于笔记本，台式机）</p>
+<p>例如可以设计一套整数，矩阵的加减乘运算。</p>
+<p>一条指令由一个专门的电路完成</p>
+<p><strong>RISC:Reduced Instruction Set Computer</strong></p>
+<p>设计思路：一条指令完成一个基本 “动作”；多条指令组合完成一个复杂的基本功能（ARM架构，主要用于手机，平板）</p>
+<p>只提供整数的加减乘指令，一条指令一个电路，电路设计相对简单，功耗更低。“并行”，“流水线”</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021155326300.png" alt="image-20211021155326300"></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css"><p><span>本文标题：</span>计算机组成原理-第四章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-10-21</p><p><span>最后更新：</span>2021-11-09</p><p><span>原始链接：</span><a href="/2021/计算机组成原理-第四章/">https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%9B%9B%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%9B%9B%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%9B%9B%E7%AB%A0/" data-id="cl1p05sg5000u3ku33num4mc2" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEoElEQVR42u3ay07jQBAFUP7/pxlptgHn3iozkw4nKwSO3T6N1PX6+Ig/n38/jz8n13w+fB5//92Vj8+6Xsnn5ed6/Td8MGHChAnTSzLlt84Xfb24BDrZhhlEcp8v7oAJEyZMmA5nym93/d32gN9DXK+/DSm+/T0mTJgwYfoFTLPc8Hrp+Qbkz5qFKZgwYcKECdNdJd0kOMjJkiS2TZIxYcKECdP7MbW3yw/+WSOzfVaL+IO1cEyYMGHC9GJMm8Gd03/+R/NNmDBhwoTpPzHN0sXZd9vG52wj27JytGZMmDBhwnQsU5IW7huK+SvdVeTNB4+KtWHChAkTpgOZNo3M/LvJ9W0Zd0PQ3hkTJkyYML0r06Yw2h7PeUF21oycQWPChAkTpvdgapeV5IPt4E4bWLRp9qpkjAkTJkyYjmVqU8S2dJsEAe1WzdLaWar8MXskJkyYMGF6MaZ8NOfeY3UTjrQF5WRLnqwHEyZMmDAdyHTX6ExeWm2vbw/1pMmahz6YMGHChOl0pvzQTQq1eVuxHfrJQ4S8KNwWmjFhwoQJ04lMsy8nr9e2NvOX/Lka7LebhAkTJkyYjmXKC6/t681eYFYOzkd58mQ7GtnBhAkTJkyHMLVNwTYgmAUQeUKbPH3WKH1SIcCECRMmTAcyzYqkm8ZkO+6zSb/bFWLChAkTptOZ8gQyDw5mn/2z9kM8324VJkyYMGE6lmnfkszbhLNRnrY42xZw87EkTJgwYcJ0ItNsWCdPLNticX543zXMGj0dEyZMmDC9BVPe2mxfcnMwJyizYKL458CECRMmTMcytU3BTRDQbs8eZT/cgwkTJkyYTmfKxzTzwdO8ENwGBHcd7S0fJkyYMGE6l2kWO+zLqau0M4be3P/JJC8mTJgwYTqEKblpO8aaHNuz8KLdmNkoDyZMmDBhem+mu4Z4Woi82dm+8KzlWeT0mDBhwoTphZlmCeomuc0pZ4HIvqN7w/QTJkyYMGF6MabN8Z83Mjdws3Zme88nT8SECRMmTAcy5UXe2aHbJpz59Xm6vt8ATJgwYcJ0LlNeVM2Lwm35tW1PzrZtFkxE3pgwYcKE6YWZ9qnsrPeXD9O0Izv7YOWLb2HChAkTpmOZNoMym+GYzZa0zdSa4zoswIQJEyZMRzHlh26ejs6O57rkuvm/iAvBmDBhwoTpdKa8NZiPxeQl19nIzr3jO3XWjgkTJkyYjmJKlpsfsXddP3vVWVgTBTGYMGHChOlwpllhtD092y2ZFWpnSfITREyYMGHC9BZMs1wvSTiTv7b3nIUC+WZ8UQvHhAkTJkwHMm3ak3nDMoeYjQS1a8ubmsPJIEyYMGHC9DJMmzQ1OVDzgzy5T46SjwdFa8aECRMmTMcytbMrm7hjVn6dXdlu8+atMWHChAnT6zO17cZZATcJDjYF5Xbop27cYsKECROmw5naMZfrRbRXzoaB9kFMkTxjwoQJE6ZfwHTXkXxXM3V1wLfFZUyYMGHC9CuZkiM/WcQsVd63M4uNxIQJEyZMhzPNirwz+pavDT6S92rLx5gwYcKE6VymTQF0lnbOmqPt2FB7t/xZmDBhwoTpEKY/T8FXSNOnK+cAAAAASUVORK5CYII=">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a><a class="next" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0/">计算机组成原理-第三章</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%94%E7%AB%A0/">操作系统 第五章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/">操作系统-第三章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/">计算机组成原理-第七章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by Hexo.</div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
