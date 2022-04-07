@@ -1,0 +1,138 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一些我的计算机笔记，JAVA/Python/Linux/后端/计算机基础"><title>操作系统-第一章 | 懒人瑜恩</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2059a4484fb666484cf5e9fba7e20ce6';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">操作系统-第一章</h1><a id="logo" href="/.">懒人瑜恩</a><p class="description">sometimes code, sometimes English</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/history/"><i class="fa fa-book"> 历史</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">操作系统-第一章</h1><div class="post-meta">2021-11-09<span> | </span><span class="category"><a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">操作系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E4%B8%AA%E7%89%B9%E5%BE%81"><span class="toc-number">1.1.</span> <span class="toc-text">四个特征</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91"><span class="toc-number">1.1.1.</span> <span class="toc-text">并发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB"><span class="toc-number">1.1.2.</span> <span class="toc-text">共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F"><span class="toc-number">1.1.3.</span> <span class="toc-text">虚拟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5"><span class="toc-number">1.1.4.</span> <span class="toc-text">异步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B1%95%E4%B8%8E%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">发展与分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.3.</span> <span class="toc-text">运行机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">两种程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E6%8C%87%E4%BB%A4"><span class="toc-number">1.3.2.</span> <span class="toc-text">两种指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E7%8A%B6%E6%80%81"><span class="toc-number">1.3.3.</span> <span class="toc-text">两种状态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E4%BA%92%E5%88%87%E6%8D%A2%E7%8A%B6%E6%80%81"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">相互切换状态</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%92%8C%E5%BC%82%E5%B8%B8"><span class="toc-number">1.4.</span> <span class="toc-text">中断和异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%EF%BC%88%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">系统调用（程序接口）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.</span> <span class="toc-text">体系结构</span></a></li></ol></li></ol></div></div><div class="post-content"><a id="more"></a>
+
+<h1 id="操作系统概述"><a href="#操作系统概述" class="headerlink" title="操作系统概述"></a>操作系统概述</h1><p><strong>操作系统（Operating System OS)**是指控制和</strong>管理<strong>整个计算机系统的</strong>硬件和软件<strong>资源，并合理地组织调度计算机的工作和资源的分配；以</strong>提供给用户和其他软件方便的接口和环境<strong>；是计算机系统中最基本的</strong>系统软件**</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030135027449.png" alt="image-20211030135027449"></p>
+<blockquote>
+<p>执行一个程序时，需要先将其从外存放到内存中</p>
+</blockquote>
+<p><strong>联机命令接口=交互式命令接口</strong>，例如win里面的cmd（用户发一个命令，系统做一个）</p>
+<p><strong>脱机命令接口=批处理命令接口</strong>（用户说一堆系统做一堆）</p>
+<p>程序接口：可以在程序中进行<strong>系统调用（广义指令）</strong>来使用接口。普通用户不能直接使用程序接口，只能通过程序代码<strong>间接</strong>使用。例如使用print调用程序接口。</p>
+<p>操作系统实现<strong>对硬件机器的拓展</strong>，没有任何软件的称为<strong>裸机</strong>，<strong>扩充机器（虚拟机）</strong></p>
+<h2 id="四个特征"><a href="#四个特征" class="headerlink" title="四个特征"></a>四个特征</h2><h3 id="并发"><a href="#并发" class="headerlink" title="并发"></a><strong>并发</strong></h3><p>指两个或多个事件在同一时间间隔内发生。这些事件<strong>是宏观上同时发生的</strong>，但<strong>微观上是交替发生的</strong>（也就是CPU是交替进行两个多个任务）。<strong>操作系统和程序并发是一起诞生的</strong></p>
+<p><strong>并行：指两个或多个时间同一时刻发生</strong></p>
+<p><strong>重点</strong></p>
+<p><strong>单核CPU</strong>同一时刻只能执行一个程序，各个程序只能并发的执行</p>
+<p><strong>多核CPU</strong>同一时刻可以执行<strong>多个程序</strong>，多个程序可以<strong>并行</strong>执行</p>
+<h3 id="共享"><a href="#共享" class="headerlink" title="共享"></a><strong>共享</strong></h3><p>资源共享，指系统中的资源可供内存中多个并发执行的进程共同使用</p>
+<p>两种共享方式</p>
+<ul>
+<li><p>互斥共享方式</p>
+<p>系统中的资源虽然可以给多个进程使用。但<strong>一个时间内只允许一个进程访问该资源</strong>（摄像头只能一个进程使用）</p>
+</li>
+<li><p>同时共享方式</p>
+<p>系统中的资源，允许一个时间段内由多个进程 “<strong>同时</strong>“ 对它们进行访问（两个不同文件，可以有两个程序进行分别使用）</p>
+</li>
+</ul>
+<blockquote>
+<p>如果没有并发，那么共享性也不存在。如果失去共享性，并发不能同时使用文件，也就没有共享性</p>
+</blockquote>
+<h3 id="虚拟"><a href="#虚拟" class="headerlink" title="虚拟"></a><strong>虚拟</strong></h3><p>把一个物理上的实体变为若干个逻辑上的对应物。物理实体（前者）是实际存在的，逻辑上对应物（后者）是用户感受到的</p>
+<p>一个程序<strong>需要放入内存</strong>并分配CPU才能执行。但是如果电脑只有4GB，一个游戏要4GB，但是其他的应用也要内存。这时候就会用到 <strong>虚拟存储器基础</strong>实际只有4GB但是用户看来大于4GB。同样的也有虚拟处理器技术</p>
+<ul>
+<li>空分复用技术（虚拟存储器技术）</li>
+<li>时分复用技术（虚拟处理器）</li>
+</ul>
+<h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a><strong>异步</strong></h3><p>这里的异步和程序里面的异步有些不同。</p>
+<p>在多道程序环境下，允许多个程序并发执行，但由于资源有限，进程的执行不是一贯到底的。而是走走停停，以不可预知的速度前进。 <strong>只有系统拥有并发性，才有可能导致异步性</strong></p>
+<p>例如：两道并发执行的程序，CPU是一边执行一会，交替运行</p>
+<h2 id="发展与分类"><a href="#发展与分类" class="headerlink" title="发展与分类"></a>发展与分类</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030143409272.png" alt="image-20211030143409272"></p>
+<p><strong>手工操作阶段</strong></p>
+<p>缺点：用户独占全机，人机速度矛盾导致资源利用率低。</p>
+<p><strong>批处理阶段–单道批处理系统</strong></p>
+<p>引入<strong>脱机输入输出技术</strong>（外围机+磁带），并由<strong>监督程序</strong>负责控制作业的输入输出</p>
+<p>主要优点：缓解了一定程度的人机速度矛盾，资源利用率提升</p>
+<p>缺点:<strong>内存中仅能有一道程序运行，</strong>只有该程序运行结束之后才能调入下一道程序。<strong>cpu有大量时间是在空闲等待I/O完成</strong>。资源利用率低</p>
+<p><strong>批处理阶段–多道批处理系统</strong></p>
+<p>每次往内存中读入多道程序，操作系统诞生，用于支持多道程序并发运行</p>
+<p>优点：多道程序<strong>并发</strong>执行，<strong>共享</strong>计算机资源。<strong>资源利用率大幅度提升</strong>。CPU和其他资源更能保持 ”忙碌“状态，系统吞吐量大</p>
+<p>缺点：用户响应时间长，<strong>没有人机交互功能</strong>（用户提交自己的作业之后就只能等待计算机处理完成，中间不能控制自己的作业执行）</p>
+<p><strong>分时操作系统</strong></p>
+<p>计算机以<strong>时间片</strong>为单位<strong>轮流为各个用户/作业服务</strong>，各个用户可通过终端与计算机进行交互。</p>
+<p>优点：用户请求可以被即时响应，<strong>解决了人机交互问题</strong>。允许多个用户同时使用一台计算机，并且用户对计算机的操作相互独立，感受不到别人的存在。</p>
+<p>要缺点：<strong>不能优先处理一些紧急任务</strong>。操作系统对各个用户/作业都是完全公平的，循环地为每个用户作业服务一个时间片，不区分任务的紧急性。</p>
+<p><strong>实时操作系统</strong></p>
+<p>优点：能够优先响应一些紧急任务，紧急任务不需排队</p>
+<p>实时操作系统控制下，计算机系统接收到外部信号后及时进行处理，并且<strong>要在严格的时限内处理完事件</strong>。实时操作系统的主要特点是及时性和可靠性</p>
+<ul>
+<li>硬实时操作系统：必须绝对严格的规定时间内完成处理（自动驾驶，导弹控制..)</li>
+<li>软实时操作系统：能接收偶尔违反时间固定（一些网页的更新）</li>
+</ul>
+<p><strong>其他操作系统</strong></p>
+<p>网络操作系统：是伴随着计算机网络的发展而诞生的，能把网络中各个计算机有机地结合起来，实现数据传 送等功能，<strong>实现网络中各种资源的共享（如文件共享）和各台计算机之间的通信</strong>。（如：Windows NT 就是 一种典型的网络操作系统，网站服务器就可以使用</p>
+<p>分布式操作系统：主要特点是<strong>分布性和并行性</strong>。系统中的各台计算机地位相同，<strong>任何工作都可以分布在这些计算机上，由他们并行、协同完成这个任务</strong></p>
+<p>个人计算机操作系统，xp win10…</p>
+<h2 id="运行机制"><a href="#运行机制" class="headerlink" title="运行机制"></a>运行机制</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030150414578.png" alt="image-20211030150414578"></p>
+<h3 id="两种程序"><a href="#两种程序" class="headerlink" title="两种程序"></a><strong>两种程序</strong></h3><ul>
+<li>内核程序：很多内核程序组成了 ”<strong>操作系统内核</strong>“，<strong>内核</strong>是操作系统最重要最核心的部分，也是<strong>最接近硬件的部分</strong>。可以说，操作系统只要有内核就够了，且操作系统的功能都不一定在内核中（如GUI）</li>
+<li>应用程序：普通程序员写的程序就是</li>
+</ul>
+<h3 id="两种指令"><a href="#两种指令" class="headerlink" title="两种指令"></a>两种指令</h3><p>CPU设计和生产的时候就划分了特权指令和非特权指令，因此CPU可以执行指令前就能判断其类型</p>
+<ul>
+<li>应用程序只能使用<strong>非特权指令</strong>（加法指令，减法指令…)</li>
+<li>特权指令：如内存清零指令，影响重大，只允许内核使用</li>
+</ul>
+<h3 id="两种状态"><a href="#两种状态" class="headerlink" title="两种状态"></a>两种状态</h3><ul>
+<li>内核态：在内核态时，说明<strong>正在运行的是内核程序</strong>，此时<strong>可以执行特权指令</strong></li>
+<li>用户态：在用户态时，说明<strong>正在运行的是应用程序</strong>，此时<strong>只能执行非特权指令</strong></li>
+</ul>
+<blockquote>
+<p>CPU中有一个寄存器是 程序状态字寄存器（PSW），其中有一个二进制位，1表示”内核态“ 0表示”用户态” 也可能相反</p>
+</blockquote>
+<p><strong>别名：内核态=核心态=管态</strong>，<strong>用户态=目态</strong></p>
+<blockquote>
+<p>例如</p>
+<p>一个应用程序正常运行，中间有条命令是使用特权指令，但是自己是处于用户态，则会引发一个<strong>中断信号</strong>（<strong>CPU检测到中断信号后</strong>会立即<strong>变为 核心态</strong>，并停止运行当前的应用程序，转而运行处理中断信号的内核程序），“中断” 使操作系统再次夺回CPU的控制权，操作系统会对引发中断的事件进行处理，处理完了再把CPU使用权交给别的应用程序</p>
+</blockquote>
+<h4 id="相互切换状态"><a href="#相互切换状态" class="headerlink" title="相互切换状态"></a>相互切换状态</h4><p><strong>内核态—&gt;用户态</strong>：执行一条<strong>特权指令–修改psw</strong>的标志位为用户态，这个动作意味着操作系统主动让出CPU使用权</p>
+<p><strong>用户态—&gt;内核态:**由“</strong>中断<strong>“引发，</strong>硬件自动完成变态过程**，触发中断信号意味着操作系统将强行夺回CPU的控制权。</p>
+<blockquote>
+<p><strong>但凡需要操作系统介入的地方，都会触发中断信号</strong></p>
+</blockquote>
+<h2 id="中断和异常"><a href="#中断和异常" class="headerlink" title="中断和异常"></a>中断和异常</h2><p>中断 特指狭义的中断，即外中断。   内中断一般称为异常</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030151453255.png" alt="image-20211030151453255"></p>
+<p>”中断“ 是让<strong>操作系统内核夺回CPU使用权</strong>的唯一途径</p>
+<ul>
+<li><p>内中断：与当前执行的指令<strong>有关</strong>，中断信号源于CPU<strong>内部</strong></p>
+<p>例如在用户态下执行特权指令..</p>
+<p>或者有时候应用程序想请求操作系统内核的服务，此时会执行<strong>一条特殊的指令–陷入指令</strong>，该指令会引发一个内部中断信号</p>
+<blockquote>
+<p>陷入指令：意味着应用程序主动的将CPU控制权还给操作系统内核，系统调用就是通过陷入指令完成的</p>
+</blockquote>
+</li>
+<li><p>外中断：与当前执行的指令<strong>无关</strong>，中断信号源于CPU<strong>外部</strong></p>
+<p><strong>每一条指令执行结束时</strong>，CPU都会例行检查是否有外中断信号</p>
+<p>例如 时钟中断—由时钟部件发出的中断信号，还有IO的中断信号</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030151207293.png" alt="image-20211030151207293"></p>
+</li>
+</ul>
+<p><strong>中断机制基本原理</strong></p>
+<p><strong>不同的中断信号，需要不同的中断处理程序来处理</strong>。当CPU检测到中断信号后，会根据中断信号的类型去查询 ”中断向量表“ ，以此来找到相应的中断处理程序在内存中存放位置。（计算机组成原理有详细描述）</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030151628002.png"></p>
+<h2 id="系统调用（程序接口）"><a href="#系统调用（程序接口）" class="headerlink" title="系统调用（程序接口）"></a>系统调用（程序接口）</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030153350472.png" alt="image-20211030153350472"></p>
+<p>操作系统提供给应用程序（程序员/编程人员）使用的接口，可以理解为一种可供应用程序调用的特殊函数，<strong>应用程序可以通过系统调用来请求活的操作系统内核的服务</strong></p>
+<p>例如 利用程序创建一个新文件，就要用到系统调用。但是例如C里面的取绝对值，不是系统调用，是库函数</p>
+<p>应用程序通过<strong>系统调用</strong>请求操作系统的服务。系统中的各种共享资源都由操作系统内核同一管理，因此<strong>凡事与共享资源有关的操作（如存储分配，IO等），都必须通过系统调用的方式向操作系统内核提出服务请求</strong>，由操作系统内核代为完成。这样<strong>可以保证系统的稳定性和安全性</strong>，防止用户进行非法操作。</p>
+<p>按功能分类</p>
+<ul>
+<li>设备管理：完成设备的 请求/释放/启动等功能</li>
+<li>文件管理：完成文件的 读写/创建/删除等</li>
+<li>进程控制：完成进程的 创建/撤销/阻塞/唤醒等</li>
+<li>进程通信：完成进程之间的 消息传递/信号传递等</li>
+<li>内存管理：完成内存的 分配/回收 等</li>
+</ul>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030153318656.png" alt="image-20211030153318656"></p>
+<h2 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030153819731.png" alt="image-20211030153819731"></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030153649035.png" alt="image-20211030153649035"></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030153712181.png" alt="image-20211030153712181"></p>
+<blockquote>
+<p><strong>变态的过程是有成本的</strong>，要消耗不少时间，<strong>频繁的变态会降低系统性能</strong></p>
+</blockquote>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>操作系统-第一章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-11-09</p><p><span>最后更新：</span>2021-11-09</p><p><span>原始链接：</span><a href="/2021/操作系统-第一章/">https://yvenxx.github.io/yvenxx/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/" data-id="cl1p5jp94000dowu3bksda80s" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKElEQVR42u3ay27CQAwFUP7/p+m2Ugtc24mUmJMVStPMnGFh/Hg84uv55/p9/++T+Z1nfL1/w+OMCxsbG/sm7GSx5H7vmN4/n1DzQ8TGxsbeza4u856a3O+R8s8fjNjY2Nhfz06o+fP56tjY2NjYx7Kr5ackbciDXzXVwcbGxt7NTopKeeIxSWB6R3ZiLQ0bGxv78uy8K3r9z6f0t7GxsbEvzH4Wr0ljuBfAesnMh9WxsbGxF7HzADBJTqqjOflwz2T/2NjY2PvYSZGoGmCqqUIeFOftYWxsbOx97Gp7NVkyP4JqaJykKNjY2Nj72JO2a37/qMGdyVgPNjY29j52/sM9+et8sKZXfiofDTY2NvYidl4qyreShKukaJWkQNX3Y2NjY+9jV4djqtvtvX/SeI72gI2Njb2IPS/NV8tGeViaBLAo6GJjY2OvYCcl9Wort1foyZOcXhOi0KnGxsbGvi17sq0keThv3eqXh42Njb2Jfd7Wq0FxEg6TnUTfPDY2NvYN2ckYTS9c5YWhagu52maI4jY2Njb2bdm9EtK8DJS8JwlmeRvjZVcEGxsbeyk7/6Ff3W4vdclHfwpFJWxsbOyvYU9Si17Td34c0brY2NjYK9h5Yb2XHvQKRpPUKNoVNjY29jr25Md9b7ymuu4kRXkZwLCxsbEXsfOBmHkDIA+Q+RBP3uSIIiE2Njb2bdl5M6D6hqPCWzWPePkebGxs7HXs8rBL8Zlq67cX0grtXmxsbOxF7OZDxdB11MhO77CidbGxsbFvzq6mE70yfbUINSl1lbvc2NjY2IvYvbGbahE/byHnxazyf2FjY2OvYx9VEjqjZZsHsDwEYmNjY+9mJ43YKilJSCYN5rxEhY2Njb2JPR+dTIpQPVIOy4eBHtXKFjY2Nvbl2aO4F7dv89DY6073Qi82Njb2JnbecE2OIA9mR5X+8wCGjY2NvZs9aZr2Rm3OLip9CLrY2NjYX8yebKKXnOSBqpB1YWNjY38xe9IMriYq79/fayFgY2Njb2UnRaXCaGPcQqgWlXpjl/+8GRsbG3sROw8AvWeSoDUZCar+FzY2NvYi9g8kJlPvibacUQAAAABJRU5ErkJggg==">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a><a class="next" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/">计算机组成原理-第七章</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%94%E7%AB%A0/">操作系统 第五章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/">操作系统-第三章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/">计算机组成原理-第七章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a><ul></ul><a title="兔哦鸡" target="_blank">兔哦鸡</a><ul></ul><a href="https://wjjhui.github.io/" target="_blank"></a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
