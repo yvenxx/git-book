@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一些我的计算机笔记，JAVA/Python/Linux/后端/计算机基础">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        计算机网络(自顶向下)第一章 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code, sometimes English </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/" />
+        </div>
+        <div class="name">
+            <i>懒人瑜恩</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BE%B9%E7%BC%98"><span class="toc-text">网络边缘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%A0%B8%E5%BF%83"><span class="toc-text">网络核心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5%E7%BD%91%E5%92%8C%E7%89%A9%E7%90%86%E5%AA%92%E4%BD%93"><span class="toc-text">接入网和物理媒体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Internet%E7%BB%93%E6%9E%84%E5%92%8CISP"><span class="toc-text">Internet结构和ISP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E5%BB%B6%E6%97%B6%EF%BC%8C%E4%B8%A2%E5%A4%B1%E5%92%8C%E5%90%9E%E5%90%90%E9%87%8F"><span class="toc-text">分组延时，丢失和吞吐量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E8%AE%AE%E5%B1%82%E6%AC%A1%E5%8F%8A%E6%9C%8D%E5%8A%A1%E6%A8%A1%E5%9E%8B"><span class="toc-text">协议层次及服务模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Internet%E5%8D%8F%E8%AE%AE%E6%A0%88"><span class="toc-text">Internet协议栈</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code, sometimes English </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        计算机网络(自顶向下)第一章
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2021-09-23 20:07:28</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <a id="more"></a>
+
+<p>Internet从具体构成角度</p>
+<ul>
+<li><p>节点</p>
+<ul>
+<li>主机及其运行的应用程序</li>
+<li>路由器，交换机等网络交换设备</li>
+</ul>
+</li>
+<li><p>边，通信链路</p>
+<ul>
+<li>接入网链路，主机链接到互联网的链路</li>
+<li>主干链路，路由器间的链路</li>
+</ul>
+</li>
+<li><p>协议</p>
+</li>
+</ul>
+<p><strong>网络结构</strong></p>
+<ul>
+<li>网络边缘<ul>
+<li>主机</li>
+<li>应用程序（客户端和服务器）</li>
+</ul>
+</li>
+<li>网络核心<ul>
+<li>互联着的路由器</li>
+<li>网络的网络</li>
+</ul>
+</li>
+<li>接入网，物理媒体<ul>
+<li>有线或者无线通信链路</li>
+</ul>
+</li>
+</ul>
+<h3 id="网络边缘"><a href="#网络边缘" class="headerlink" title="网络边缘"></a><strong>网络边缘</strong></h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210923130211740.png" alt="image-20210923130211740"></p>
+<ul>
+<li>端系统（主机）<ul>
+<li>运行应用程序</li>
+</ul>
+</li>
+<li>C/S 模式<ul>
+<li>客户端向服务器请求，接收服务</li>
+</ul>
+</li>
+<li>对等（peer-peer）模式</li>
+</ul>
+<h3 id="网络核心"><a href="#网络核心" class="headerlink" title="网络核心"></a><strong>网络核心</strong></h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210923130236308.png" alt="image-20210923130236308"></p>
+<p>路由器的网状网络</p>
+<p>数据传输</p>
+<ul>
+<li><p><strong>电路交换</strong>：给每个呼叫预留一条专用网络。不共享资源。如果呼叫没有发送数据，分配的线路就会空闲被浪费。</p>
+<p><strong>缺点</strong>：连接建立时间长，计算机之间的通信并不是一直在通信，可靠性不高</p>
+<p>网络资源被分成<strong>片</strong>，为呼叫分配片。将带宽分成片。</p>
+<ul>
+<li><p>频分（Frequency-division multiplexing）</p>
+</li>
+<li><p>时分（Time-division multiplexing）</p>
+</li>
+<li><p>波分（Wave-division multiplexing）</p>
+</li>
+<li><p>例，下面就是FDM TDM的电路交换网。FDM频分，TDM时分。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210923130312349.png" alt="image-20210923130312349"></p>
+</li>
+</ul>
+</li>
+<li><p>分组交换：</p>
+<p>以分组为单位存储-转发，资源共享，按需使用</p>
+<p>网络带宽全部使用。不进行分片。传输的数据分为一个一个分组。分组在一个个路由器中存储-转发，分组每次移动一跳（hop）。</p>
+<ul>
+<li>转发之前，节点必须收到整个分组</li>
+<li>延迟比线路交换更大</li>
+<li>排队时间</li>
+</ul>
+<p>按照有无网络连接，分为</p>
+<ul>
+<li><p>数据报网络：分组的目标地址决定下一跳，在不同的阶段，路由可以改变。类似问路</p>
+</li>
+<li><p>虚电路网络：每个分组都带标签，标签决定下一跳，在呼叫建立时决定路径，在整个呼叫中路径保持不变，路由器维持每个呼叫的状态信息</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>  排队和延迟</p>
+<p>  如果到达速率 &gt; 链路的输出速率，分组就会进行排队，如果路由器中缓存用完，分组会被抛弃。</p>
+<p>  <img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210923131413170.png" alt="image-20210923131413170"></p>
+<p><strong>网络核心关键功能</strong></p>
+<p>路由：决定分组采用的源到目标的路径</p>
+<p>转发：将分组从路由器的输入链路转移到输出链路</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210923183733149.png" alt="image-20210923183733149"></p>
+<h3 id="接入网和物理媒体"><a href="#接入网和物理媒体" class="headerlink" title="接入网和物理媒体"></a><strong>接入网和物理媒体</strong></h3><ul>
+<li>住宅接入网络 modem</li>
+<li>单位接入网络（学校，公司）</li>
+<li>无线接入网络</li>
+</ul>
+<p><strong>物理媒体</strong></p>
+<p>Bit：在发送-接收对间传播</p>
+<p>物理链路：连接每个发送-接收对之间的物理媒体</p>
+<ul>
+<li>导引型媒体：信号沿着固体媒介被引导：同轴电缆，光纤，双绞线</li>
+<li>非导引型媒体：开放的空间传输电磁波或者光信号，在电磁或者光信号中承载数字数据</li>
+</ul>
+<h3 id="Internet结构和ISP"><a href="#Internet结构和ISP" class="headerlink" title="Internet结构和ISP"></a>Internet结构和ISP</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210923192647785.png" alt="image-20210923192647785"></p>
+<p>IXP是内容提供商，如谷歌，微软在全球架构服务器。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210923192738024.png" alt="image-20210923192738024"></p>
+<h3 id="分组延时，丢失和吞吐量"><a href="#分组延时，丢失和吞吐量" class="headerlink" title="分组延时，丢失和吞吐量"></a>分组延时，丢失和吞吐量</h3><p>四种分组延时</p>
+<ol>
+<li><p>节点处理延时</p>
+<ul>
+<li>检查bit级差错，检查分组首部和决定将分组导向何处</li>
+</ul>
+</li>
+<li><p><strong>排队延时</strong></p>
+<ul>
+<li>在输出链路上等待传输的时间，依赖于路由器的拥塞程度</li>
+<li>R=链路带宽  L=分组长度(bits)   a=分组到达队列的平均速率   流量强度= La/R<ul>
+<li>La/R ~ 0 :平均排队延时很小</li>
+<li>La/R -&gt; 1: 延时变的很大</li>
+<li>La/R &gt; 1:比特到达队列的速率超过了从该队列输出的速率，平均排队延时趋向于无穷大</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>传输延时</p>
+<ul>
+<li><p>R=链路带宽(bps)  L=分组长度(bits) 将分组发送到链路上的时间=L/R</p>
+</li>
+<li><p>节点通过路由器所花的时间</p>
+</li>
+</ul>
+</li>
+<li><p>传播延时</p>
+<ul>
+<li><p>d=物理链路的长度   s=在媒体上的传播速度   传播延时=d/s</p>
+</li>
+<li><p>节点从这个路由器到下个路由器的传播时间</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>分组丢失</strong></p>
+<p>链路的队列缓冲区有限，当分组到达一个满的队列时，该分组将会丢失。丢失的分组可能会被前一个节点或源端重传，或者根本不重传。</p>
+<p><strong>吞吐量</strong></p>
+<p>在源端和目标端直接传输的速率（数据量/单位时间）</p>
+<ul>
+<li>瞬间吞吐量：在一个时间点的速率</li>
+<li>平均吞吐量：在一个长时间内的平均值</li>
+</ul>
+<p>端到端的路径中，根据水桶原理，是最小的带宽决定的。</p>
+<h3 id="协议层次及服务模型"><a href="#协议层次及服务模型" class="headerlink" title="协议层次及服务模型"></a>协议层次及服务模型</h3><ul>
+<li>服务（service）：低层实体向上层实体提供它们之间的通信的能力。分为面向连接的服务和无连接的服务<ul>
+<li>服务用户（Service User)</li>
+<li>服务提供者（Service provider）</li>
+</ul>
+</li>
+<li>原语（primitive）：上层使用下层服务的形式，高层使用低层提供的服务，以及低层向高层提供服务都是通过服务访问原语来进行交互</li>
+<li>服务访问点SAP（Service Acess Point）：上层使用下层的服务通过层间的接口</li>
+</ul>
+<p>服务和协议的区别</p>
+<ul>
+<li>服务：低层实体向上层实体提供它们直接通信的能力，是通过原语来操作的。垂直</li>
+<li>协议：对等层实体之间在相互通信的过程中，需要遵循的规则的集合。水平。</li>
+</ul>
+<p>它们直接的联系</p>
+<ul>
+<li>本层协议的实现要靠下层提供服务来实现</li>
+<li>本层实体通过协议为上层提供更高级的服务</li>
+</ul>
+<h4 id="Internet协议栈"><a href="#Internet协议栈" class="headerlink" title="Internet协议栈"></a>Internet协议栈</h4><ul>
+<li>应用层 <strong>报文（message）</strong>：网络应用<ul>
+<li>为人类用户或其他应用进程提供网络应用服务</li>
+<li>FTP，SMTP，HTTP，DNS</li>
+</ul>
+</li>
+<li>传输层 <strong>报文段（segment）Tcp段，UDP数据报</strong>：主机之间的数据传输<ul>
+<li>在网络层提供的端到端通信基础上，细分为进程到进程，将不可靠的通信变为可靠的通信</li>
+<li>TCP,UDP</li>
+</ul>
+</li>
+<li>网络层 <strong>分组packet（如果无连接方式，：数据报datagram）</strong>：为数据报从源到目的选择路由<ul>
+<li>主机之间的通信，端到端通信，不可靠</li>
+<li>IP，路由协议</li>
+</ul>
+</li>
+<li>链路层 <strong>帧（frame）</strong>：相邻网络节点间的数据传输<ul>
+<li>2个相邻2点的通信，点到点通信，可靠或不可靠</li>
+<li>点对点协议PPP，802.11（wifi），Ethernet</li>
+</ul>
+</li>
+<li>物理层 <strong>位（bit）</strong>：在线路上传送bit</li>
+</ul>
+<p><strong>ISO/OSI参考模型</strong></p>
+<p>表示层，会话层，在应用层和传输层中间。互联网协议栈没有这两层。</p>
+<ul>
+<li>表示层：允许应用解释传输的数据。e.g，加密，压缩，机器相关的表示转换</li>
+<li>会话层：数据交换的同步，检查点，恢复</li>
+</ul>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20210923200155311.png" alt="封装和解封装"></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.xml"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
