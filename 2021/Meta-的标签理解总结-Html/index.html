@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一些我的计算机笔记，JAVA/Python/Linux/后端/计算机基础"><title>Meta 的标签理解总结- Html | 懒人瑜恩</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2059a4484fb666484cf5e9fba7e20ce6';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Meta 的标签理解总结- Html</h1><a id="logo" href="/.">懒人瑜恩</a><p class="description">sometimes code, sometimes English</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/history/"><i class="fa fa-book"> 历史</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Meta 的标签理解总结- Html</h1><div class="post-meta">2021-01-08<span> | </span><span class="category"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MDN%E4%B8%AD"><span class="toc-number">1.</span> <span class="toc-text">MDN中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E5%A4%84"><span class="toc-number">2.</span> <span class="toc-text">用处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%85%E8%A6%81%E5%B1%9E%E6%80%A7"><span class="toc-number">3.1.</span> <span class="toc-text">必要属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%80%89%E5%B1%9E%E6%80%A7"><span class="toc-number">3.2.</span> <span class="toc-text">可选属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#name-%E5%B1%9E%E6%80%A7"><span class="toc-number">3.2.1.</span> <span class="toc-text">name 属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#http-equiv%E5%B1%9E%E6%80%A7%E2%80%93%E7%89%B9%E5%AE%9A%E7%9A%84Http%E5%A4%B4%E9%83%A8"><span class="toc-number">3.2.2.</span> <span class="toc-text">http-equiv属性–特定的Http头部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="post-content"><a id="more"></a>
+
+<p>这俩天在搜索自己博客的时候，发现只有自己网页显示的内容。但是看了一下别人网页的首页和我一样没什么信息。但是在搜索引擎搜索的时候却有很多没看到的信息显示在上面。于是看了一下网页的源代码。发现搜索引擎出来的数据都是在meta标签中。于是重新去看了一下html的meta标签。</p>
+<p>在之前的理解中，meta只有这个作用</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta <span class="attribute">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="MDN中"><a href="#MDN中" class="headerlink" title="MDN中"></a>MDN中</h2><blockquote>
+<p><strong>HTML meta 元素</strong>表示那些不能由其它HTML元相关元素 (style, base, link, script, title)之一表示的任何元数据信息。</p>
+</blockquote>
+<p>其中 meta 中文名 也叫 元数据（Metadata)</p>
+<hr>
+<h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>meta 元素可提供有关页面的元信息（meta-information），比如针对搜索引擎和更新频度的描述和关键词。</p>
+<hr>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="必要属性"><a href="#必要属性" class="headerlink" title="必要属性"></a>必要属性</h3><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/dEPgun"><img src="https://s1.ax1x.com/2020/08/16/dEPgun.md.png" alt="dEPgun.md.png"></a></p>
+<h3 id="可选属性"><a href="#可选属性" class="headerlink" title="可选属性"></a>可选属性</h3><p><a target="_blank" rel="noopener" href="https://imgchr.com/i/dEP2Bq"><img src="https://s1.ax1x.com/2020/08/16/dEP2Bq.md.png" alt="dEP2Bq.md.png"></a></p>
+<hr>
+<h4 id="name-属性"><a href="#name-属性" class="headerlink" title="name 属性"></a>name 属性</h4><ol>
+<li><p>application-name，定义运行在该网页上的网络应用名称</p>
+<p>这个没试过，就不写例子了。防止耽误人。</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>author，这个网页的作者。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;author&quot;</span> <span class="attr">content</span>=<span class="string">&quot;yvenxx&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>description，包含网页中的精简的描述，网站的主要内容是什么，其中Firefox和Opera，将其用作书签的描述。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span> <span class="attr">content</span>=<span class="string">&quot;yven的个人博客，写一写技术总结，存放一些个人作品&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>keywords，搜索引擎所提取网页关键字。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;keywords&quot;</span> <span class="attr">content</span>=<span class="string">&quot;yven，博客，后端，java&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p>rebots，定义搜索引擎蜘蛛的的索引方式。告诉它哪些要索引哪些不要索引（值有很多）</p>
+<p>值</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.index----允许蜘蛛索引页面,也就是索引此页面。</span><br><span class="line">2.noindex----防止蜘蛛索引该页面</span><br><span class="line">3.follow----允许蜘蛛通过此页面的链接。索引其他页面。</span><br><span class="line">4.nofollow----防止蜘蛛索引此页面上的链接。</span><br><span class="line">5.noodp----禁止将Open Directory Project的描述，用作搜索引擎结果页面中页面的描述</span><br><span class="line">6.noarchive----防止搜索引擎缓存页面的内容</span><br><span class="line">7.nocache----与noarchive相同。</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;rebots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="6">
+<li><p>viewport，提供有关视图的初始大小，但仅对移动设备生效。</p>
+<p>值</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/dEPRH0"><img src="https://s1.ax1x.com/2020/08/16/dEPRH0.md.png" alt="dEPRH0.md.png"></a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="7">
+<li><p>copyright，版权信息</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;copyright&quot;</span> <span class="attr">content</span>=<span class="string">&quot;yvenxx&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="8">
+<li><p>revisit-after，设置蜘蛛重新访问的时间</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;revisit-after&quot;</span> <span class="attr">content</span>=<span class="string">&quot;2 days&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h4 id="http-equiv属性–特定的Http头部"><a href="#http-equiv属性–特定的Http头部" class="headerlink" title="http-equiv属性–特定的Http头部"></a>http-equiv属性–特定的Http头部</h4><ol>
+<li><p>content-type ,使用这个属性，值必须是”<code>text/html; charset=utf-8</code>“。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html; charset=utf-8&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>x-ua-compatible，如果指定内容属性值必须为 IE=edge</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;x-ua-compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge,chrome=1&quot;</span>&gt;</span>//指定ie和chrome渲染当前页</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>refresh，指定网页自动载入页面的时间间隔。有俩种用法</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1，如果content只包含一个正整数，就是重新载入网页的时间。</span><br><span class="line">2，如果content包含了一个正整数，外加 ;url=xxxxx 则是重定向到那个网页的间隔时间。</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;refresh&quot;</span> <span class="attr">content</span>=<span class="string">&quot;2;url=http://yvenxx.cn&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>语法</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;&quot;</span> <span class="attr">content</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中还有部分的属性没有提到，还没有完全的了解。把常用的一些属性总结在了里面。</p>
+<p>如果文章有错误的地方，希望各位指正。感谢。</p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>Meta 的标签理解总结- Html</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-01-08</p><p><span>最后更新：</span>2021-09-22</p><p><span>原始链接：</span><a href="/2021/Meta-的标签理解总结-Html/">https://yvenxx.github.io/yvenxx/2021/Meta-%E7%9A%84%E6%A0%87%E7%AD%BE%E7%90%86%E8%A7%A3%E6%80%BB%E7%BB%93-Html/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/Meta-%E7%9A%84%E6%A0%87%E7%AD%BE%E7%90%86%E8%A7%A3%E6%80%BB%E7%BB%93-Html/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/Meta-%E7%9A%84%E6%A0%87%E7%AD%BE%E7%90%86%E8%A7%A3%E6%80%BB%E7%BB%93-Html/" data-id="cl1p53in10008nku39skw8zd1" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD5UlEQVR42u3aQW4bQQwEQP//08k9ttbdJOX4UDoJsjC7U2ugNSQ/PuLXn0+vV3/9/Pnzd57XT96/Wv/VtQ5eOHDgwIGj3GpyW89AyY3ePs9n+mSPOHDgwIHjliO/QH6Z4iZGsZpsPt8jDhw4cOD4XxzJ7UYXDo52bXAmuDhw4MCB4/dw7EN3VqOrt4QDBw4cOH4BR1IczLeUbCaPyWQb+f2f1Upx4MCBA8ck74qy3W9+/5b5Dhw4cODA8RiHV+2i5Cr7z9+yLxw4cODAcRQReWjtxxGufgtcDWF8sRoOHDhw4Fhw5CW2dpigXS3ZQPL99n/h5f8FDhw4cOAYccxaRPmtP6+w4cvbVHVbCwcOHDhwLDjaoJ1tJrni7PHkowzRexw4cODAseZoIzMvF+axNztu5ffZNsNw4MCBA8eGYxZ7s8GFnDg/NG5KmcURDgcOHDhwnHK0AbZfZwbaPsiXvzhw4MCBA8eaow2zTbOqHUrYjzU8c3xRK8WBAwcOHGuOJAhn4wX58S+J5PYwWZc1ceDAgQPHEUfb+JmFbs60id5ZoRAHDhw4cFxxzAKvbRe18dky3UYyDhw4cOB4B0d+4VmDp43b26vUcYsDBw4cOGKO2ZGmDbmr4mBd7GvDFQcOHDhwnHK0pcC2XdQWCmeNrs0KOHDgwIFjz7Ev/yVHu9lf25hv7z8KXRw4cODAUXIMR8pGG54F7axxNRy/wIEDBw4cpxyb4mAe25v19+ML32DhwIEDB441x6xE2LaC9s2q5H6SB1CcZXHgwIEDx4hjNsS2Lynu0ROUen0cOHDgwHGzfnG8mV0yWe0qOPOCY4GCAwcOHDhKjnaYYPPNTZC3hcX2WIgDBw4cOPYcm0BqD055C6qN5NnwRNRwwoEDBw4cC452IGA2jtC2r5L7bGP15bVw4MCBA8eaIx9KyOMzP0rNWlabVlkd0jhw4MCBo+TIl373+zbIZ62ybx4MDhw4cOB4A0c+4pbf1qbJtD/45UGOAwcOHDhuOZJz3mbQLW8pJSXC/eHt5ZAcDhw4cOBYc+QNpLx4Nxuzu43kOrxx4MCBA8eaY9YEmh3b2q3OcFvKeiIDBw4cOHAE4wv567ZdtI/GvIgZ/SzAgQMHDhxrjnYz+Q0lxbj9MERbytw8Thw4cODAkXNsYmxz+TxoZ8E53AsOHDhw4DjiSFo77VZnR6bnYF4dvZLVcODAgQPHD3K0raBZ1G0OirOHWne0cODAgQPHEcf72kvtXMEMvSgO4sCBAweONUcbb/nRaxPqm8eWj2WsaqU4cODAgWM04pA0nPJGVM60+X7eJBtWFnHgwIEDx7+f/AXX2/eqbBzssAAAAABJRU5ErkJggg==">分享</a><div class="tags"><a href="/tagshtml"><i class="fa fa-tag">html</i></a></div><div class="post-nav"><a class="pre" href="/2021/C%E8%AF%AD%E8%A8%80%EF%BC%9A%E6%8C%87%E9%92%88/">C语言：指针</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%94%E7%AB%A0/">操作系统 第五章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/">操作系统-第三章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/">计算机组成原理-第七章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

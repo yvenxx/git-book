@@ -1,0 +1,485 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一些我的计算机笔记，JAVA/Python/Linux/后端/计算机基础"><title>操作系统-第二章 | 懒人瑜恩</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2059a4484fb666484cf5e9fba7e20ce6';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">操作系统-第二章</h1><a id="logo" href="/.">懒人瑜恩</a><p class="description">sometimes code, sometimes English</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/history/"><i class="fa fa-book"> 历史</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">操作系统-第二章</h1><div class="post-meta">2021-11-09<span> | </span><span class="category"><a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">进程概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%84%E6%88%90-pcb"><span class="toc-number">1.1.1.</span> <span class="toc-text">进程的组成-pcb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%84%E6%88%90%E2%80%94%E7%A8%8B%E5%BA%8F%E6%AE%B5%E3%80%81%E6%95%B0%E6%8D%AE%E6%AE%B5"><span class="toc-number">1.1.2.</span> <span class="toc-text">进程的组成—程序段、数据段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%89%B9%E5%BE%81"><span class="toc-number">1.1.3.</span> <span class="toc-text">进程的特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%84%E7%BB%87"><span class="toc-number">1.1.4.</span> <span class="toc-text">进程的组织</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E4%B8%8E%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.</span> <span class="toc-text">状态与转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%80%81%E3%80%81%E5%B0%B1%E7%BB%AA%E6%80%81"><span class="toc-number">1.2.1.</span> <span class="toc-text">创建态、就绪态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%80%81"><span class="toc-number">1.2.2.</span> <span class="toc-text">运行态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E%E6%80%81"><span class="toc-number">1.2.3.</span> <span class="toc-text">阻塞态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%88%E6%AD%A2%E6%80%81"><span class="toc-number">1.2.4.</span> <span class="toc-text">终止态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.5.</span> <span class="toc-text">状态转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">1.3.</span> <span class="toc-text">进程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E8%AF%AD%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="toc-number">1.3.1.</span> <span class="toc-text">原语原子性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%8E%9F%E8%AF%AD"><span class="toc-number">1.3.2.</span> <span class="toc-text">相关原语</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="toc-number">1.4.</span> <span class="toc-text">进程通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8"><span class="toc-number">1.4.1.</span> <span class="toc-text">共享存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E9%81%93-pipe-%E9%80%9A%E4%BF%A1"><span class="toc-number">1.4.2.</span> <span class="toc-text">管道(pipe)通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92"><span class="toc-number">1.4.3.</span> <span class="toc-text">消息传递</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.5.</span> <span class="toc-text">线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%E4%B8%8E%E7%89%B9%E7%82%B9"><span class="toc-number">1.5.1.</span> <span class="toc-text">概念与特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">1.5.2.</span> <span class="toc-text">实现方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%BA%A7%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">用户级线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">内核级线程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.5.3.</span> <span class="toc-text">多线程模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%82%B9"><span class="toc-number">1.5.3.1.</span> <span class="toc-text">重点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6"><span class="toc-number">1.6.</span> <span class="toc-text">调度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.6.1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%88%E4%BD%9C%E4%B8%9A%E8%B0%83%E5%BA%A6%EF%BC%89"><span class="toc-number">1.6.1.1.</span> <span class="toc-text">高级调度（作业调度）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%88%E5%86%85%E5%AD%98%E8%B0%83%E5%BA%A6%EF%BC%89"><span class="toc-number">1.6.1.2.</span> <span class="toc-text">中级调度（内存调度）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8E%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%88%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6-%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%EF%BC%89"><span class="toc-number">1.6.1.3.</span> <span class="toc-text">低级调度（进程调度&#x2F;处理机调度）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="toc-number">1.6.2.</span> <span class="toc-text">进程调度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%9A%84%E6%97%B6%E6%9C%BA"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">进程调度的时机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">进程调度的方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%88%87%E6%8D%A2%E4%B8%8E%E8%BF%87%E7%A8%8B"><span class="toc-number">1.6.2.3.</span> <span class="toc-text">进程的切换与过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E7%9A%84%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-number">1.6.3.</span> <span class="toc-text">调度算法的评价指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CPU%E5%88%A9%E7%94%A8%E7%8E%87"><span class="toc-number">1.6.3.1.</span> <span class="toc-text">CPU利用率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%90%9E%E5%90%90%E9%87%8F"><span class="toc-number">1.6.3.2.</span> <span class="toc-text">系统吞吐量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%A8%E8%BD%AC%E6%97%B6%E9%97%B4"><span class="toc-number">1.6.3.3.</span> <span class="toc-text">周转时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4"><span class="toc-number">1.6.3.4.</span> <span class="toc-text">等待时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E6%97%B6%E9%97%B4"><span class="toc-number">1.6.3.5.</span> <span class="toc-text">响应时间</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">1.6.4.</span> <span class="toc-text">调度算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1-FCFS"><span class="toc-number">1.6.4.1.</span> <span class="toc-text">先来先服务(FCFS)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%AD%E4%BD%9C%E4%B8%9A%E6%9C%89%E9%99%90-SJF"><span class="toc-number">1.6.4.2.</span> <span class="toc-text">短作业有限(SJF)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%AB%98%E5%93%8D%E5%BA%94%E6%AF%94%E6%9C%89%E9%99%90-HRRN"><span class="toc-number">1.6.4.3.</span> <span class="toc-text">高响应比有限(HRRN)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.6.4.4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%89%87%E8%BD%AE%E8%BD%AC-RR%EF%BC%8CRound-Robin"><span class="toc-number">1.6.4.5.</span> <span class="toc-text">时间片轮转(RR，Round-Robin)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">1.6.4.6.</span> <span class="toc-text">优先级调度算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">1.6.4.7.</span> <span class="toc-text">多级反馈队列调度算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-1"><span class="toc-number">1.6.4.8.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5-%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5"><span class="toc-number">1.7.</span> <span class="toc-text">进程同步-进程互斥</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">1.7.1.</span> <span class="toc-text">进程同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5"><span class="toc-number">1.7.2.</span> <span class="toc-text">进程互斥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-number">1.7.3.</span> <span class="toc-text">进程互斥的软件实现方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E6%A0%87%E5%BF%97%E4%BD%8D"><span class="toc-number">1.7.3.1.</span> <span class="toc-text">单标志位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E6%A0%87%E5%BF%97%E5%85%88%E6%A3%80%E6%9F%A5"><span class="toc-number">1.7.3.2.</span> <span class="toc-text">双标志先检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E6%A0%87%E5%BF%97%E5%90%8E%E6%A3%80%E6%9F%A5"><span class="toc-number">1.7.3.3.</span> <span class="toc-text">双标志后检查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Peterson%E7%AE%97%E6%B3%95"><span class="toc-number">1.7.3.4.</span> <span class="toc-text">Peterson算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5%E7%9A%84%E7%A1%AC%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-number">1.7.4.</span> <span class="toc-text">进程互斥的硬件实现方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD%E6%96%B9%E6%B3%95"><span class="toc-number">1.7.4.1.</span> <span class="toc-text">中断屏蔽方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TestAndSet-TS%E6%8C%87%E4%BB%A4-TSL%E6%8C%87%E4%BB%A4"><span class="toc-number">1.7.4.2.</span> <span class="toc-text">TestAndSet(TS指令&#x2F;TSL指令)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Swap%E6%8C%87%E4%BB%A4-XCHG%E6%8C%87%E4%BB%A4"><span class="toc-number">1.7.4.3.</span> <span class="toc-text">Swap指令(XCHG指令)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6"><span class="toc-number">1.7.5.</span> <span class="toc-text">信号量机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E5%BD%A2%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="toc-number">1.7.5.1.</span> <span class="toc-text">整形信号量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E5%9E%8B%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="toc-number">1.7.5.2.</span> <span class="toc-text">记录型信号量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5%EF%BC%8C%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">1.7.6.</span> <span class="toc-text">信号量机制实现进程互斥，进程同步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5-1"><span class="toc-number">1.7.6.1.</span> <span class="toc-text">进程互斥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E5%90%8C%E6%AD%A5-1"><span class="toc-number">1.7.6.2.</span> <span class="toc-text">进程同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F%E6%9C%BA%E5%88%B6%E5%AE%9E%E7%8E%B0%E5%89%8D%E9%A9%B1%E5%85%B3%E7%B3%BB"><span class="toc-number">1.7.6.3.</span> <span class="toc-text">信号量机制实现前驱关系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-number">1.7.7.</span> <span class="toc-text">生产者消费者</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E7%94%9F%E4%BA%A7%E4%B8%8E%E6%B6%88%E8%B4%B9"><span class="toc-number">1.7.7.1.</span> <span class="toc-text">单生产与消费</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E7%94%9F%E4%BA%A7%E6%B6%88%E8%B4%B9%E8%80%85"><span class="toc-number">1.7.7.2.</span> <span class="toc-text">多生产消费者</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%B8%E7%83%9F%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-number">1.7.8.</span> <span class="toc-text">吸烟者问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E8%80%85-%E5%86%99%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-number">1.7.9.</span> <span class="toc-text">读者-写者问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%B2%E5%AD%A6%E5%AE%B6%E8%BF%9B%E9%A4%90%E9%97%AE%E9%A2%98"><span class="toc-number">1.7.10.</span> <span class="toc-text">哲学家进餐问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%A1%E7%A8%8B"><span class="toc-number">1.7.11.</span> <span class="toc-text">管程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%BB%E9%94%81"><span class="toc-number">1.8.</span> <span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%AD%96%E7%95%A5"><span class="toc-number">1.8.1.</span> <span class="toc-text">处理策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E9%98%B2%E6%AD%BB%E9%94%81"><span class="toc-number">1.8.1.1.</span> <span class="toc-text">预防死锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E6%AD%BB%E9%94%81"><span class="toc-number">1.8.1.2.</span> <span class="toc-text">避免死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%93%B6%E8%A1%8C%E5%AE%B6%E7%AE%97%E6%B3%95"><span class="toc-number">1.8.1.2.1.</span> <span class="toc-text">银行家算法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E6%A3%80%E6%B5%8B%E4%B8%8E%E8%A7%A3%E9%99%A4"><span class="toc-number">1.8.1.3.</span> <span class="toc-text">死锁的检测与解除</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E6%A3%80%E6%B5%8B"><span class="toc-number">1.8.1.3.1.</span> <span class="toc-text">死锁的检测</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="post-content"><a id="more"></a>
+
+<h1 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h1><h2 id="进程概念"><a href="#进程概念" class="headerlink" title="进程概念"></a>进程概念</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030161833740.png" alt="image-20211030161833740"></p>
+<p>程序：是<strong>静态的</strong>，存放在磁盘的可执行文件，是一系列指令集合</p>
+<p>进程（Process）：<strong>动态的</strong>，是程序的一次执行过程（同一个程序多次执行会对应多个进程）</p>
+<h3 id="进程的组成-pcb"><a href="#进程的组成-pcb" class="headerlink" title="进程的组成-pcb"></a>进程的组成-pcb</h3><p>PID：当进程被创建时，操作系统会给该系统分配一个<strong>唯一的，不重复</strong>的”身份号</p>
+<p>UDI：进程所属用户</p>
+<p>还要记录给进程分配了哪些资源（如内存，正在使用哪些IO设备….)，运行情况（CPU使用时间，磁盘使用情况….)</p>
+<p>这些同一放在数据结构 <strong>PCB(Process Control Block) **中，即</strong>进程控制块<strong>，操作系统需要对各个并发运行的进程进行管理，</strong>但凡管理时所需要的信息，都会被放在PCB中**</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030161125698.png" alt="image-20211030161125698"></p>
+<h3 id="进程的组成—程序段、数据段"><a href="#进程的组成—程序段、数据段" class="headerlink" title="进程的组成—程序段、数据段"></a>进程的组成—程序段、数据段</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030161150663.png" alt="image-20211030161150663"></p>
+<p>一个<strong>进程实体（进程映像）由PCB、程序段、数据段</strong>租车给你。进程是动态的，进程实体是静态的。进程实体反应了进程在某一时刻的状态。</p>
+<p>进程是进程实体的<strong>运行过程</strong>，是系统进行<strong>系统分配和调度</strong>的一个独立单位</p>
+<h3 id="进程的特征"><a href="#进程的特征" class="headerlink" title="进程的特征"></a>进程的特征</h3><ul>
+<li>动态性：进程是程序的一次执行过程，是动态的产生、变化和消亡</li>
+<li>并发性：内存中有多个进程实体，各进程可并发执行</li>
+<li>独立性：进程能独立运行、独立获得资源、独立接收调度的基本单位</li>
+<li>异步性：各进程按各自独立的、不可预知的速度向前推进、操作系统要提供 “进程同步机制” 来解决异步问题</li>
+<li>结构性：每个进程都会配置一个PCB，结构上看，进程由程序段、数据段、PCB组成</li>
+</ul>
+<h3 id="进程的组织"><a href="#进程的组织" class="headerlink" title="进程的组织"></a>进程的组织</h3><p>进程的组成讨论的是<strong>进程内部</strong>由哪些部分构成，而进程的<strong>组织</strong>是多个进程之间组织方式问题</p>
+<ul>
+<li><p>链接方式</p>
+<ul>
+<li><p>按照进程状态将PCB分为多个队列</p>
+</li>
+<li><p>操作系统持有只想各个队列的指针</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030162139923.png" alt="image-20211030162139923"></p>
+</li>
+</ul>
+</li>
+<li><p>索引方式</p>
+<ul>
+<li><p>根据进程状态的不同，建立几张索引表</p>
+</li>
+<li><p>操作系统持有指向各个索引表的指针</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030162154894.png" alt="image-20211030162154894"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="状态与转换"><a href="#状态与转换" class="headerlink" title="状态与转换"></a>状态与转换</h2><p><strong>进程PCB中，会有一个变量state来表示进程的当前状态。如1表示创建态…..**为了对同一个进程的状态进行统一的管理，操作系统会降各个进程的PCB组织起来。  就是</strong>上面的链接和索引的组织方式**</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030163556374.png" alt="image-20211030163556374"></p>
+<h3 id="创建态、就绪态"><a href="#创建态、就绪态" class="headerlink" title="创建态、就绪态"></a><strong>创建态、就绪态</strong></h3><p>进程正在被创建时，他的状态是“<strong>创建态</strong>”，在这个阶段操作系统会为进程分配资源，初始化PCB。当进程创建完成后，便进入 “<strong>就绪态</strong>”，处于就绪态的进程已经具备运行条件，但由于没有空闲CPU，就暂时不能运行</p>
+<h3 id="运行态"><a href="#运行态" class="headerlink" title="运行态"></a>运行态</h3><p>如果一个进程此时在CPU上运行，那么这个进程就 处于 “<strong>运行态</strong>。CPU会执行该进程对应的程序</p>
+<h3 id="阻塞态"><a href="#阻塞态" class="headerlink" title="阻塞态"></a>阻塞态</h3><p>在进程运行的过程中，可能会<strong>请求等待某个时间的发生</strong>（如等待系统资源的分配，或等待其他程序的响应）。在这个时间发生之前，进程无法执行，此时会让这个进程出CPU，并进入”<strong>阻塞态“</strong> 。当CPU空闲时又会选择另一个 ”就绪态“进程上CPU运行</p>
+<h3 id="终止态"><a href="#终止态" class="headerlink" title="终止态"></a>终止态</h3><p>可以通过exit系统调用，请求操作系统终止该进程。此时该进程会进入 ”终止态“ ，操作系统会让该进程下CPU，并回收内存空间等资源，回收该进程的PCB。终止进程完成后，这个进程就消失。</p>
+<h3 id="状态转换"><a href="#状态转换" class="headerlink" title="状态转换"></a>状态转换</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211030163638116.png" alt="image-20211030163638116"></p>
+<h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211101205913272.png" alt="image-20211101205913272"></p>
+<p>进程控制实现进程状态转换</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211101204410503.png" alt="image-20211101204410503"></p>
+<p>原语的必要性：如果在阻塞队列的PCB2，要换为就绪态，就得先把PCB2的state换为1(就绪态)，然后将PCB2放到就绪队列。刚做完第一步，被其他进程抢了CPU，则PCB2还在阻塞队列，但是state为2。</p>
+<h3 id="原语原子性"><a href="#原语原子性" class="headerlink" title="原语原子性"></a>原语原子性</h3><p>原语的执行有<strong>原子性</strong>，执行只能一次走到底，期间<strong>不允许被中断</strong>，可以用<strong>关中断</strong>指令和<strong>开中断</strong>指令，这两个<strong>特权指令</strong>实现<strong>原子性</strong></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211101204739037.png" alt="image-20211101204739037"></p>
+<blockquote>
+<p>CPU执行了关中断指令之后，就不会检查中断信号。只到开中断信号</p>
+</blockquote>
+<h3 id="相关原语"><a href="#相关原语" class="headerlink" title="相关原语"></a>相关原语</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211101205633873.png" alt="image-20211101205633873"></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211101205649053.png" alt="image-20211101205649053"></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211101205655050.png" alt="image-20211101205655050"></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211101205717127.png" alt="image-20211101205717127"></p>
+<p>这里的<strong>运行环境</strong>指的是，假如一个程序被中断，运行其他程序。则会将自己的指令执行的地址，寄存器的数据等等。放到PCB中</p>
+<p>**进程控制相关的原语的 运行 **</p>
+<p>1.更行PCB中的信息</p>
+<p>​    a.所有的进程控制原语一定都会修改进程状态标志</p>
+<p>​    b.剥夺当前运行进程的CPU使用权必然需要保存其运行环境</p>
+<p>​    c.某进程开始运行前必然要恢复其运行环境</p>
+<p>2.将PCB插入合适的队列</p>
+<p>3.分配/回收资源</p>
+<h2 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211101211704031.png" alt="image-20211101211704031"></p>
+<p>进程之间的信息交换</p>
+<p>进程是分配系统资源的单位（包括内存地址空间），因此<strong>各进程</strong>拥有的<strong>内存地址空间相互独立</strong>。且为了安全，<strong>一个进程不能直接访问其他进程的地址空间</strong>。操作系统另外提供了进程直接通信的方法</p>
+<h3 id="共享存储"><a href="#共享存储" class="headerlink" title="共享存储"></a>共享存储</h3><ul>
+<li><p>基于数据结构的共享</p>
+<p>例：共享空间里只能放一个长度为10的数组。这样的共享方式速度慢，限制多，是<strong>低级通信</strong>方式</p>
+</li>
+<li><p>基于存储区的共享</p>
+<p>在内存中画出一块共享存储区。存放位置都由进程控制，而不是操作系统。共享速度更快，<strong>高级通信</strong></p>
+</li>
+</ul>
+<h3 id="管道-pipe-通信"><a href="#管道-pipe-通信" class="headerlink" title="管道(pipe)通信"></a>管道(pipe)通信</h3><p>用于连接读写进程的一个共享文件。其实就是内存中开辟一个大小固定的缓冲区</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211101211044223.png" alt="image-20211101211044223"></p>
+<p>1.管道只能采用<strong>半双工通信</strong>，某一时间段内只能实现单向传输。如果要实现<strong>双向同时通信</strong>，则<strong>需要设置两个管道</strong></p>
+<p>2.各进程要<strong>互斥</strong>地访问管道</p>
+<p>3.数据以字符的形式写入管道，管道满时，写操作被阻塞。等待读进程将数据取走。读进程取光之后。管道空，读进程阻塞。</p>
+<p>4.如果<strong>没写满，不允许读</strong>。如果<strong>没读空，不允许写</strong></p>
+<p>5.数据一旦被读出，就从管道中被抛弃。所以读进程只能有一个，否则会有数据错读。</p>
+<h3 id="消息传递"><a href="#消息传递" class="headerlink" title="消息传递"></a>消息传递</h3><p>进程间的数据交换以<strong>格式化的消息（Message）</strong>为单位。进程通过操作系统提供的 “发送消息/接收消息” 两个<strong>原语</strong>进行数据交换。有消息头和消息体，发送给对方。</p>
+<p>且有间接和直接的方式。直接方式就是直接传到他的地址，间接方式类似于信箱模式，放到信箱等接收方取。</p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102144123643.png" alt="image-20211102144123643"></p>
+<h3 id="概念与特点"><a href="#概念与特点" class="headerlink" title="概念与特点"></a>概念与特点</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211101212242037.png" alt="image-20211101212242037"></p>
+<p>可以把线程理解为 “轻量级进程”</p>
+<p><strong>线程</strong>是一个<strong>基本的CPU执行单元</strong>，也是<strong>程序执行流的最小单位</strong>。<strong>进程内部的线程之间也可以并发，提高了系统的并发度。</strong></p>
+<p>在使用了线程后，<strong>进程</strong>只作为<strong>除CPU之外的系统资源的分配单元</strong>（如打印机，内存地址空间等都是分配给进程的）。线程则作为<strong>处理机的分配单元</strong></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211101212746689.png" alt="image-20211101212746689"></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211101212755785.png" alt="image-20211101212755785"></p>
+<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><h4 id="用户级线程"><a href="#用户级线程" class="headerlink" title="用户级线程"></a><strong>用户级线程</strong></h4><p>早期的操作系统，只支持进程，不支持线程。当时的“线程”是 由线程库实现</p>
+<ol>
+<li>用户级线程由应用程序通过线程库实现，所有的<strong>线程管理工作</strong>都由<strong>应用程序负责</strong>（包括线程切换）</li>
+<li>用户级线程中，<strong>线程切换</strong>可以在<strong>用户态下即可完成</strong>，无需操作系统干预</li>
+<li>在用户看来，是有多个线程。但是在操作系统内核看来，意识不到线程的存在。<strong>用户级线程</strong>就是<strong>从用户视角能看到的线程</strong></li>
+</ol>
+<p>优点：用户级线程的切换在用户空间即可完成，不需要切换到核心态，线程管理的系统开销小，效率高</p>
+<p>缺点：当一个用户级线程被阻塞后，整个进程都会被阻塞，并发度不高，多个线程不可在多核处理机上并行运行</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102142312546.png" alt="image-20211102142312546"></p>
+<h4 id="内核级线程"><a href="#内核级线程" class="headerlink" title="内核级线程"></a>内核级线程</h4><p>内核支持的线程，由操作系统支持的线程</p>
+<ol>
+<li><strong>内核级线程的管理工作</strong>由<strong>操作系统内核完成</strong></li>
+<li>线程调度、切换等工作都由内核负责，因此<strong>内核级线程的切换</strong>必然需要在<strong>核心态</strong>下才能完成</li>
+<li>操作系统会为每个内核级线程建立对应的TCB（Thread control block，线程控制块），通过TCB对线程进行管理。“<strong>内核级线程</strong>”就是“<strong>从操作系统内核视角看，可以看到的线程</strong>”</li>
+</ol>
+<p>优点：当一个线程被阻塞后，别的线程还可以继续执行，并发能力强。多线程可在多核处理机上执行</p>
+<p>缺点：一个用户进程会占用多个内核级线程，线程切换由操作系统内核完成，需要切换到核心态，线程管理成本高，开销大。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102143018181.png" alt="image-20211102143018181"></p>
+<h3 id="多线程模型"><a href="#多线程模型" class="headerlink" title="多线程模型"></a>多线程模型</h3><ul>
+<li><p><strong>一对一</strong>：一个用户级线程映射到一个内核级线程，每个用户进程有与用户级线程同数量的内核级线程</p>
+<p>优点：当一个线程被阻塞后，别的线程还可以继续执行，并发能力强。多线程可在多核处理机上执行</p>
+<p>缺点：一个用户进程会占用多个内核级线程，线程切换由操作系统内核完成，需要切换到核心态。线程管理的成本高，开销大</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102143622785.png" alt="image-20211102143622785"></p>
+</li>
+<li><p><strong>多对一：</strong>多个用户级线程映射到一个内核级线程，且一个进程只被分配一个内核级线程</p>
+<p>优点：用户级线程的切换在用户空间可以完成。开销小，效率高</p>
+<p>缺点：当一个用户级线程被阻塞后，整个进程都会阻塞。并发度不高。多个线程不可在多核处理机上并行运行</p>
+</li>
+</ul>
+<h4 id="重点"><a href="#重点" class="headerlink" title="重点"></a><strong>重点</strong></h4><p>操作系统只 看得见 内核级线程，<strong>只有内核级线程才是处理机分配的单位</strong></p>
+<ul>
+<li><p><strong>多对多</strong></p>
+<p>n用户及线程映射到m个内核级线程 (<strong>n&gt;=m</strong>)。每个用户进程对应m个内核级线程</p>
+<p>内核级线程中可以运行任意一个有映射关系的用户级线程代码，只有两个内核级线程都在运行时，这个进程才会阻塞</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102143951105.png" alt="image-20211102143951105"></p>
+</li>
+</ul>
+<h2 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102145415881.png" alt="image-20211102145415881"></p>
+<p>当有一堆任务要处理，由于资源有限，就需要确定<strong>某种规则</strong>来<strong>决定</strong>处理这些任务的<strong>顺序</strong></p>
+<h4 id="高级调度（作业调度）"><a href="#高级调度（作业调度）" class="headerlink" title="高级调度（作业调度）"></a>高级调度（作业调度）</h4><p>按一定的原则从 <strong>外存</strong>的作业后背队列中挑选一个作业 <strong>调入内存</strong>，并创建进程。<strong>每个作业只调入一次，调出一次</strong>。作业调入会建立PCB，调出就撤销PCB</p>
+<h4 id="中级调度（内存调度）"><a href="#中级调度（内存调度）" class="headerlink" title="中级调度（内存调度）"></a>中级调度（内存调度）</h4><p>按照某种策略决定将那个处于挂起状态的进程重新调入内存。一个进程可能会被多次调入，多次调出内存，因此<strong>中级调度</strong>发生的<strong>频率</strong>比高级调度<strong>更高</strong></p>
+<p>暂时调到外存等待的进程状态为<strong>挂起状态</strong>。被挂起的进程PCB会被组织为<strong>挂起队列</strong></p>
+<h4 id="低级调度（进程调度-处理机调度）"><a href="#低级调度（进程调度-处理机调度）" class="headerlink" title="低级调度（进程调度/处理机调度）"></a>低级调度（进程调度/处理机调度）</h4><p>按照某种策略从 <strong>就绪队列</strong>中选取一个进程，将处理机分配给他。进程调度是操作系统中<strong>最基本的一种调度</strong>，在一般的操作系统中都必须配置进程调度。进程调度的<strong>频率很高</strong>，一般几十毫秒一次。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102145354576.png" alt="image-20211102145354576"></p>
+<h3 id="进程调度"><a href="#进程调度" class="headerlink" title="进程调度"></a>进程调度</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102153704667.png" alt="image-20211102153704667"></p>
+<h4 id="进程调度的时机"><a href="#进程调度的时机" class="headerlink" title="进程调度的时机"></a>进程调度的时机</h4><p>这里，有的系统中，只允许进程主动放弃处理机。</p>
+<p>有的系统中，进程可以主动放弃处理机，当有更紧迫的任务需要处理时，也会强行剥夺处理机（被动放弃）</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102152414870.png" alt="image-20211102152414870"></p>
+<p>进程在<strong>操作系统内核程序临界区</strong>中<strong>不能</strong>进行调度与切换。这里要注意临界区和内核程序临界区的区别。临界区可以进行调度与切换。</p>
+<p>临界资源：一个时间段内只允许一个进程使用的资源，各进程需要<strong>互斥的</strong>访问临界资源。</p>
+<ul>
+<li><p>临界区：访问临界区资源的那一段代码</p>
+</li>
+<li><p><strong>内核程序程序临界区</strong>：一般是用来访问<strong>某种内核数据结构</strong>，比如进程的就绪队列</p>
+</li>
+</ul>
+<h4 id="进程调度的方式"><a href="#进程调度的方式" class="headerlink" title="进程调度的方式"></a>进程调度的方式</h4><ul>
+<li><p><strong>非剥夺方式</strong>，又称<strong>非抢占方式</strong>。只允许进程主动放弃处理机。在运行过程中即便有更紧迫的任务到达，当前进程依然会继续使用处理机，知道该进程终止或主动要求进入阻塞态</p>
+<p>适用于早期的批处理系统</p>
+</li>
+<li><p><strong>剥夺调度方式</strong>，又称<strong>抢占方式</strong>。当一个进程正在处理机上执行时，如果有一个更重要或更紧迫的进程需要使用处理机，则立即暂停当前正在执行的进程。将处理机分配给更重要的进程</p>
+<p>适合分时操作系统，实时操作系统</p>
+</li>
+</ul>
+<h4 id="进程的切换与过程"><a href="#进程的切换与过程" class="headerlink" title="进程的切换与过程"></a>进程的切换与过程</h4><ul>
+<li><strong>狭义的进程调度</strong>：指的是从就绪队列中<strong>选中一个要运行的进程</strong>（可以是刚刚被暂停的进程，也可能是<strong>另一个进程</strong>，后一种情况需要<strong>进程切换</strong>）。<strong>进程切换</strong>指一个进程让出处理机，由另一个进程占用处理机的过程</li>
+<li><strong>广义的进程调度</strong>包含了选择一个进程和进程切换两个步骤</li>
+</ul>
+<p>进程切换过程主要完成了，对原来运行进程各种数据的保存，对新的进程各种数据的恢复</p>
+<p><strong>进程切换是有代价的</strong>，如果<strong>过于频繁的</strong>进行进程<strong>调度，切换</strong>，必然会使整个<strong>系统的效率降低</strong>，使系统大部分时间都花在进程切换上，而真正用于执行进程的时间减少</p>
+<h3 id="调度算法的评价指标"><a href="#调度算法的评价指标" class="headerlink" title="调度算法的评价指标"></a>调度算法的评价指标</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102154001761.png" alt="image-20211102154001761"></p>
+<h4 id="CPU利用率"><a href="#CPU利用率" class="headerlink" title="CPU利用率"></a>CPU利用率</h4><p>指 cpu 忙碌的时间占总时间的比例</p>
+<p><strong>利用率= 忙碌的时间/总时间</strong></p>
+<h4 id="系统吞吐量"><a href="#系统吞吐量" class="headerlink" title="系统吞吐量"></a>系统吞吐量</h4><p>单位时间内完成作业的数量</p>
+<p><strong>系统吞吐量= 总共完成多少作业 / 总共花了多少时间</strong></p>
+<h4 id="周转时间"><a href="#周转时间" class="headerlink" title="周转时间"></a>周转时间</h4><p>指 从<strong>作业被提交给系统开始</strong>，到<strong>作业完成为止</strong>的这段时间间隔</p>
+<p>它包括四个部分：作业在外存后备队列上等待作业调度（高级调度）的时间、进程在就绪队列上等 待进程调度（低级调度）的时间、进程在CPU上执行的时间、进程等待I/O操作完成的时间。后三项 在一个作业的整个处理过程中，可能发生多次。</p>
+<p><strong>周转时间 (作业)</strong>=作业完成时间 - 作业提交时间</p>
+<p>**平均周转时间=**各作业周转时间之和 /  作业数</p>
+<p>**带权周转时间=**作业周转时间 / 作业实际运行的时间 = (作业完成时间 - 作业提交时间) / 作业实际运行的时间  </p>
+<blockquote>
+<p>带权周转时间必然  &gt;=1，带权周转时间和周转时间都是越小越好</p>
+</blockquote>
+<p><strong>平均带权周转时间=</strong> 各作业带权周转时间之和 / 作业数</p>
+<blockquote>
+<p>对呀周转时间相同的两个作业，实际运行时间长的作业在相同时间内被服务的次数更多，带权周转时间更小，用户满意度更高</p>
+<p>对于实际运行时间相同的两个作业，周转时间短的带权周转时间更小，满意度更高</p>
+</blockquote>
+<h4 id="等待时间"><a href="#等待时间" class="headerlink" title="等待时间"></a>等待时间</h4><p>指 进程/作业 <strong>处于等待处理机状态时间之和</strong>，等待时间越长，用户满意度越低。作业在外存中等待被调度，或内存中等待服务的过程。</p>
+<p>对于<strong>进程</strong>来说，等待时间指进程建立后<strong>等待被服务的时间之和</strong>，在等待I/O完成的期间其实进程也是在被服务的，所以不计入等待时间。</p>
+<p>对于<strong>作业</strong>来说，不仅要考虑<strong>建立进程后的等待时间之和，还要加上作业在外存后备队列中的等待时间</strong></p>
+<p>使用<strong>平均等待时间</strong>来评价整体性能</p>
+<h4 id="响应时间"><a href="#响应时间" class="headerlink" title="响应时间"></a>响应时间</h4><p>指用户<strong>提交请求</strong>到<strong>首次产生响应</strong>作用的时间</p>
+<h3 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h3><h4 id="先来先服务-FCFS"><a href="#先来先服务-FCFS" class="headerlink" title="先来先服务(FCFS)"></a>先来先服务(FCFS)</h4><p>和队列的思想一样，不赘述</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102155839954.png" alt="image-20211102155839954"></p>
+<h4 id="短作业有限-SJF"><a href="#短作业有限-SJF" class="headerlink" title="短作业有限(SJF)"></a>短作业有限(SJF)</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102160416491.png" alt="image-20211102160416491"></p>
+<p>分为抢占式和非抢占式</p>
+<p><strong>非抢占式</strong>：每次调度 选择 <strong>当前已到达</strong>且<strong>运行时间最短</strong>的作业/进程</p>
+<p><strong>抢占式，最短剩余时间优先算法：</strong>每当有进程加入<strong>就绪队列，就绪队列改变时就需要调度</strong>。如果新到达的进程<strong>剩余时间</strong>比当前运行的进程剩余时间<strong>更短</strong>，则由新进程<strong>抢占处理机</strong>，当前运行进程重新回到就绪队列中。当一个<strong>进程完成时也需要调度</strong></p>
+<blockquote>
+<ol>
+<li><p>如果题目<strong>未特别说明</strong>，所提到的“短作业/进程优先算法“ <strong>默认是非抢占式</strong></p>
+</li>
+<li><p>SJF调度算法的平均等待时间，平均周转时间最少。  <strong>这个说法是错误的。</strong></p>
+<p>应加上条件 <strong>在所有进程同时可运行时</strong>，如果不加上这个条件，则应该说 ”<strong>抢占式的</strong>短作业/进程优先调度算法（<strong>最短剩余时间有限，SRNT算法</strong>）的平均等待时间，平均周转时间最少</p>
+</li>
+<li><p>虽然严格来说，SJF的平均等待时间、平均周转时间并不一定最少，但相比于其他算法（如 FCFS），SJF依然可以获得较少的平均等待时间、平均周转时间</p>
+</li>
+<li><p>如果选择题中遇到“SJF 算法的平均等待时间、平均周转时间最少”的选项，那最好判断其他选项 是不是有很明显的错误，如果没有更合适的选项，那也应该选择该选项</p>
+</li>
+</ol>
+</blockquote>
+<h4 id="高响应比有限-HRRN"><a href="#高响应比有限-HRRN" class="headerlink" title="高响应比有限(HRRN)"></a>高响应比有限(HRRN)</h4><p>Highest Response Ratio Next</p>
+<p><strong>非抢占式</strong>的调度算法，只有当前运行的进程<strong>主动放弃CPU时</strong>（正常/异常完成，或主动阻塞），才需要进行调度，调度时<strong>计算所有就绪进程的响应比，选响应比最高的进程</strong>来上处理机</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102164657031.png" alt="image-20211102164657031"></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>这三种一般适用于<strong>早期的批处理系统</strong></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102170314398.png" alt="image-20211102170314398"></p>
+<h4 id="时间片轮转-RR，Round-Robin"><a href="#时间片轮转-RR，Round-Robin" class="headerlink" title="时间片轮转(RR，Round-Robin)"></a>时间片轮转(RR，Round-Robin)</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102165413645.png" alt="image-20211102165413645"></p>
+<p>轮流让就绪队列中的进程一次执行一个时间片（每次选择的都是排在就绪队列头的进程）</p>
+<p>例如，时间片为2，有p1,p2,p3，分别要2，3，和5个时间片</p>
+<p>其中p1先到，p1进行进入处理机，然后到p2，运行2个时间片出来，这时p3进入，则p2排到队尾。先进行p3的2个，再到p2。然后一直做p3。如果中间p3在p2的两个时间片执行玩还没进入，则还是会继续p2。</p>
+<h4 id="优先级调度算法"><a href="#优先级调度算法" class="headerlink" title="优先级调度算法"></a>优先级调度算法</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102165702578.png" alt="image-20211102165702578"></p>
+<p>也有抢占式和非抢占式</p>
+<p>非抢占式：每次调度选择<strong>当前已到达</strong>且<strong>优先级最高</strong>的进程。当前<strong>进程主动放弃处理机时</strong>发生调度。</p>
+<p>抢占式：每次调度时选择<strong>当前已到达</strong>且<strong>优先级最高</strong>的进程，当前进程<strong>主动放弃处理机时</strong>发生调度。另外，当<strong>就绪队列发生改变时</strong>也需要检查是否会发生抢占</p>
+<blockquote>
+<p>根据优先级是否可以动态改变，将优先级分为<strong>静态优先级</strong>和<strong>动态优先级</strong>两种。</p>
+<p><strong>静态优先级：</strong>创建进程时确定，之后一直不变</p>
+<p>动态优先级：创建进程时有一个初始值，之后会根据情况动态的调整优先级</p>
+<p>通常：</p>
+<p>系统进程优先级<strong>高于</strong>用户进程</p>
+<p>前台进程<strong>高于</strong>后台进程</p>
+<p>操作系统更<strong>偏好I/O型进程（或I/O繁忙形进程）</strong></p>
+<p>与IO进程相对的是<strong>计算型进程（或CPU繁忙形进程）</strong></p>
+<p>动态优先级算法应该什么时候调整</p>
+<p>可以从追求公平、提升资源利用率等角度考虑 </p>
+<p>如果某进程在就绪队列中等待了很长时间，则可以适当提升其优先级 </p>
+<p>如果某进程占用处理机运行了很长时间，则可适当降低其优先级 </p>
+<p>如果发现一个进程频繁地进行I/O操作，则可适当提升其优先级</p>
+</blockquote>
+<h4 id="多级反馈队列调度算法"><a href="#多级反馈队列调度算法" class="headerlink" title="多级反馈队列调度算法"></a>多级反馈队列调度算法</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102170226755.png" alt="image-20211102170226755"></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102170245652.png" alt="image-20211102170245652"></p>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102170255999.png" alt="image-20211102170255999"></p>
+<h2 id="进程同步-进程互斥"><a href="#进程同步-进程互斥" class="headerlink" title="进程同步-进程互斥"></a>进程同步-进程互斥</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102171435411.png" alt="image-20211102171435411"></p>
+<h3 id="进程同步"><a href="#进程同步" class="headerlink" title="进程同步"></a>进程同步</h3><p>前面学过进程异步性的特征。主要是无法预测。</p>
+<p>进程同步：必须保证某一个指令在一个指令之前执行</p>
+<p>同步亦称直接制约关系，它是指为完成某种任务而建立的两个或多个进程，这些进程因为需要在某 些位置上协调它们的工作次序而产生的制约关系。进程间的直接制约关系就是源于它们之间的相互 合作</p>
+<h3 id="进程互斥"><a href="#进程互斥" class="headerlink" title="进程互斥"></a>进程互斥</h3><p>进程的“并发” 需要 ”共享“ 的支持。各个并发执行的进程不可避免的需要共享一些系统资源（内存，打印机等）</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102171137312.png" alt="image-20211102171137312"></p>
+<p>我们把<strong>一个时间段内只允许一个进程使用</strong>的资源称为<strong>临界资源</strong>。许多物理设备（比如摄像头、打印机）都 属于临界资源。此外还有许多变量、数据、内存缓冲区等都属于临界资源。 </p>
+<p>对临界资源的访问，必须<strong>互斥</strong>地进行。互斥，亦称<strong>间接制约关系</strong>。<strong>进程互斥</strong>指当一个进程访问某临界资源 时，另一个想要访问该临界资源的进程必须等待。当前访问临界资源的进程访问结束，释放该资源之后， 另一个进程才能去访问临界资源。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211102171323803.png" alt="image-20211102171323803"></p>
+<ol>
+<li>空闲让进。临界区空闲时，可以允许一个请求进入临界区的进程立即进入临界区；</li>
+<li>忙则等待。当已有进程进入临界区时，其他试图进入临界区的进程必须等待；</li>
+<li>有限等待。对请求访问的进程，应保证能在有限时间内进入临界区（保证不会饥饿）；</li>
+<li>让权等待。当进程不能进入临界区时，应立即释放处理机，防止进程忙等待。</li>
+</ol>
+<h3 id="进程互斥的软件实现方法"><a href="#进程互斥的软件实现方法" class="headerlink" title="进程互斥的软件实现方法"></a>进程互斥的软件实现方法</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103132018180.png" alt="image-20211103132018180"></p>
+<h4 id="单标志位"><a href="#单标志位" class="headerlink" title="单标志位"></a>单标志位</h4><p>两个进程在<strong>访问完临界区后</strong>会把使用临界区的权限转交给另一个进程。也就是说<strong>每个进程进入临界区的权限只能被另一个进程赋予</strong></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103130103977.png" alt="image-20211103130103977"></p>
+<blockquote>
+<p>turn 的初值为 0，即刚开始只允许 0 号进程进入临界区。 </p>
+<p>若 P1 先上处理机运行，则会一直卡在 ⑤。直到 P1 的时间片用完，发生调度，切换 P0 上处理机运行。 </p>
+<p>代码 ① 不会卡住 P0，P0 可以正常访问临界区，在 P0 访问临界区期间即时切换回 P1，P1依然会卡在 ⑤。 </p>
+<p>只有 P0 在退出区将 turn 改为 1 后，P1才能进入临界区。</p>
+</blockquote>
+<p>该算法<strong>可以实现 “同一时刻最多允许一个进程访问临界区”</strong>。</p>
+<blockquote>
+<p>且如果有一种情况是，P0把turn弄为1，而P1不需要使用，就会一直占着资源不运行。P0需要运行也运行不了。</p>
+</blockquote>
+<p>因此<strong>单标志位</strong>，<strong>违背 “空闲让进” 原则</strong></p>
+<h4 id="双标志先检查"><a href="#双标志先检查" class="headerlink" title="双标志先检查"></a>双标志先检查</h4><p>设置一个布尔型数组 flag[]，数组中各个元素用来<strong>标记各进程想进入临界区的意愿</strong>。flag[0]=true表示0号进程想进入临界区。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103130645885.png" alt="image-20211103130645885"></p>
+<blockquote>
+<p>p0判断p1是否运行，没运行就将自己设置为true</p>
+<p>若按152637……的顺序执行，p0p1会同时访问临界区</p>
+</blockquote>
+<p>因此双标志先检查，<strong>违反 ”忙则等待“ 原则”</strong></p>
+<p>原因在于，<strong>进入区</strong>的 “检查”和“上锁” <strong>两个处理不是一气呵成的</strong>。“检查” 后，“上锁”前可能发生进程切换。</p>
+<h4 id="双标志后检查"><a href="#双标志后检查" class="headerlink" title="双标志后检查"></a>双标志后检查</h4><p>先检查法的改版。变成先 上锁 后 检查。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103131101507.png" alt="image-20211103131101507"></p>
+<blockquote>
+<p>1526…..的顺序执行，p0和p1都无法进入临界区。</p>
+<p>因此，<strong>违背了 “空闲让进” 和 ”有限等待“ 原则</strong>，会因各进程都长期无法访问临界区而产生”<strong>饥饿</strong>“</p>
+</blockquote>
+<h4 id="Peterson算法"><a href="#Peterson算法" class="headerlink" title="Peterson算法"></a>Peterson算法</h4><p>结合双标志和单标志思想。如果双方都想进入临界区，可以尝试进行谦让，让另一个进程先运行</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103131436278.png" alt="image-20211103131436278"></p>
+<blockquote>
+<p>两个进程会优先给另一个进程表示为true，所以如果p0先给p1，那么p1又给p0，所以p0会先操作。</p>
+</blockquote>
+<p><strong>遵循了空闲让进，忙则等待，有限等待三个原则。</strong>但依然<strong>未遵循让权等待</strong>的原则</p>
+<h3 id="进程互斥的硬件实现方法"><a href="#进程互斥的硬件实现方法" class="headerlink" title="进程互斥的硬件实现方法"></a>进程互斥的硬件实现方法</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103132841054.png" alt="image-20211103132841054"></p>
+<h4 id="中断屏蔽方法"><a href="#中断屏蔽方法" class="headerlink" title="中断屏蔽方法"></a>中断屏蔽方法</h4><p>利用 ”开/关中断指令“ 实现（与原语的实现思想相同，即在某进程开始访问临界区到结束访问为止都不允许被中断，也就不能发生进程切换。</p>
+<p>优点：简单，高效</p>
+<p>缺点：不适用于多处理机，只适用于操作系统内核进程，不适用于用户进程</p>
+<h4 id="TestAndSet-TS指令-TSL指令"><a href="#TestAndSet-TS指令-TSL指令" class="headerlink" title="TestAndSet(TS指令/TSL指令)"></a>TestAndSet(TS指令/TSL指令)</h4><p>TSL指令<strong>是用硬件实现的</strong>，执行的过程不允许被中断，只能一气呵成。</p>
+<blockquote>
+<p>直接上锁并检查，一气呵成。结束才会开锁</p>
+</blockquote>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103132527807.png" alt="image-20211103132527807"></p>
+<p>优点：实现简单，无需像软件实现方法那样严格检查是否会有逻辑漏洞；适用于多处理机环境 </p>
+<p>缺点：不满足“让权等待”原则，暂时无法进入临界区的进程会占用CPU并循环执行TSL指令，从而导致“忙等”。</p>
+<h4 id="Swap指令-XCHG指令"><a href="#Swap指令-XCHG指令" class="headerlink" title="Swap指令(XCHG指令)"></a>Swap指令(XCHG指令)</h4><p>也叫Exchange指令</p>
+<p><strong>硬件实现</strong>，执行的过程不允许被中断，只能一气呵成。</p>
+<blockquote>
+<p>逻辑上来看 Swap 和 TSL 并无太大区别，都是先记录下此时临界区是否已经被上锁（记录在 old 变 量上），再将上锁标记 lock 设置为 true，最后检查 old，如果 old 为 false 则说明之前没有别的进程 对临界区上锁，则可跳出循环，进入临界区。</p>
+</blockquote>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103132642254.png" alt="image-20211103132642254"></p>
+<p>优点：实现简单，无需像软件实现方法那样严格检查是否会有逻辑漏洞；适用于多处理机环境 </p>
+<p>缺点：不满足“让权等待”原则，暂时无法进入临界区的进程会占用CPU并循环执行TSL指令，从而导致“忙等”。</p>
+<h3 id="信号量机制"><a href="#信号量机制" class="headerlink" title="信号量机制"></a>信号量机制</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103140303294.png" alt="image-20211103140303294"></p>
+<p>用户进程可以通过使用操作系统提供的<strong>一对原语</strong>来对<strong>信号量</strong>进行操作，从而方便的实现了进程互斥，进程同步。</p>
+<p><strong>信号量</strong>其实就是一个变量（可以是一个整数，也可以是更复杂的记录型变量），可以用一个信号量来<strong>表示系统中某种资源的数量</strong>。比如 打印机，可以设置一个初值为1的信号量</p>
+<p><strong>原语</strong>是一种特殊的程序段，其<strong>执行只能一气呵成，不可被中断</strong>。</p>
+<p><strong>一对原语：wait(S)原语和signal(S)原语</strong>，可以把原语理解为我们自己写的函数，函数名分别为wait和signal，括号里的<strong>信号量S</strong>其实就是函数调用时传入的一个参数</p>
+<p>wait，signal原语<strong>简称 P，V操作</strong>。<strong>P(S), V(S)</strong></p>
+<h4 id="整形信号量"><a href="#整形信号量" class="headerlink" title="整形信号量"></a>整形信号量</h4><p>用一个<strong>整数型的变量</strong>作为信号量，用来<strong>表示系统中某种资源的数量</strong>。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103135008401.png" alt="image-20211103135008401"></p>
+<h4 id="记录型信号量"><a href="#记录型信号量" class="headerlink" title="记录型信号量"></a>记录型信号量</h4><p>用记录型数据结构表示的信号量</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103135105782.png" alt="image-20211103135105782"></p>
+<p>这里<strong>value</strong>表示的<strong>某种资源的数目</strong>，*<em>process <em>L</em></em> 表示的是<strong>等待的队列</strong>。</p>
+<p>对信号量的一个<strong>P操作</strong>表示对资源的一次使用。则Value–，如果 <strong>&lt;0时 则资源用完</strong>，此时<strong>block进行阻塞</strong>，等待被唤醒。当一个进程使用完资源之后 当前进程将Value++，<strong>判断是否小于等于0，如果满足条件则有进程等待使用资源</strong>。*<em>运行wakeup 从 <em>L中唤醒资源</em></em>。</p>
+<h3 id="信号量机制实现进程互斥，进程同步"><a href="#信号量机制实现进程互斥，进程同步" class="headerlink" title="信号量机制实现进程互斥，进程同步"></a>信号量机制实现进程互斥，进程同步</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103141437716.png" alt="image-20211103141437716"></p>
+<h4 id="进程互斥-1"><a href="#进程互斥-1" class="headerlink" title="进程互斥"></a>进程互斥</h4><p>**互斥信号量(mutex)**，当进入区P(mutex)，退出区V(mutex)</p>
+<blockquote>
+<p>对不同的临界资源用不同的互斥信号量</p>
+<p>且PV的操作必须同时出现</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">semaphore mutex = <span class="number">1</span>;</span><br><span class="line">p1()&#123;</span><br><span class="line">    <span class="comment">//....</span></span><br><span class="line">    P(mutex);</span><br><span class="line"><span class="comment">//  临界区代码</span></span><br><span class="line">    V(mutex);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">p2()&#123;</span><br><span class="line">    <span class="comment">//....</span></span><br><span class="line">    P(mutex);</span><br><span class="line"><span class="comment">//  临界区代码</span></span><br><span class="line">    V(mutex);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="进程同步-1"><a href="#进程同步-1" class="headerlink" title="进程同步"></a>进程同步</h4><p>思想类似，使用互斥信号量来进行同步</p>
+<p>例如有两个进程p1,p2</p>
+<p>p1的第三步执行完才进行p2的第一步代码。则只需将互斥信号量设置为从p1开始到p1的第三步代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">semaphore mutex = <span class="number">1</span>;</span><br><span class="line">p1()&#123;</span><br><span class="line">    P(mutex);</span><br><span class="line">    <span class="comment">//1-3步</span></span><br><span class="line">    V(mutex);</span><br><span class="line">    <span class="comment">//  临界区代码</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">p2()&#123;</span><br><span class="line">	<span class="comment">//....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="信号量机制实现前驱关系"><a href="#信号量机制实现前驱关系" class="headerlink" title="信号量机制实现前驱关系"></a>信号量机制实现前驱关系</h4><p>与同步那个机制一样。先进行了某些操作才能进行下一步</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103141419445.png" alt="image-20211103141419445"></p>
+<h3 id="生产者消费者"><a href="#生产者消费者" class="headerlink" title="生产者消费者"></a>生产者消费者</h3><h4 id="单生产与消费"><a href="#单生产与消费" class="headerlink" title="单生产与消费"></a>单生产与消费</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103143005066.png" alt="image-20211103143005066"></p>
+<p>一组生产者和一组消费者。对缓冲区进行读写。其中必须是<strong>互斥操作</strong>，<strong>缓冲区未满—-&gt;生产区发数据，缓冲区非空—-&gt;消费者消费</strong></p>
+<p>则设置标识符</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">mutex=<span class="number">1</span>; <span class="comment">//互斥信号量</span></span><br><span class="line">empty=n;  <span class="comment">//表示有多少个空的缓冲区可以放数据</span></span><br><span class="line">full=<span class="number">0</span>; <span class="comment">//表示其中有多少个数据</span></span><br><span class="line"></span><br><span class="line">producer()&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        </span><br><span class="line">        P(empty); <span class="comment">//empty-1</span></span><br><span class="line">        P(mutex);</span><br><span class="line">        <span class="comment">//加入数据</span></span><br><span class="line">        V(full); <span class="comment">//full+1</span></span><br><span class="line">        V(mutex);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">consumer()&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">       </span><br><span class="line">        P(full); <span class="comment">//full-1</span></span><br><span class="line">         P(mutex);</span><br><span class="line">        <span class="comment">//取数据</span></span><br><span class="line">        V(empty); <span class="comment">//empty+1</span></span><br><span class="line">        V(mutex);</span><br><span class="line">        <span class="comment">//使用数据</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里 上锁的P操作顺序不能颠倒，否则会导致死锁。  </p>
+<p>假设进入生产者，先进行上锁，然后判读到 empty是0，则会跳到消费者的mutex，则判断是上锁状态，就会死锁。</p>
+</blockquote>
+<p>本质上也属于同步问题</p>
+<h4 id="多生产消费者"><a href="#多生产消费者" class="headerlink" title="多生产消费者"></a>多生产消费者</h4><p>假设plate是缓冲区，但是只能每次存放一个数据。也就是如果有一个数据必须等待取走才能继续放。</p>
+<p>其中consumer只能取producter的数据。同理2</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103144109435.png" alt="image-20211103144109435"></p>
+<p><strong>当缓冲区为1时，可以不设置mutex互斥信号量</strong>。也可以实现此功能。</p>
+<p><strong>当缓冲区为2时必须设置mutex，因为如果两个进程同时写一块缓冲区就会造成数据错误。</strong></p>
+<h3 id="吸烟者问题"><a href="#吸烟者问题" class="headerlink" title="吸烟者问题"></a>吸烟者问题</h3><p>三个吸烟者进程，一个供应者进程</p>
+<p>其中每次抽烟需要三个原材料，而他们每人只有其中一种。所以每次供应者会提供 <strong>一组材料</strong>供其使用，是谁的组合谁就取。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103144856860.png" alt="image-20211103144856860"></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103145055424.png" alt="image-20211103145055424"></p>
+<p>消费者取完之后进行 V(finish); 将缓冲区变空的信息发回供应者。实际上还是生产者消费者的问题。供应者对于三个消费者有三个offer，供应的那个就V哪个</p>
+<h3 id="读者-写者问题"><a href="#读者-写者问题" class="headerlink" title="读者-写者问题"></a>读者-写者问题</h3><p>简单来说就是，一个缓冲区，写进程的时候必须上锁，而读进程对于读进程不上锁，对于写进程上锁。</p>
+<ol>
+<li>允许多个读者可以同时对文件执行读操作</li>
+<li>只允许一个写者往文件中写信息</li>
+<li>任一写者在完成操作之前不允许其他读者或写者工作</li>
+<li>写者执行写操作前，应让已有的读者和写者全部退出</li>
+</ol>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103153218838.png" alt="image-20211103153218838"></p>
+<p><strong>其核心思想</strong>在于设置一个<strong>计数器count</strong>，用来记录当前正在访问共享文件的读进程数。可以用count的值来判断当前进入的进程是否第一个/最后一个读进程，做出不同的处理。</p>
+<p>且需要对count的操作一气呵成，否则会导致错误。</p>
+<h3 id="哲学家进餐问题"><a href="#哲学家进餐问题" class="headerlink" title="哲学家进餐问题"></a>哲学家进餐问题</h3><p>一张圆桌上坐着5名哲学家，每两个哲学家之间的桌上摆一根筷子，桌子的中间是一碗米饭。哲学家们只会思考和用餐，哲学家思考时，并不影响他人。只有当哲学家饥饿时，才视图拿起左右两根筷子（一根一根拿起）。如果筷子已在他人手上，则需等待。饥饿的哲学家只有同时拿起两根筷子才可以开始进餐，当进餐完毕后，放下筷子。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103160618597.png" alt="image-20211103160618597"></p>
+<p>分析：</p>
+<p>定义互斥信号量数组 chopstick[5]={1,1,1,1,1}。</p>
+<p>如果他们同时都拿起左边的筷子，那么就会死锁。<strong>想办法避免死锁</strong></p>
+<p>解决方法</p>
+<ol>
+<li><p>对哲学家进程施加一些限制条件，例如最多允许4个哲学家同时进餐，可以保证必有一个哲学家是拿到两个筷子</p>
+</li>
+<li><p>要求奇数号的哲学家先拿左边的筷子，然后再拿右边的筷子。而偶数号的相反。用这样的方法可以保证如果相邻的两个奇偶号哲学家都想吃饭，那么只会有其中一个可以拿起第一只筷子，另一个会直接阻塞。避免了占有一只后等待另一个的情况。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103161127278.png" alt="image-20211103161127278"></p>
+</li>
+<li><p>仅当一个哲学家左右两只筷子都可用时才允许抓起筷子。</p>
+<blockquote>
+<p>这里如果有其中一个人在吃饭，则所有人会等待，即使左右两个筷子可以用，也不会拿起。</p>
+</blockquote>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211103161245150.png" alt="image-20211103161245150"></p>
+</li>
+</ol>
+<h3 id="管程"><a href="#管程" class="headerlink" title="管程"></a>管程</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108185053965.png" alt="image-20211108185053965"></p>
+<p>上面我们知道，信号量机制如果运行前后顺序不对，就有可能死锁。引入管程</p>
+<p>管程是一种特殊的软件模块，由以下部分组成</p>
+<ol>
+<li>局部于管程的<strong>共享数据结构</strong>说明</li>
+<li>对该数据结构进行操作的<strong>一组过程（函数）</strong></li>
+<li>对局部于管程的共享数据设置初始值的语句</li>
+</ol>
+<p>基本特征</p>
+<ol>
+<li>局部于管程的数据只能被局部于管程的过程所访问</li>
+<li>一个进程只有通过调用管程内的过程才能进入管程，访问共享数据</li>
+<li><strong>每次仅允许一个进程在管程内执行某个内部过程</strong></li>
+</ol>
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108185951712.png" alt="image-20211108185951712"></p>
+<p>死锁，饥饿，死循环的区别</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108185134939.png" alt="image-20211108185134939"></p>
+<p><strong>死锁产生的必要条件</strong></p>
+<p>产生死锁需要满足以下的四个条件，有一个条件不成立，死锁就不会发生</p>
+<ol>
+<li><strong>互斥条件：</strong>只有对必须互斥使用的资源的争抢才会导致死锁。</li>
+<li><strong>不剥夺条件</strong>：进程所获得的资源在未使用完之前，<strong>不能由其他进程强行夺走</strong>，只能主动释放</li>
+<li><strong>请求和保持条件：</strong>进程<strong>已经保持了至少一个资源</strong>，但又提出了新的资源<strong>请求</strong>，而该资源又被其他进程占有，此时请求进程被阻塞，但又对自己拥有的资源<strong>保持</strong>不放</li>
+<li><strong>循环等待条件：</strong>存在一种进程<strong>资源的循环等待链</strong>，链中的每一个进程已获得的资源同时被下一个进程所请求</li>
+</ol>
+<blockquote>
+<p><strong>发生死锁时一定有循环等待，但是发生循环等待时，不一定有死锁</strong></p>
+</blockquote>
+<p>总结来说：对不可剥夺资源的不合理分配，就可能发生死锁</p>
+<h3 id="处理策略"><a href="#处理策略" class="headerlink" title="处理策略"></a><strong>处理策略</strong></h3><ul>
+<li>预防死锁。破坏死锁产生的四个必要条件中的一个或几个</li>
+<li>避免死锁。用某种方法防止系统进入不安全状态，从而避免死锁。（银行家算法）</li>
+<li>死锁的检测和解除。允许死锁的发生，不过操作系统会负责检测死锁的发生，然后采取某种措施解除死锁</li>
+</ul>
+<h4 id="预防死锁"><a href="#预防死锁" class="headerlink" title="预防死锁"></a>预防死锁</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108190139279.png" alt="image-20211108190139279"></p>
+<p><strong>破坏互斥条件</strong></p>
+<p>把只能互斥使用的资源改造为允许共享使用。例如<strong>SPOOLing技术</strong>。操作系统可以采用SPOOLing技术把独占设备在逻辑上改造成共享设备。</p>
+<p>例如这里 加了一个输出进程</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108190334566.png" alt="image-20211108190334566"></p>
+<p><strong>缺点：</strong>并不是所有的资源都可以改造成可共享使用的资源。并且为了系统安全，很多地方必须<strong>保护</strong>这种互斥性。因此，<strong>很多时候无法破坏互斥条件</strong></p>
+<p><strong>破坏不剥夺条件</strong></p>
+<ul>
+<li>当某个进程请求心的资源得不到满足，它必须立即释放保持的所有资源，待以后需要时再重新申请。也就是说，即使某些资源尚未使用完，也需要主动释放，从而破坏了不可剥夺条件</li>
+<li>当某个进程需要的资源被其他进程所占有的时候，可以由操作系统协助，将想要的资源强行剥夺。这种方式一般需要考虑各进程的优先级（如：剥夺调度方式，将处理机资源强行剥夺给更高优先级的进程使用）</li>
+</ul>
+<p>缺点：</p>
+<p>实现起来复杂，释放已获得的资源可能造成前一阶段工作的失效。因此这种方式一般只适用于易保存和恢复状态的资源（如CPU）。</p>
+<p>反复地申请和释放资源会增加系统开销，降低系统吞吐量。</p>
+<p>若采用方案一，意味着只要暂时得不到某个资源，之前获得的那些资源就都需要放弃。以后再申请，如果一直是这种情况就会导致饥饿</p>
+<p><strong>破坏请求和保持条件</strong></p>
+<p>采用<strong>静态分配方法</strong>，即进程在运行前 一次性申请完它所需要的全部资源，在它的资源未满足前，不让它投入运行。一旦投入运行后，这些资源就一直归他所有，该进程就不会再请求别的任何资源了。</p>
+<p>缺点：有些资源可能只需要很短的时间，因此如果进程的整个运行期间都一直保持这所有资源，就会造成严重的资源浪费，<strong>资源利用率极低</strong>。另外，该策略也有<strong>可能导致某些进程饥饿</strong></p>
+<p><strong>破坏循环等待条件</strong></p>
+<p>采用<strong>顺序资源分配法</strong>。首先给系统中的资源编号，规定每个进程<strong>必须按编号递增的顺序请求资源</strong>，同类资源（即编号相同的资源）一次申请完</p>
+<p>原理：一个进程只有先持有小编好的资源时，才有资格申请更大编号的资源。（1-10）先有小编号才能申请大编号。</p>
+<p>缺点：</p>
+<ul>
+<li>不方便增加新的设备，因为可能需要重新分配所有的编号</li>
+<li>进程实际使用资源的顺序可能和编号递增顺序不一致，会导致资源浪费</li>
+<li>必须按规定次序申请资源，用户编程麻烦</li>
+</ul>
+<h4 id="避免死锁"><a href="#避免死锁" class="headerlink" title="避免死锁"></a>避免死锁</h4><p><strong>安全序列</strong></p>
+<p>指如果系统按照这种序列分配资源，则每个进程都能顺利完成。只要找出一个安全序列，系统就是<strong>安全状态</strong>。<strong>安全序列可能有多个</strong></p>
+<p>如果分配了资源之后，系统中找不出任何一个安全序列，系统就进入了<strong>不安全状态。</strong>意味着之后<strong>可能</strong>所有进程都无法顺利的执行下去。但如果有进程提前归还了一些资源，那<strong>系统也有可能重新回到安全状态</strong>。</p>
+<p>如果系统处于<strong>安全状态</strong>，就<strong>一定不会</strong>发生<strong>死锁</strong>，如果系统进入<strong>不安全状态</strong>就有<strong>可能会</strong>发生死锁。（死锁一定不安全状态，不安全状态不一定死锁</p>
+<p>可以在<strong>资源分配之前预先判断这次分配是否会导致系统进入不安全状态</strong>，以此决定是否答应资源分配请求。也就是<strong>银行家算法</strong>的核心思想</p>
+<h5 id="银行家算法"><a href="#银行家算法" class="headerlink" title="银行家算法"></a><strong>银行家算法</strong></h5><p><strong>核心思想</strong>：在进程提出资源申请时，先预判此次分配是否会导致系统进入不安全状态。如果会进入不安全状态，就暂时不答应这次请求，让该进程先阻塞等待。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108192644526.png" alt="image-20211108192644526"></p>
+<p>按照还需要的进程数，给其进程。然后让他们运行完释放进程。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108193107261.png" alt="image-20211108193107261"></p>
+<h4 id="死锁的检测与解除"><a href="#死锁的检测与解除" class="headerlink" title="死锁的检测与解除"></a>死锁的检测与解除</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108194443155.png" alt="image-20211108194443155"></p>
+<h5 id="死锁的检测"><a href="#死锁的检测" class="headerlink" title="死锁的检测"></a>死锁的检测</h5><p><strong>必须</strong></p>
+<ol>
+<li>用<strong>某种数据结构</strong>来保存资源的请求和分配信息</li>
+<li>提供<strong>一种算法</strong>，利用上述信息来检测系统是否已进入死锁状态</li>
+</ol>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108193406274.png" alt="image-20211108193406274"></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108193601693.png" alt="image-20211108193601693"></p>
+<p><strong>能消除所有边</strong>，就称这个图是<strong>可完全简化</strong>。此时一定<strong>没有发生死锁</strong>。</p>
+<p>如果<strong>不能消除所有边</strong>，那么此时就是<strong>发生了死锁</strong>。<strong>最终还连着边的那些进程就是处于死锁状态的进程</strong></p>
+<p><strong>检测算法</strong></p>
+<p>用上图举例，蓝色的是请求边，也就是说还需要一个资源。绿色是已经给过去的资源。则R1已经给完了资源，P1还需要一个资源，R2正好有。那么先给P1则P1会运行完成，并释放资源，然后给P2也可以运行完成。</p>
+<p><strong>死锁的解除</strong></p>
+<p>一旦检测出死锁的发生，就应该立即解除死锁</p>
+<blockquote>
+<p>并不是系统中所有的进程都是死锁状态，用死锁检测算法<strong>化简资源分配图后，还连着边的那些进程就是死锁进程</strong></p>
+</blockquote>
+<p>解除死锁主要方法</p>
+<ul>
+<li>资源剥夺法：挂起（暂时放到外存上）某些死锁进程，并抢占它的资源，将这些资源分配给其他的死锁进程。但是应繁殖被挂起的进程长时间得不到资源而饥饿</li>
+<li><strong>撤销进程法（终止进程法）：</strong>强制撤销部分，甚至全部死锁进程，并剥夺这些进程的资源。这种方式的优先是实现简单，但所付出的代价可能会很大。因为有些进程可能已经运行了很长时间，已经接近结束，一旦被终止会功亏一篑。</li>
+<li><strong>进程回退法：</strong>让一个或多个死锁进程回退到足以避免死锁的地步。要求系统要记录进程的历史信息，设置还原点</li>
+</ul>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>操作系统-第二章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-11-09</p><p><span>最后更新：</span>2021-11-09</p><p><span>原始链接：</span><a href="/2021/操作系统-第二章/">https://yvenxx.github.io/yvenxx/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/" data-id="cl1p53io6002anku32sqs3i7f" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKElEQVR42u3aS47iQBAFQO5/aWY70jT0e5kwwkXUquU2dkUhkcrP7Rav+1/r3+ubK/dyPXrC7R0LGxsb+yLs/DWb9XyLj+5/fljtIWJjY2OfzW5fk3wquX9DyoMZNjY2NvZzTJJs5EeQvx0bGxsb+30B7Hky8zxtyINfm+pgY2Njn81ui0GvCl3tAeWH+7JaGjY2NvbHs/Ou6Of//Zb+NjY2NvYHszfN2v09m+C0aT9jY2Njn8TOA8AmOWlHc/Lhns3+sbGxsc9jz8pJedlokyPsR39+uIKNjY19EDv6uR81hvMXt6Fxk6JgY2Njn8ROgtOmybrZYp7A1CNE2NjY2Aex8/CTjOZsGgAtdb8HbGxs7FPZefjJk4220NOmK+3Xg42NjX0Sux2O2bR+8+dvGs/RHrCxsbEPYu9L823ZKGk2tHe2RStsbGzsk9hJSb1t5c7K+nkJadaEKDrV2NjY2Jdlb7aVHMH/f2/RCcHGxsa+LDsJZm1BZxYUN+EwKUhF3zw2Njb2BdlJE3ffiG2Tn/zghgkJNjY29kHs2bBO3jy4j1YSUDc7wcbGxv4GdtumnQ3c5AnPq/ZWdxuwsbGxL8XeDM20AWbTYNi3h7GxsbFPYrdloDY9mBWM2oGh5Mmr6hc2Njb2x7Pb4ZhNU2GWVGxSlIcBDBsbG/sgdtIAmG2iDTDtQQz3j42NjX0c+/lPf1tUel94ywd3fmldYGNjYx/Kbks2sxfnoagNaUW7FxsbG/tQdl7Kz0PXa0d2Zof1w/3Y2NjYB7H3Jfi8hdAWofJnJiu6HxsbG/uy7Pyn/7WpRVQAGo0HRSUwbGxs7OPYm5JQHg7blm0bwIrkChsbG/todp5m5MEmbz/MGsz10WNjY2MfwZ6NTuYDNxtSDsuHgYrtYmNjY1+EPQsA7ehMfmSzNu0m9GJjY2OfwX5V4MnLQ7M0I28eY2NjY38nuw0MM+psHCcPn0USgo2Njf3F7ATTPi3Zbh5QowPCxsbG/mJ2W77Jr+cN400LARsbG/tUdpJC5NeTpGVWVMr/+0uSg42NjX0QOw8As3uSoLUpWrWfwsbGxj6I/Qd4e9mFiz79WAAAAABJRU5ErkJggg==">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/">操作系统-第三章</a><a class="next" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%94%E7%AB%A0/">操作系统 第五章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/">操作系统-第三章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/">计算机组成原理-第七章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

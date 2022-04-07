@@ -1,0 +1,575 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一些我的计算机笔记，JAVA/Python/Linux/后端/计算机基础"><title>数据库原理 | 懒人瑜恩</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2059a4484fb666484cf5e9fba7e20ce6';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">数据库原理</h1><a id="logo" href="/.">懒人瑜恩</a><p class="description">sometimes code, sometimes English</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/history/"><i class="fa fa-book"> 历史</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">数据库原理</h1><div class="post-meta">2021-12-27</div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">概念数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#E-R%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">E-R模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">关系数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E5%9F%BA%E6%9C%AC%E6%80%A7%E8%B4%A8"><span class="toc-number">2.1.1.</span> <span class="toc-text">关系基本性质</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">2.2.</span> <span class="toc-text">关系模式的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7%E7%BA%A6%E6%9D%9F"><span class="toc-number">2.3.</span> <span class="toc-text">关系的完整性约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="toc-number">2.4.</span> <span class="toc-text">关系代数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80"><span class="toc-number">3.</span> <span class="toc-text">关系数据库查询语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DDL"><span class="toc-number">3.1.</span> <span class="toc-text">DDL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DML"><span class="toc-number">3.2.</span> <span class="toc-text">DML</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.2.1.</span> <span class="toc-text">查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.2.1.1.</span> <span class="toc-text">-连接查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.2.1.2.</span> <span class="toc-text">-嵌套查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Union"><span class="toc-number">3.2.1.3.</span> <span class="toc-text">-Union</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%9B%BE"><span class="toc-number">3.3.</span> <span class="toc-text">视图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DCL"><span class="toc-number">3.4.</span> <span class="toc-text">DCL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E5%8C%96SQL%E7%AE%80%E4%BB%8B"><span class="toc-number">4.</span> <span class="toc-text">过程化SQL简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">4.2.</span> <span class="toc-text">存储过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%88%A0%E9%99%A4"><span class="toc-number">4.2.1.</span> <span class="toc-text">存储过程的创建和删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E8%B0%83%E7%94%A8"><span class="toc-number">4.2.2.</span> <span class="toc-text">存储过程的调用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">4.3.</span> <span class="toc-text">触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8%E5%88%9B%E5%BB%BA%E5%92%8C%E5%88%A0%E9%99%A4"><span class="toc-number">4.3.1.</span> <span class="toc-text">触发器创建和删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E5%99%A8%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">4.3.2.</span> <span class="toc-text">触发器的使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">5.</span> <span class="toc-text">关系数据库模式设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96"><span class="toc-number">5.1.</span> <span class="toc-text">函数依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96%E9%9B%86"><span class="toc-number">5.1.1.</span> <span class="toc-text">函数依赖集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A0%81%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="toc-number">5.1.2.</span> <span class="toc-text">码的形式化定义</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%88%86%E8%A7%A3"><span class="toc-number">5.2.</span> <span class="toc-text">模式的分解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E6%8D%9F%E8%BF%9E%E6%8E%A5"><span class="toc-number">5.2.1.</span> <span class="toc-text">无损连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%9D%E6%8A%A4%E5%87%BD%E6%95%B0%E4%BE%9D%E8%B5%96"><span class="toc-number">5.2.2.</span> <span class="toc-text">保护函数依赖</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%84%E8%8C%83%E5%8C%96"><span class="toc-number">5.3.</span> <span class="toc-text">规范化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E8%8C%83%E5%8C%96%E8%BF%87%E7%A8%8B%E6%80%BB%E7%BB%93"><span class="toc-number">5.3.1.</span> <span class="toc-text">规范化过程总结</span></a></li></ol></li></ol></li></ol></div></div><div class="post-content"><a id="more"></a>
+
+<p><strong>1、DB的概念与特点：</strong></p>
+<ul>
+<li>数据库（DB）是存储在计算机系统内的有结构的数据集合，是相关数据的集合，数据由数据库管理系统统一管理和维护。</li>
+<li>数据（Data）指的是可观察的客观事实，并且有隐含的含义。</li>
+<li>在数据库中，数据与数据的含义（数据名称及说明）同时存储。</li>
+<li>数据的最小存取单位是构成记录的、有名称的、有含义的最小数据单位——数据项</li>
+<li>定义数据库时，必须定义数据项的逻辑结构。</li>
+<li>在使用数据库时，以数据项名存储数据、更新数据以及查询和使用数据。</li>
+<li>在数据库中，不仅包含数据本身，还包含了数据结构和约束的完整性定义或者描述。这些定义存储在DBMS的目录中，称为数据库的<strong>元数据</strong>或者<strong>数据字典</strong>。</li>
+<li>任何合法用户都可以在元数据的帮助下，利用数据项名方面的访问数据库中的数据以及他们的逻辑定义，并使用这些数据，亦即数据可高度共享。</li>
+<li>数据库是存储在计算机系统内的有结构的数据的集合，数据是由数据库管理系统管理的。</li>
+</ul>
+<p><strong>2、DBS特点与组成要素：</strong></p>
+<ul>
+<li><p>DBS是指在计算机系统中引入数据库后的数据构成，由计算机硬件、操作系统、DBMS、DB、应用程序和用户以及数据库开发和管理人员等组成。</p>
+</li>
+<li><p>数据库系统区别于传统文件处理系统的最重要特征是引入了数据库这个概念，以及产生数据库管理系统。</p>
+</li>
+<li><p>与文件系统相比，DBS有如下四个主要特点：</p>
+</li>
+<li><ul>
+<li><strong>整体数据结构化</strong>：数据库中的任何数据都是公开的，不属于任何应用，结构是全面的。</li>
+<li><strong>数据的共享度高</strong>：在显示数据的同时可以显示数据的逻辑结构；整个组织的整体数据被综合考虑，整体数据结构化。可以方面的使用数据和扩充新的应用。</li>
+<li><strong>数据的独立性高</strong>：数据与数据的结构存储在数据库中，应用程序既不存储数据也不存储数据的逻辑结构。数据与程序相对独立。</li>
+<li><strong>高度的数据控制能力</strong>：具有较高的数据安全性；较好的数据完整性；较强的并发控制能力；较强的数据恢复能力。</li>
+</ul>
+</li>
+</ul>
+<p><strong>3、DBMS的功能：</strong></p>
+<ul>
+<li><p>数据库管理系统是专门用来实现和维护数据库而建立的通用软件。</p>
+</li>
+<li><p>DBMS是操作系统支持下工作的数据管理软件，是支持用户创建和维护数据库的一组程序包。对内负责管理数据库，对外向用户提供一整套命令。用户可以通过命令来创建数据库，定义数据，对数据库中的数据进行各种合法的操作。</p>
+</li>
+<li><p>DBMS有如下六种基本功能：</p>
+</li>
+<li><ul>
+<li><strong>数据定义</strong>：用户可以利用数据定义语言（DDL）来方便地定义数据库中数据的逻辑结构。</li>
+<li><strong>数据操纵</strong>：用户可以利用数据操纵语言（DML）来实现对数据库对数据库中数据的插入、查找、修改或者删除操作。</li>
+<li><strong>完整性约束检查</strong>：检查数据时候符合一定的规定。</li>
+<li><strong>访问控制</strong>：通过数据控制语言（DCL）来实现对不同级别用户的访问控制功能。</li>
+<li><strong>并发控制</strong>：通过只用并发控制功能，可以确保试图更新同一数据的多个用户能够以一种受控的方式完成各自的工作，即避免并发操作时可能带来的数据不一致性。</li>
+<li><strong>数据恢复</strong>：恢复数据库。</li>
+</ul>
+</li>
+</ul>
+<p><strong>4、DBA的职责</strong></p>
+<ul>
+<li><p>数据库管理员的主要职责有：</p>
+</li>
+<li><ul>
+<li>在用户与数据库开发人员之间进行沟通和协调。</li>
+<li>参与数据库设计工作。</li>
+<li>决定数据的完整性约束和不同用户的存取权限。</li>
+<li>保证数据库的正常运行，进行数据库的维护工作。</li>
+<li>提出数据库的重构计划。</li>
+</ul>
+</li>
+</ul>
+<h2 id="概念数据模型"><a href="#概念数据模型" class="headerlink" title="概念数据模型"></a>概念数据模型</h2><p><strong>数据模型</strong>：数据模型是描述现实世界实体、实体之间的联系以及语义约束的模型。</p>
+<p>数据模型的形式化定义</p>
+<ul>
+<li>数据结构：指数据模型中用来表示现实世界实体以及实体间联系的数据结构。数据结构的定义规定了数据库数据的逻辑结构</li>
+<li>数据操作：指数据模型中包含的用于操作数据结构的操作集合。数据操作的定义规定了将来数据库中的数据存取方式，如查询，更新等</li>
+<li>数据约束：指数据模型中数据结构建立和执行数据操作时必须遵循的约束条件</li>
+</ul>
+<p>现实世界（认识抽象）—-&gt;概念数据模型（信息时间）—-&gt;结构数据模型（机器世界）</p>
+<h3 id="E-R模型"><a href="#E-R模型" class="headerlink" title="E-R模型"></a>E-R模型</h3><p>ER模型的核心要素就是实体和联系。还有实体的属性</p>
+<ul>
+<li><strong>实体（entity）</strong>：现实世界中可标识的对象。例如学生，老师，书</li>
+<li><strong>联系（relationship）</strong>：实体之间的联系。联系也有相应的联系名，例如学生与老师，是授课。<ul>
+<li>1:1关系</li>
+<li>1:N（一对多）关系</li>
+<li>N:M（多对多）关系</li>
+</ul>
+</li>
+<li><strong>属性（attribute）</strong>：描述实体自身的属性。通常有多个属性。关键要看应用环境，学生年龄的属性……，而有时需要建立联系之后会有额外的属性，例如学生与课程建立联系，就有成绩的属性，但成绩不属于这两个的任意一个实体</li>
+</ul>
+<p><strong>ER模型的符号</strong></p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211205182125052.png" alt="image-20211205182125052"></p>
+<p><strong>ER模型设计</strong></p>
+<ol>
+<li>分 E-R模型，设计系统的子系统</li>
+<li>E-R模型集成，将子系统的ER模型集成为一个整体。<ul>
+<li>属性冲突 ： 如一个表性别属性是sex一个是gender</li>
+<li>结构冲突：实体属性集不同，联系类型不同，同一对象在不同应用中的抽象不同</li>
+<li>命名冲突：同名异义，异名同义两种情况</li>
+</ul>
+</li>
+<li>E-R模型的优化<ul>
+<li>合并实体</li>
+<li>消除冗余属性</li>
+<li>消除冗余联系</li>
+</ul>
+</li>
+</ol>
+<p><strong>E-R模型扩展</strong></p>
+<p>例如：这样一种情况，会员有注册会员，正式会员，高级会员。只有一个会员实体没法表达。因为他们的属性不一样</p>
+<p>子类，超类：超类可以理解为 一个类，子类继承超类。（JAVA中的类）</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211205183343723.png" alt="image-20211205183343723"></p>
+<p><strong>弱实体</strong></p>
+<p>弱实体是强实体的依赖。</p>
+<p>例如一个公司中，员工需要填子女的名字，给子女福利。那么子女就是弱实体。相应的员工为强实体。之间是依赖关系。</p>
+<h2 id="关系数据模型"><a href="#关系数据模型" class="headerlink" title="关系数据模型"></a>关系数据模型</h2><p>这里我们和 SQL语言结合进行理解更为简单。所以后面一部分SQL内容会在这里写出。</p>
+<h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><p><strong>关系数据模型：</strong>以规范化的二维表格结构表示实体集，以外码表示实体间联系，以三类完整性表示语义约束的数据模型</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211208210415420.png" alt="image-20211208210415420"></p>
+<ul>
+<li><p><strong>元组（tuple）</strong>：每一行一个为一个元组</p>
+</li>
+<li><p><strong>属性（attribute）：</strong>一列为一个属性</p>
+</li>
+<li><p><strong>关系（relation）：</strong>关系是元组的集合，关系代表了一个实体的集合，也就是多个元组为一个关系。</p>
+</li>
+<li><p><strong>关系模式（relational schema）</strong>：数据和语义是不可分的，关系的语义需要用关系模式来定义。</p>
+</li>
+<li><p><strong>关系数据库模式（relational database schema）：</strong>描述了整个关系数据库的逻辑结构和特征。由若干关系模式构成的集合。每个关系模式都描述了某一类实体的逻辑结构和特征。</p>
+</li>
+<li><p><strong>关系数据库（relational database）：</strong>关系数据库模式的一个实例称为关系数据库，所以关系数据库对应的是数据的概念，是关系的集合</p>
+</li>
+<li><p><strong>码（key）：</strong></p>
+<ul>
+<li><p>超码（super key）：唯一区分每个元组的属性<strong>集合</strong></p>
+</li>
+<li><p>候选码（candidate key）：不含多余属性的超码称为候选码，所以候选码是唯一区分元组的最小属性集</p>
+<p>一个关系模式中可能存在多个候选码，例如学生可以有学号和身份证号区分</p>
+</li>
+<li><p>主属性（primary attribute）：包含在某个候选码中的属性称为主属性</p>
+</li>
+<li><p>非主属性（nonprime attribute）：主属性之外的属性</p>
+</li>
+<li><p>主码（primary key）：实际的数据库设计中，用户选定的作为元组标识的候选码称为主码（其实就是主键）</p>
+</li>
+<li><p>替换码（alternate key）实际应用中很少使用，</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>例子,Student表</p>
+<p>Student(id,name,age,gender)，其中id是学号，（id，name）就是超码（集合）。sno作为关系模式的主码，这里没有替换码，如果有个身份证，那身份证就是替换码。</p>
+</blockquote>
+<h4 id="关系基本性质"><a href="#关系基本性质" class="headerlink" title="关系基本性质"></a><strong>关系基本性质</strong></h4><ul>
+<li>属性值不可分解</li>
+<li>元组不可重复（超码不可重复）</li>
+<li>关系没有行序，列序</li>
+</ul>
+<h3 id="关系模式的定义"><a href="#关系模式的定义" class="headerlink" title="关系模式的定义"></a>关系模式的定义</h3><p><strong>关系模式</strong>：可以形式化定义为一个四元组 R(U, D, dom, F)</p>
+<ul>
+<li><p>R：关系名</p>
+</li>
+<li><p>U：组成该关系的属性集合</p>
+</li>
+<li><p>D：属性组 U 中属性所来自的域</p>
+<p>一个属性值可能取的所有属性值的范围，称为该属性的域。不同的属性可以有相同的域。</p>
+</li>
+<li><p>dom：属性向域的映像的集合</p>
+<p>属性的类型和长度，例如 name char(5)</p>
+</li>
+<li><p>F：属性间数据的依赖关系集合</p>
+<p>关系的属性与属性之间的一种约束关系</p>
+</li>
+</ul>
+<h3 id="关系的完整性约束"><a href="#关系的完整性约束" class="headerlink" title="关系的完整性约束"></a>关系的完整性约束</h3><ul>
+<li><p><strong>实体完整性（intity integrity）</strong></p>
+<p>指关系模式的任一关系的主属性值不可为空</p>
+</li>
+<li><p><strong>参照完整性</strong></p>
+<p>若学生表属性 class_id 与 班级表属性 class_id组成外键，则学生的班级id必须参照班级表的class_id属性</p>
+</li>
+<li><p><strong>用户定义完整性</strong>：</p>
+<p>关系模式针对某一具体数据的要求而制定的约束条件，反映某一具体应用所涉及的数据必须满足的特殊语义</p>
+<p>例如 年龄必须 0&lt; 年龄 &lt;200</p>
+</li>
+</ul>
+<h3 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h3><p><strong>代数表达式会省略</strong>，用SQL语句来方便理解含义。</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211208205938517.png" alt="image-20211208205938517"></p>
+<ul>
+<li><p>并(union) ： 将A，B的数据放在一块，消除重复的元组</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> A <span class="keyword">union</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> B;</span><br></pre></td></tr></table></figure></li>
+<li><p>交(intersection) ：<strong>找出同时存在于关系R和S中的所有相同的元组</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">UNION</span> <span class="keyword">ALL</span>  <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students_2) <span class="keyword">GROUP</span> <span class="keyword">BY</span> sid <span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="operator">&gt;</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>差（difference）：从关系元组A中去掉他与关系B相同的那些元组</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> A <span class="keyword">where</span> (id,name,dept,birthday) <span class="keyword">not</span> <span class="keyword">in</span> (<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> B);</span><br></pre></td></tr></table></figure></li>
+<li><p>笛卡尔积：就是将两个表进行笛卡尔排列。</p>
+</li>
+<li><p>投影</p>
+<p>取出一个查询结果中的<strong>某几列</strong>，消除重复的数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> id,name,dept <span class="keyword">from</span> A;</span><br></pre></td></tr></table></figure></li>
+<li><p>选择：选出特定值的元组</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> A <span class="keyword">where</span> id <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>连接：把两个表按照给定的条件拼接和形成的新表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> A <span class="keyword">inner</span> <span class="keyword">join</span> B <span class="keyword">on</span> A.dept_id <span class="operator">=</span> B.dept_id;</span><br></pre></td></tr></table></figure></li>
+<li><p>除</p>
+<p>引用书上的例子（数据库原理与应用）</p>
+<p>找到选修了 001 学号同学 所选修课程的所有同学的学号，利用除操作，过程如下。先找到001同学的选课，在用选课来找学号</p>
+<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211208211553856.png" alt="image-20211208211553856"></p>
+</li>
+</ul>
+<h2 id="关系数据库查询语言"><a href="#关系数据库查询语言" class="headerlink" title="关系数据库查询语言"></a>关系数据库查询语言</h2><p>注意：关系型数据库有很多，下面不语句不唯一，但是具体用法差不多。</p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211219155811477.png" alt="image-20211219155811477"></p>
+<h3 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h3><p><strong>Create table</strong></p>
+<ul>
+<li>主键约束  primary key</li>
+<li>唯一性约束   unique，用法和主键一致</li>
+<li>外键约束  foreign key  如下</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span>(列名<span class="number">1</span> 列类型<span class="number">1</span> [列约束<span class="number">1</span>], 列名<span class="number">2.</span>...);</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student(id <span class="type">int</span>(<span class="number">10</span>) <span class="keyword">primary</span> <span class="keyword">key</span>, name <span class="type">varchar</span>(<span class="number">10</span>));</span><br><span class="line"></span><br><span class="line">外键</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> student(</span><br><span class="line">    id <span class="type">int</span>(<span class="number">10</span>) <span class="keyword">primary</span> <span class="keyword">key</span></span><br><span class="line">    name <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span></span><br><span class="line">    cid <span class="type">int</span>(<span class="number">10</span>) <span class="keyword">foreign</span> <span class="keyword">key</span>(cid) <span class="keyword">references</span> class(cid);</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><strong>Alter table</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br><span class="line">[<span class="keyword">add</span> <span class="operator">&lt;</span>列定义<span class="operator">&gt;</span>] <span class="operator">|</span> </span><br><span class="line">[<span class="keyword">alter</span> <span class="keyword">column</span> <span class="operator">&lt;</span>列定义<span class="operator">&gt;</span>] <span class="operator">|</span></span><br><span class="line">[<span class="keyword">drop</span> <span class="keyword">column</span> <span class="operator">&lt;</span>列名<span class="operator">&gt;</span>] <span class="operator">|</span></span><br><span class="line">[<span class="keyword">add</span> <span class="operator">&lt;</span>表约束<span class="operator">&gt;</span>] <span class="operator">|</span></span><br><span class="line">[<span class="keyword">drop</span> <span class="keyword">constraint</span> <span class="operator">&lt;</span>约束名<span class="operator">&gt;</span>];</span><br></pre></td></tr></table></figure>
+<p><strong>Drop table</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="DML"><a href="#DML" class="headerlink" title="DML"></a>DML</h3><p><strong>Insert</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Insert</span> <span class="keyword">into</span> student <span class="keyword">values</span>(id,name,cid);<span class="operator">/</span><span class="operator">/</span>没有设定要插入的列，那么按照从前面到后面的顺序插入，如果cid后面还有列，且设置了<span class="keyword">not</span> <span class="keyword">null</span>就会报错，如果没设置，默认为空</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> student(id) <span class="keyword">values</span>(id); <span class="operator">/</span><span class="operator">/</span>指定插入的列</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>update</strong></p>
+<p>用法跟insert基本一致</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> student <span class="keyword">set</span> name<span class="operator">=</span>xxx,age<span class="operator">=</span>xx;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>Delete</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span> [<span class="keyword">where</span> <span class="operator">=</span> 条件];</span><br><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> student <span class="keyword">where</span> age <span class="operator">=</span><span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a><strong>查询</strong></h4><p>基本结构如下</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Select</span> <span class="operator">&lt;</span>列名<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span>表名<span class="operator">&gt;</span></span><br><span class="line">[<span class="keyword">where</span> <span class="operator">&lt;</span>条件<span class="operator">&gt;</span>]</span><br><span class="line">[<span class="keyword">Group</span> <span class="keyword">by</span> <span class="operator">&lt;</span>分组列名<span class="operator">&gt;</span>]   <span class="operator">/</span><span class="operator">/</span>指定要分组的列</span><br><span class="line">[<span class="keyword">Having</span> <span class="operator">&lt;</span>条件<span class="operator">&gt;</span>]  <span class="operator">/</span><span class="operator">/</span>指定分组的条件</span><br><span class="line">[<span class="keyword">Order</span> <span class="keyword">by</span> <span class="operator">&lt;</span>排序列<span class="operator">&gt;</span> ] 指定如何排序</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>简单使用<span class="comment">---查询整张表</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student;</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>特定列</span><br><span class="line"><span class="keyword">select</span> id,name <span class="keyword">from</span> student;</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>加上条件</span><br><span class="line"><span class="keyword">select</span> id,name <span class="keyword">from</span> student <span class="keyword">where</span> age<span class="operator">&gt;</span><span class="number">10</span>;</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>排序  按照年龄排序</span><br><span class="line"><span class="keyword">select</span> id,name <span class="keyword">from</span> student <span class="keyword">order</span> <span class="keyword">by</span> age;</span><br></pre></td></tr></table></figure>
+<p><strong>Group by</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>分男女组，然后进行计男女的数量</span><br><span class="line"><span class="keyword">select</span> sex <span class="keyword">as</span> 性别,<span class="built_in">count</span>(id) <span class="keyword">from</span> student <span class="keyword">group</span> <span class="keyword">by</span> sex;</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>按照男女 和 年龄分组</span><br><span class="line"><span class="keyword">select</span> age,sex,<span class="built_in">count</span>(id) <span class="keyword">from</span> student <span class="keyword">group</span> <span class="keyword">by</span> age,sex;</span><br></pre></td></tr></table></figure>
+<p><strong>Having</strong></p>
+<p>设置条件，如果不设置Having的话，group by 会返回所有的数据，Having可以指定条件</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>按照年龄分组，只返回这个年龄人数大于<span class="number">5</span>个的</span><br><span class="line"><span class="keyword">select</span> age,<span class="built_in">count</span>(id) <span class="keyword">from</span> student <span class="keyword">group</span> <span class="keyword">by</span> age <span class="keyword">Having</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="operator">&gt;</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h5 id="连接查询"><a href="#连接查询" class="headerlink" title="-连接查询"></a>-连接查询</h5><p>假如有两张表 </p>
+<p>student(id,name,age,cid);</p>
+<p>class(cid,cname);</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>查询 <span class="number">1</span>班的学生的名字,这里用了左连接 <span class="keyword">on</span>后面是条件。</span><br><span class="line"><span class="keyword">select</span> student.name </span><br><span class="line"><span class="keyword">from</span> student <span class="keyword">left</span> <span class="keyword">join</span> class <span class="keyword">on</span> student.cid <span class="operator">=</span> class.cid;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>左连接</li>
+<li>右连接</li>
+<li>内连接</li>
+<li>外连接</li>
+<li>笛卡尔积</li>
+</ul>
+<p><strong>这里暂时没写</strong></p>
+<h5 id="嵌套查询"><a href="#嵌套查询" class="headerlink" title="-嵌套查询"></a>-嵌套查询</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>查询不在class表中的cid</span><br><span class="line"><span class="keyword">select</span> cid <span class="keyword">from</span> student </span><br><span class="line"><span class="keyword">where</span> cid <span class="keyword">not</span> <span class="keyword">in</span>(<span class="keyword">select</span> cid <span class="keyword">from</span> class);</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>查询 已经查询出来的数据  <span class="comment">---当然这里可以写成一个，只是为了方便理解</span></span><br><span class="line"><span class="keyword">select</span> id </span><br><span class="line"><span class="keyword">from</span> (<span class="keyword">select</span> id <span class="keyword">from</span> student <span class="keyword">where</span> age <span class="operator">&gt;</span><span class="number">20</span>);</span><br></pre></td></tr></table></figure>
+
+
+<h5 id="Union"><a href="#Union" class="headerlink" title="-Union"></a>-Union</h5><p>要求：</p>
+<ul>
+<li>列数必须想相同</li>
+<li>相对的列类型需要一致</li>
+<li>order by 只能在最后使用，且只有一次</li>
+<li>union all 包含重复行的集合运算，没有all会去除重复行</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>例如有两张学生表</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>查询 两张表学生的id</span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> student1</span><br><span class="line"><span class="keyword">union</span></span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> student2;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p>从一个表或多个基本表中导出的虚拟表。有和表一样的逻辑结构，但没有实际的数据存储。数据还是基本表的数据。</p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211219170829688.png" alt="image-20211219170829688"></p>
+<p>优点</p>
+<ol>
+<li>无需保存数据，因此可以节省存储设备的容量。</li>
+<li>将频繁使用的select语句，保存成视图，这样不用每次都重新写。只需要在select语句中进行调用</li>
+</ol>
+<p><strong>创建视图</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> <span class="operator">&lt;</span>视图名<span class="operator">&gt;</span>[(列名<span class="number">1</span>,列名<span class="number">2.</span>...)] <span class="keyword">as</span> <span class="operator">&lt;</span>查询<span class="operator">&gt;</span> [<span class="keyword">with</span> <span class="keyword">check</span> option];</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>创建一个学生视图，包含id,name,age,条件是软件工程的学生</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> stu_view(id,name,age)</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> id,name,age <span class="keyword">from</span> student <span class="keyword">where</span> dept <span class="operator">=</span> &quot;软件工程&quot;;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>视图查询</strong></p>
+<p>和查表类似，写视图名即可。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> id,name,age <span class="keyword">from</span> stu_view <span class="keyword">where</span> age<span class="operator">&gt;</span><span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>视图更新</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> stu_view <span class="keyword">set</span> name <span class="operator">=</span> &quot;123&quot; <span class="keyword">where</span> name <span class="operator">=</span>&quot;321&quot;;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>视图删除</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> <span class="operator">&lt;</span>视图名<span class="operator">&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> stu_view;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="DCL"><a href="#DCL" class="headerlink" title="DCL"></a>DCL</h3><p><strong>Grant</strong></p>
+<p>grant进行授权</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>把对象上的权限，授予给用户</span><br><span class="line">grant &#123;all | [&lt;权限1&gt;,.....]&#125; on &lt;对象&gt; to [&lt;用户1&gt;,...];</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>把 Authors表的<span class="keyword">insert</span> <span class="keyword">delete</span> 权限 给yven</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">insert</span>,<span class="keyword">delete</span> <span class="keyword">on</span> authors <span class="keyword">to</span> yven;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>Revoke</strong></p>
+<p>删除权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>废除所有表的 权限 对于 用户</span><br><span class="line">revoke &#123;all | [&lt;权限1&gt;,.....]&#125; from [&lt;用户1&gt;,...];</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>废除对象表的权限</span><br><span class="line">revoke &#123;all | [&lt;权限1&gt;,.....]&#125; on &lt;对象&gt; from [&lt;用户1&gt;,...];</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>删除yven拥有的<span class="keyword">create</span> <span class="keyword">table</span>权限</span><br><span class="line"><span class="keyword">revoke</span> <span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">from</span> yven;</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>删除yven 在author表的<span class="keyword">create</span>权限</span><br><span class="line"><span class="keyword">revoke</span> <span class="keyword">create</span> <span class="keyword">on</span> author <span class="keyword">from</span> yven;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>deny</strong></p>
+<p>因为sql中也有组的机制，revoke不能完全解决权限问题。例如如果yven是没有create权限的，但是他所在的组又有create权限。则他会继承此权限</p>
+<p>deny可以解决这个问题。</p>
+<p>停止语句权限</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deny &#123;all | [&lt;语句1&gt;,....]&#125; to [&lt;用户1&gt;....];</span><br></pre></td></tr></table></figure>
+<p>停止对象权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deny &#123;all | [权限1,....]&#125; on &lt;对象&gt; [&lt;用户1&gt;,.....];</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>去除<span class="keyword">select</span> <span class="keyword">update</span>，student表。对于yven</span><br><span class="line">deny <span class="keyword">select</span>,<span class="keyword">update</span> <span class="keyword">on</span> student <span class="keyword">to</span> yven;</span><br></pre></td></tr></table></figure>
+<h2 id="过程化SQL简介"><a href="#过程化SQL简介" class="headerlink" title="过程化SQL简介"></a>过程化SQL简介</h2><p>这里按 Microsoft SQL Server的T-SQL来介绍。</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p><strong>T-SQL的变量定义与赋值</strong></p>
+<p>赋值可以是 常量，算数表达式，函数表达式，字符串表达式，表中的字段，或者是sql语句…..</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>定义</span><br><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@temp</span> <span class="type">int</span>;</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>赋值<span class="comment">---set只能单个赋值</span></span><br><span class="line"><span class="keyword">set</span> <span class="variable">@temp</span><span class="operator">=</span><span class="keyword">select</span> id <span class="keyword">from</span> student;</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>多个赋值</span><br><span class="line"><span class="keyword">select</span> <span class="variable">@v1</span><span class="operator">=</span>xxx,<span class="variable">@v2</span><span class="operator">=</span>xxx;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li><p>如果返回多个数据时，返回多个数据。set会报错，select会取最后一个值</p>
+<p>select @v1 = select age from student;  //这里多个age，取最后一个值</p>
+</li>
+<li><p>表达式没有返回值时，set将变量置为null，用select则保持变量值</p>
+</li>
+<li><p>使用sql语句赋值时，如果无返回值，使用set和select都置为null</p>
+</li>
+</ul>
+</blockquote>
+<p><strong>T-SQL的语句</strong></p>
+<p>其实和函数差不多，这里只说说使用事项</p>
+<ul>
+<li><p>BEGIN…END：定义语句块</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if <span class="keyword">Exists</span>(<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> student <span class="keyword">where</span> dept<span class="operator">=</span>&quot;软件工程&quot;)</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"><span class="keyword">delete</span> student <span class="keyword">where</span> dept<span class="operator">=</span>&quot;软件工程&quot;</span><br><span class="line">print <span class="string">&#x27;xxxx&#x27;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">print <span class="string">&#x27;xxxxx&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>IF…..ELSE…：条件选择语句</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if 布尔表达式</span><br><span class="line">&#123;sql语句/语句块&#125;</span><br><span class="line">[<span class="keyword">else</span></span><br><span class="line">&#123;sql语句|语句块&#125;]</span><br></pre></td></tr></table></figure></li>
+<li><p>GOTO：无条件转移语句</p>
+<p>Goto &lt;语句标号&gt; 理解为函数名即可，例如   temp函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">temp:</span><br><span class="line">select....</span><br><span class="line"></span><br><span class="line">goto temp</span><br></pre></td></tr></table></figure></li>
+<li><p>WHILE：循环语句</p>
+</li>
+<li><p>BREAK：退出循环</p>
+</li>
+<li><p>CONTINUE：重新启动循环语句</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while 布尔表达式</span><br><span class="line">&#123;SQL语句或语句块&#125;</span><br><span class="line">[BREAK <span class="operator">|</span> continue]</span><br><span class="line">&#123;SQL语句或语句块&#125;..........</span><br></pre></td></tr></table></figure></li>
+<li><p>WAITFOR：设置语句执行的延期时间</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">waitfor delay 间隔</span><br><span class="line">waitfor <span class="type">time</span> 时间点</span><br></pre></td></tr></table></figure></li>
+<li><p>RETURN：无条件返回语句</p>
+<p>retuan xxxx</p>
+</li>
+</ul>
+<h3 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h3><p>可以理解为定义一个函数，放在服务器，然后用户的一系列操作可以不用在客户端运行，而只要传值到服务器允许即可。</p>
+<h4 id="存储过程的创建和删除"><a href="#存储过程的创建和删除" class="headerlink" title="存储过程的创建和删除"></a>存储过程的创建和删除</h4><p>注意的是存储过程名不能超过128个字符，每个存储过程最多1024参数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>创建存储过程名</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> 存储过程名[(参数类型[<span class="operator">=</span>默认值][OUTPUT])];</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line">T<span class="operator">-</span><span class="keyword">SQL</span>语句块</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>删除存储过程名</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">procedure</span> stu_count;</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>统计软件工程的学生人数</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> stu_count[<span class="variable">@deptid</span> <span class="type">int</span>,<span class="variable">@stucount</span> <span class="type">int</span> OUTPUT]</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> <span class="variable">@stucount</span> <span class="operator">=</span> <span class="built_in">count</span>(id) <span class="keyword">from</span> student <span class="keyword">where</span> <span class="variable">@deptid</span><span class="operator">=</span>&quot;软件工程&quot;;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="存储过程的调用"><a href="#存储过程的调用" class="headerlink" title="存储过程的调用"></a>存储过程的调用</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Execute 接收返回值的变量=过程名(&#123;参数[OUTPUT]&#125;);</span><br><span class="line"></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>执行</span><br><span class="line"><span class="keyword">declare</span> <span class="variable">@deptid</span> <span class="type">int</span>,<span class="variable">@stucount</span> <span class="type">int</span></span><br><span class="line"><span class="keyword">declare</span> <span class="variable">@ret</span> <span class="type">int</span> <span class="comment">-----返回值，且定为数字</span></span><br><span class="line"><span class="keyword">set</span> <span class="variable">@deptid</span><span class="operator">=</span><span class="number">1</span></span><br><span class="line"><span class="keyword">execute</span> <span class="variable">@ret</span><span class="operator">=</span>stu_count(<span class="variable">@deptid</span>,<span class="variable">@stucount</span> OUTPUT)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h3 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h3><p>当insert，update，delete等操作时，sql会自动执行触发器定义的语句，确保对数据的处理必须符合这些语句定义的规则</p>
+<ul>
+<li><p>后触发AFTER：触发操作完成后触发，如果触发操作自身出错，则回滚；如果正确，触发器执行时也可以控制操作是否回滚</p>
+</li>
+<li><p>替代触发INSTEAD OF</p>
+<p>触发操作发生时触发，用触发器内的操作代替正常的操作</p>
+</li>
+</ul>
+<p>作用</p>
+<ul>
+<li>强化约束：触发器能够实现比CHECK语句更为复杂的约束</li>
+<li>跟踪变化：触发器可以侦测数据库内的操作，从而不允许数据库中未经许可的指定更新和变化</li>
+<li>级联运行：触发器可以侦测数据库内的操作，并自动地级联影响整个数据库的各项内容</li>
+<li>存储过程的调用：为了响应数据库更新，触发器可以调用一个或多个存储过程，还可以将操作放到其他语言进行调用。</li>
+</ul>
+<h4 id="触发器创建和删除"><a href="#触发器创建和删除" class="headerlink" title="触发器创建和删除"></a>触发器创建和删除</h4><p>其中FOR和ALTER表示 后触发，INSTEAD OF表示 替代触发。</p>
+<p>INSERT，UPDATE，DELETE可以自己定制</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>创建</span><br><span class="line">CREATE TRIGGER 触发器名称 ON &#123;表名 | 视图名&#125;</span><br><span class="line">&#123;</span><br><span class="line">	&#123;&#123;FOR|AFTER|INSTEAD OF&#125;&#123;[INSERT][,][UPDATE][,][DELETE]&#125;&#125;</span><br><span class="line">	<span class="keyword">as</span></span><br><span class="line">	T<span class="operator">-</span><span class="keyword">SQL</span>语句</span><br><span class="line">&#125;</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>删除</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="触发器的使用"><a href="#触发器的使用" class="headerlink" title="触发器的使用"></a>触发器的使用</h4><p>触发器相关的，还有两个临时表,Inserted表和Deleted表。是sql触发器执行时创建的临时表。其中Inserted表保存了新插入表的记录，Deleted表保存了新删除的表记录。</p>
+<table>
+<thead>
+<tr>
+<th>表名</th>
+<th>Insert</th>
+<th>Delete</th>
+<th>Update</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Inserted表</td>
+<td>新纪录</td>
+<td>空</td>
+<td>新记录</td>
+</tr>
+<tr>
+<td>Deleted表</td>
+<td>空</td>
+<td>原记录</td>
+<td>原记录</td>
+</tr>
+</tbody></table>
+<p>使用示例</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>要求<span class="comment">---class里面的cid更改，student里面的cid也跟着更改</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">trigger</span> check_classid <span class="keyword">on</span> class</span><br><span class="line"><span class="keyword">for</span> <span class="keyword">update</span></span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"><span class="keyword">declare</span> <span class="variable">@old</span> <span class="type">int</span></span><br><span class="line"><span class="keyword">declare</span> <span class="variable">@new</span> <span class="type">int</span></span><br><span class="line"><span class="keyword">select</span> <span class="variable">@old</span><span class="operator">=</span>(<span class="keyword">select</span> cid <span class="keyword">from</span> deleted)</span><br><span class="line"><span class="keyword">select</span> <span class="variable">@new</span><span class="operator">=</span>(<span class="keyword">select</span> cid <span class="keyword">from</span> Inserted)</span><br><span class="line">IF <span class="keyword">Update</span>(cid) <span class="keyword">and</span> @<span class="variable">@rowcount</span><span class="operator">=</span><span class="number">1</span></span><br><span class="line">	<span class="keyword">update</span> student <span class="keyword">set</span> cid<span class="operator">=</span><span class="variable">@new</span> <span class="keyword">where</span> cid<span class="operator">=</span><span class="variable">@old</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="关系数据库模式设计"><a href="#关系数据库模式设计" class="headerlink" title="关系数据库模式设计"></a>关系数据库模式设计</h2><p>模式设计的四个问题</p>
+<ul>
+<li><p>数据冗余</p>
+<p>有teacher表(name,address,course)，其中course为主键，如果这个老师教了多门课程，则会有多个数据，会造成冗余</p>
+</li>
+<li><p>更新异常</p>
+<p>上面的例子，如果这个老师地址改了，我们有多条数据，但是没有都更新地址信息。这就是更新异常</p>
+</li>
+<li><p>插入异常</p>
+<p>course为主键，如果有一个新老师来，但是暂时没教课程，我们应该将课程置为空，但是course是主键，不允许为空</p>
+</li>
+<li><p>删除异常</p>
+<p>如果老师不教这门课，应该是删除course的值，但是course的值不能删</p>
+</li>
+</ul>
+<p>解决，我们应该让数据之间的依赖放到不同表，这样可以得到小的数据冗余。但是如果多个表，我们又需要连接查询，对性能消耗大。这些模式就是需要解决的问题。下面进行讨论</p>
+<h3 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h3><blockquote>
+<p>Ex:student(name,course_id,score);</p>
+<p>这个表中，任意的name和course，只有一个score与之对应。称存在{name,course}属性集到属性集{score}的依赖。下面给出定义</p>
+</blockquote>
+<p><strong>函数依赖：</strong>设关系模式R(A1,A2,…An)，简记为R(U)。X和Y是U的子集。r是R的任意一个实例（关系）。若r的任意两个元组 t1、t2，由t1[X]=t2[X]可导出t1[Y]=t2[Y]，即如果X相等，Y也相等。则称Y函数依赖于X 或 X函数决定Y。记X-&gt;Y</p>
+<p><strong>平凡函数依赖：</strong>对于函数依赖X-&gt;Y，如果Y不包含X，则称为平凡函数依赖集，否则为不平凡函数依赖</p>
+<h4 id="函数依赖集"><a href="#函数依赖集" class="headerlink" title="函数依赖集"></a>函数依赖集</h4><p><strong>函数依赖集的逻辑蕴含</strong>：设F是关系模式R的一个函数依赖集，X和Y是R的属性子集，若从F的函数依赖中能推出 X-&gt;Y，则称F逻辑蕴含X-&gt;Y，记作 F|=X-&gt;Y（|和=连在一起，这里写不出来）</p>
+<p><strong>函数依赖集的闭包</strong> : </p>
+<p>定义：设F是关系模式R的一个函数依赖集，被函数依赖集F全体逻辑蕴含的函数依赖构成的集合称为F的闭包，记作F+。下面是理解</p>
+<p>F : FD的集合称为函数依赖集，则F中的所有FD可推导出所有FD的集合记为F+</p>
+<p>下面是一些Armstrong，因为每本书说法都不一样，就用英文写出名字</p>
+<ul>
+<li>reflexity：B包含A , A-&gt;B成立</li>
+<li>augmentation：若A-&gt;B则，AC-&gt;BC (AC表示A并C，并非交)</li>
+<li>transitivity：若A-&gt;B，则B-&gt;C，则A-&gt;C</li>
+<li>self-determination：A-&gt;A</li>
+<li>decomposition：若A-&gt;BC，则A-&gt;B，且A-&gt;C</li>
+<li>union：若A-&gt;C，A-&gt;B，则A-&gt;BC</li>
+<li>composition：若A-&gt;B，C-&gt;D，则AC-&gt;BD</li>
+</ul>
+<blockquote>
+<p>例 给定关系 R(A,B,C,D,E,F)和R上的一个函数依赖集F=(A-&gt;BC,B-&gt;E,CD-&gt;EF)。AD-&gt;F是否成立</p>
+<ol>
+<li>A-&gt;BC(已知)</li>
+<li>A-&gt;C 分解律</li>
+<li>AD-&gt;CD 增广律</li>
+<li>CD-&gt;EF 已知</li>
+<li>AD-&gt;EF 传递律</li>
+<li>AD-&gt;F 分解律</li>
+</ol>
+</blockquote>
+<p><strong>属性集的闭包：（定义写的太傻逼，这里直接写例子）</strong>对F，F+中所有 X-&gt;A中 A的集合称为X的关于F的闭包，记为X+。可以理解为X+表示所有X可以决定的属性。</p>
+<p><strong>函数依赖集的覆盖</strong>：设S1和S2是两个函数依赖集，若S1+ 包含 S2+，则称S2是S1的覆盖（或称S2覆盖S1）</p>
+<p><strong>函数依赖集的等价：</strong>设S1和S2是两个函数依赖集，若S1+包含S2+，S2+也包含S1+，则S1与S2等价</p>
+<p><strong>最小函数依赖集：</strong>当且仅当函数依赖集F满足如下条件，F是最小函数依赖集：</p>
+<ol>
+<li>F的每个函数依赖的右边只有一个属性</li>
+<li>F不可约，指F中的每个X-&gt;Y不可删除，即F-{X-&gt;Y}与F不等价</li>
+<li>F的每个函数依赖的左部不可约，即删除任何一个函数依赖左边的任何一个属性都会使F转变为一个不等价于原来F的集合</li>
+</ol>
+<blockquote>
+<p>例 给定学生关系模式 Student(S#,Sname,age,sex)</p>
+<ol>
+<li><strong>F1={S#-&gt;Sname,S#-&gt;age,S#-&gt;sex} 是Student的最小函数依赖集</strong></li>
+<li>F2={S#-&gt;{S#,Sname}}，S#-&gt;age，S#-&gt;sex} <strong>不是</strong>最小函数依赖集，因为函数依赖S#-&gt;{S#,Sname}的右边不是单属性</li>
+<li>F3={S#-&gt;Sname，{S#,Sname} -&gt; age , S#-&gt;sex} <strong>不是</strong>最小函数依赖集，因为{S#,Sname} -&gt; age左部可约，Sname是可删除的。而且删除后的函数依赖集与F3等价</li>
+<li>F4={S#-&gt;S# , S#-&gt;Sname , S# -&gt; age , S#-&gt;sex} <strong>不是</strong>最小函数依赖集，S#-&gt;S#是平凡函数依赖，是可删除的，且删除之后函数依赖集与F4等价</li>
+</ol>
+</blockquote>
+<p>有了最小函数依赖集，如果能找到与F等价的一个最小函数依赖集，则DBMS只要实现最小函数依赖集就可保证F的有效性。而又可以保证DBMS负担最轻。</p>
+<blockquote>
+<p>求最小函数依赖集，例 给定关系 R(A,B,C,D) 以及R上的一个函数依赖 F={A-&gt;BC, B-&gt;C , A-&gt;B, AB-&gt;C , AC-&gt;D}，求与F等价的函数依赖集</p>
+<ol>
+<li><p>去除重复函数依赖</p>
+<p>F(A-&gt;B , A-&gt;C , B-&gt;C , AB-&gt;C , AC-&gt;D)</p>
+</li>
+<li><p>消去左部冗余属性</p>
+<p>AB-&gt;C，有A-&gt;C===&gt; AB-&gt;BC ===&gt; AB-&gt;C，所以AB-&gt;C是冗余属性</p>
+<p>AC-&gt;D,  有 A-&gt;C ===&gt; A-&gt;AC====&gt; 得到 A-&gt;D</p>
+<p>最后为 F={A-&gt;B , A-&gt;C , B-&gt;C , A-&gt;D}</p>
+</li>
+<li><p>消除冗余函数依赖</p>
+<p>A-&gt;B,B-&gt;C 可以推出 A-&gt;C，去掉A-&gt;C</p>
+<p>F={A-&gt;B,B-&gt;C , A-&gt;D}</p>
+</li>
+</ol>
+</blockquote>
+<h4 id="码的形式化定义"><a href="#码的形式化定义" class="headerlink" title="码的形式化定义"></a>码的形式化定义</h4><p><strong>关系模式的码：</strong>给定关系模式R(U)，以及R的一个函数依赖集F。设X是U的一个子集，IF</p>
+<ol>
+<li>X-&gt;U 属于F+，则X是R的一个超码</li>
+<li>同时，如果不存在X的真子集Y，使得Y-&gt;U成立，则X是R的一个候选码。</li>
+</ol>
+<blockquote>
+<p>例 F={Tname-&gt;Addr , C#-&gt;Cname , C# -&gt; Tname}，则有 C#-&gt;{Tname,Addr,C#,Tname}，C#是R的候选码。</p>
+</blockquote>
+<blockquote>
+<p>若 C# - &gt; Tname 不成立，则候选码 为 {Tname, C# }</p>
+</blockquote>
+<h3 id="模式的分解"><a href="#模式的分解" class="headerlink" title="模式的分解"></a>模式的分解</h3><p><strong>模式分解：</strong>设有关系模式R(U)和R1(U1)，R2(U2)……Rk(Uk)，其中U=U1并U2并…..Uk，设α={R1,R2,….Rk}，则称α为R的一个模式分解。</p>
+<ol>
+<li>模式分解是属性集的分解，即R的属性集U被划分为U1,U2….。注意模式分解中允许这些属性子集之间有重复属性，但是U的每个属性都需要投影出去</li>
+<li>模式分解是函数依赖集的分解。</li>
+</ol>
+<p>模式分解的标准（但有时无法同时满足，满足其中之一也可）</p>
+<ul>
+<li>无损连接：分解之前的信息应能通过分解后的模式无损恢复，没有信息丢失。</li>
+<li>保持函数依赖：分解之前的所有函数依赖在分解后应全部保持下来，避免破坏其语义完整性。</li>
+</ul>
+<h4 id="无损连接"><a href="#无损连接" class="headerlink" title="无损连接"></a>无损连接</h4><p>设R是关系模式，α是R的一个模式分解：α={R1,R2…..Rk}，F是R上的一个函数依赖集。若对R中满足F的每个关系r都有 </p>
+<p>R=R1(r)⧓R2(r)⧓…….Rk(r)。则称这个分解α相对于F是无损连接分解。</p>
+<p><strong>-无损连接测试</strong></p>
+<ol>
+<li><p>Chase方法：适用于一个关系模式分解成三个以上模式时的测试</p>
+<p>执行过程如下（后面有例题）</p>
+<ol>
+<li>构造一个k行n列的表格，每行对应一个模式Ri(1&lt;= i &lt;=k)，每列对应一个属性Aj (1&lt;= j &lt;= n)，若Aj在Ri中，则表格的第i行第j列处填上aj，否则填上符号bij</li>
+<li>检查F中的每个函数依赖，并修改表格中的元素。对于F中的函数依赖X-&gt;Y，若表格中有两行在X分量上相等，在Y分量上不想等，则修改Y。修改规则：若Y的分量中有一个aj，则另一个也修改为aj；如果没有aj，则用其中一个bij替换另一个符号（i是所有符b中最小的行数）</li>
+<li>若修改后，表格中有一行全是a，即a1,a2…..an，则a相对于F是无损连接的分解，过程结束。否则再执行第二步，知道表格不能修改位置，即重复执行2后表格元素保持不变，说明 α 相对于F不是无损连接的分解</li>
+</ol>
+</li>
+<li><p>另一种只适合一个关系模式一分为二的测试</p>
+</li>
+</ol>
+<blockquote>
+<p>chase例题</p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/8249F0AC8974C4BE11ED2BD8F0E22C11.jpg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/92C9A16AD1D7F773D0E9D6000A3C36F8.jpg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/0D41B7CB10DEBA63D80AF661E5920383.jpg" alt="img"></p>
+</blockquote>
+<p>第二种的做法</p>
+<p>给定关系关系模式α={R1,R2}，当且仅当以下两个函数依赖中至少有一个成立时，α是无损连接的分解：(R1∩R2)-&gt;(R1-R2)          (R1∩R2)-&gt;(R2-R1)</p>
+<h4 id="保护函数依赖"><a href="#保护函数依赖" class="headerlink" title="保护函数依赖"></a>保护函数依赖</h4><p>模式分解的另一个标准：保持函数依赖要求关系模式R的每一个不平凡函数依赖在分解过程中都保留下来</p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211220210736945.png" alt="image-20211220210736945"></p>
+<blockquote>
+<p>给定关系R(city , street , zip)，以及R上的一个函数依赖集 F={(city , street)-&gt;zip , zip-&gt;city}</p>
+<p>1，判断无损连接（省略）</p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/6F241CEAE74F31613196B9261F598B47.jpg" alt="img"></p>
+</blockquote>
+<h3 id="规范化"><a href="#规范化" class="headerlink" title="规范化"></a>规范化</h3><p><strong>范式：</strong>是满足特定要求的关系模式。从低到高有，第一范式(1NF) , 2NF , 3NF , BCNF范式 , 4NF , 5NF</p>
+<p><strong>函数依赖图</strong>如下</p>
+<p>假设关系模式R的一个函数依赖集F={S#-&gt;Sname , S#-&gt;City , City-&gt;Status}</p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211222184419963.png" alt="image-20211222184419963"></p>
+<ul>
+<li><strong>1NF</strong>：对于关系模式R的任一实例，其元组的每一个属性值都只含有一个值</li>
+<li><strong>2NF：</strong>当且仅当R属于1NF，且R的每一个非主属性都完全函数依赖于主码时，则R属于2NF<ul>
+<li><strong>完全函数依赖：</strong>对于函数依赖 W-&gt;A，若不存在 W⊃X，并且X-&gt;A成立，则称W-&gt;A为完全函数依赖，否则为局部函数依赖</li>
+</ul>
+</li>
+<li><strong>3NF：</strong>当且仅当R属于2NF，且R的每一个非主属性都不传递依赖于主码时，则R属于3NF<ul>
+<li>传递依赖：若Y-&gt;X , X-&gt;A，并且X-&gt;Y不成立，A不是X的子集，则称A传递依赖于Y</li>
+</ul>
+</li>
+<li><strong>BCNF：</strong>如果关系模式R的所有不平凡的、完全的函数依赖的决定因素都是候选码，则R属于BCNF</li>
+</ul>
+<p><strong>规范化算法</strong></p>
+<p>无损连接并且保持函数依赖的分解到3NF算法</p>
+<p><strong>1算法：保持函数依赖的分解到3NF</strong></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/C770EDCD610844D715FFBB4EF6823F3F.jpg" alt="img"></p>
+<p><strong>2算法：无损连接并且保持函数依赖的分解到3NF</strong></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/6F7F9E27227DDDB04A819704A5CA0857.jpg" alt="img"></p>
+<p><strong>3算法 无损连接的分解到BCNF算法</strong></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/732C5E260F2C8A557044FD7D30A20B0C.jpg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/C0F696A482EC7F661DF4CECD60D03ADF.jpg" alt="img"></p>
+<h4 id="规范化过程总结"><a href="#规范化过程总结" class="headerlink" title="规范化过程总结"></a>规范化过程总结</h4><ol>
+<li>对1NF模式投影，消除非主属性对主码的局部函数依赖，可将关系模式规范化到2NF</li>
+<li>对2NF模式投影，消除非主属性对主码的传递函数依赖，可将关系模式规范化到3NF</li>
+<li>对3NF模式投影，消除左边不是候选码的函数依赖，可将关系模式规范化到BCNF</li>
+<li>若要求保持函数依赖，则总可以分解到满足3NF，但不一定满足BCNF，即BCNF可以达到无损连接，但不一定保持函数依赖</li>
+<li>若要求保持函数依赖和无损连接，则总可以达到3NF，但不一定满足BCNF</li>
+</ol>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>数据库原理</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-12-27</p><p><span>最后更新：</span>2021-12-27</p><p><span>原始链接：</span><a href="/2021/数据库原理/">https://yvenxx.github.io/yvenxx/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" data-id="cl1p53inz001tnku31k1d8yd4" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACoElEQVR42u3aQW7jMAwF0N7/0u22QBL1kxSDFHheBa7G1tMAIk3q6yu+vn9dj/fPvzfGX77w8PDwBlN/vF695tWdfAnmy3eeMx4eHt42r7eJv3xo8PzzEveCBB4eHt5/4Z0363MAqI7Ew8PD+1+8fPvOE/Q8SODh4eF9Gi+ZUC/lnTw/v3+h1oKHh4cX8/Iu0uf8Xunv4eHh4Y276nlb63x/UoAYzRYPDw9vgXfr6EDeysqPIPSOGjz5V3h4eHgLvMlmPToOVUyUq6EIDw8Pb5vX+65PxucJd37sYFS0xcPDwxvz5olvTsqbZJNjDXh4eHjv4d3a+vOSxHyZrp2MwMPDw+vPudBqSj77q4cAboUWPDw8vPfwqq/Pk9rzk/OWW6/Ii4eHh3eXNyHNw0m+3TcbXXh4eHgLvOoWXH1Z77hAoUR76/8QDw8Pr8jLW/u99n+eiM/H/wHGw8PDu8TLN99JojwpQPSOFODh4eFt8OaYPI+9GxjOT8DDw8Pb4xUGxRt6cghgsljlwwd4eHh4C7w8na0WWKvZfb4oefKNh4eHd5dX3Y6TRleeBCdNr+qhq+iLAQ8PD2+ZF0WV1hPyZlt1nnh4eHh7vDmsmlLf+l0to+Dh4eHd5fVKt/nrq8/speZ/dPnw8PDwFni9xlWSEFeT6V6weTkeDw8Pb5lX3ZTnI6tvLxea8fDw8NZ4k2ZY3qzKCw3zmeDh4eFt8L6LV3Xj7v21d1j2yQzx8PDwFnh7ASDf+ieljXlgw8PDw+vx8mCQr9C59JC3vnqBAQ8PD+89vOoUJ/Gnmrj3lhIPDw/vc3jVImyVkYSQQqDCw8PD+2BeckSg94S8n4WHh4f3Tl5ejJjAJg226hg8PDy8PV71g793v8q7lXzj4eHhXeX9AB1iT8zxhpdBAAAAAElFTkSuQmCC">分享</a><div class="tags"></div><div class="post-nav"><a class="next" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%94%E7%AB%A0/">操作系统 第五章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/">操作系统-第三章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/">计算机组成原理-第七章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
