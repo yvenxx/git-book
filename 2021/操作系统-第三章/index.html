@@ -7,54 +7,54 @@
   })();
 </script><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">操作系统-第三章</h1><a id="logo" href="/.">懒人瑜恩</a><p class="description">sometimes code, sometimes English</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/history/"><i class="fa fa-book"> 历史</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">操作系统-第三章</h1><div class="post-meta">2021-11-09<span> | </span><span class="category"><a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%85%E5%AD%98"><span class="toc-number">1.</span> <span class="toc-text">内存</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.1.</span> <span class="toc-text">基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A3%85%E5%85%A5%E6%8C%87%E4%BB%A4%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">1.1.1.</span> <span class="toc-text">装入指令的三种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E8%A3%85%E5%85%A5"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">绝对装入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E5%AE%9A%E4%BD%8D%E8%A3%85%E5%85%A5"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">可重定位装入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%BF%90%E8%A1%8C%E6%97%B6%E8%A3%85%E5%85%A5"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">动态运行时装入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E5%86%99%E7%A8%8B%E5%BA%8F%E5%88%B0%E8%BF%90%E8%A1%8C"><span class="toc-number">1.1.2.</span> <span class="toc-text">从写程序到运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">1.1.3.</span> <span class="toc-text">链接的三种方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4"><span class="toc-number">1.1.4.</span> <span class="toc-text">内存保护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A6%86%E7%9B%96%E4%B8%8E%E4%BA%A4%E6%8D%A2"><span class="toc-number">1.1.5.</span> <span class="toc-text">覆盖与交换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A6%86%E7%9B%96"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">覆盖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">交换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2-%E5%88%86%E9%85%8D%E6%96%B9%E5%BC%8F"><span class="toc-number">1.1.5.3.</span> <span class="toc-text">交换-分配方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.5.4.</span> <span class="toc-text">动态分区分配算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E5%AD%98%E5%82%A8"><span class="toc-number">1.1.6.</span> <span class="toc-text">分页存储</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B5%E8%A1%A8"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">页表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%8A%E9%9D%A2%E9%A1%B5%E5%8F%B7%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%89"><span class="toc-number">1.1.6.2.</span> <span class="toc-text">逻辑地址结构（上面页号的结构）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%9C%B0%E5%9D%80%E5%8F%98%E6%8D%A2%E6%9C%BA%E6%9E%84"><span class="toc-number">1.1.6.3.</span> <span class="toc-text">基本地址变换机构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E8%A1%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%9C%B0%E5%9D%80%E5%8F%98%E6%8D%A2%E6%9C%BA%E6%9E%84"><span class="toc-number">1.1.6.4.</span> <span class="toc-text">快表的基本地址变换机构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%80%93%E5%8C%BA%E5%88%AB%E2%80%93"><span class="toc-number">1.1.6.5.</span> <span class="toc-text">–区别–</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A4%E7%BA%A7%E9%A1%B5%E8%A1%A8"><span class="toc-number">1.1.6.6.</span> <span class="toc-text">两级页表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%88%86%E6%AE%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">1.1.6.7.</span> <span class="toc-text">基本分段存储管理方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%AE%B5%E8%A1%A8"><span class="toc-number">1.1.6.7.1.</span> <span class="toc-text">段表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E5%8F%98%E6%8D%A2"><span class="toc-number">1.1.6.7.2.</span> <span class="toc-text">地址变换</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%86%E6%AE%B5%E5%88%86%E9%A1%B5%E5%AF%B9%E6%AF%94"><span class="toc-number">1.1.6.7.3.</span> <span class="toc-text">分段分页对比</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AE%B5%E9%A1%B5%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">1.1.6.8.</span> <span class="toc-text">段页管理方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="toc-number">1.2.</span> <span class="toc-text">虚拟内存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%88%86%E9%A1%B5%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">请求分页的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B5%E8%A1%A8%E6%9C%BA%E5%88%B6"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">页表机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E9%A1%B5%E4%B8%AD%E6%96%AD%E6%9C%BA%E6%9E%84"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">缺页中断机构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80%E5%8F%98%E6%8D%A2%E6%9C%BA%E6%9E%84"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">地址变换机构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.3.</span> <span class="toc-text">页面置换算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">最佳置换算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95%EF%BC%88FIFO%EF%BC%89"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">先进先出置换算法（FIFO）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E8%BF%91%E6%9C%80%E8%BF%91%E6%9C%AA%E4%BD%BF%E7%94%A8%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95%EF%BC%88LRU%EF%BC%89"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">最近最近未使用置换算法（LRU）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%B6%E9%92%9F%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95%EF%BC%88CLOCK%EF%BC%89"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">时钟置换算法（CLOCK）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%B9%E8%BF%9B%E7%9A%84%E6%97%B6%E9%92%9F%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.3.5.</span> <span class="toc-text">改进的时钟置换算法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5"><span class="toc-number">1.2.4.</span> <span class="toc-text">页面分配策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%95%E6%97%B6%E8%B0%83%E5%85%A5"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">何时调入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%95%E5%A4%84%E8%B0%83%E5%85%A5"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">何处调入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%96%E5%8A%A8%EF%BC%88%E9%A2%A0%E7%B0%B8%EF%BC%89%E7%8E%B0%E8%B1%A1"><span class="toc-number">1.2.4.3.</span> <span class="toc-text">抖动（颠簸）现象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E9%9B%86"><span class="toc-number">1.2.4.4.</span> <span class="toc-text">工作集</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="post-content"><a id="more"></a>
 
-<h1 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108200241755.png" alt="image-20211108200241755"></p>
+<h1 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h1><h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211108200241755.png" alt="image-20211108200241755"></p>
 <p>内存可存放数据。程序执行前<strong>需要先放到内存中才能被CPU处理</strong>–缓和CPU与硬盘之间的速度矛盾</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108194713985.png" alt="image-20211108194713985"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211108194713985.png" alt="image-20211108194713985"></p>
 <h3 id="装入指令的三种方式"><a href="#装入指令的三种方式" class="headerlink" title="装入指令的三种方式"></a>装入指令的三种方式</h3><h4 id="绝对装入"><a href="#绝对装入" class="headerlink" title="绝对装入"></a>绝对装入</h4><p>在编译时，如果知道程序将放到内存中的哪个位置，编译程序将产生绝对地址的目标代码，装入程序按照装入模块中的地址，将程序和数据装入内存。</p>
 <p>也就是<strong>物理地址（绝对地址）</strong></p>
 <p>绝对装入<strong>只适用于单道程序环境</strong>，也就是如果换一台电脑，就可能无法运行，或者是有多个程序，可能会导致错误。</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108195119947.png" alt="image-20211108195119947"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211108195119947.png" alt="image-20211108195119947"></p>
 <h4 id="可重定位装入"><a href="#可重定位装入" class="headerlink" title="可重定位装入"></a>可重定位装入</h4><p><strong>静态重定位</strong>：可重定位装入。编译，链接后的装入模块的地址都是从0开始的。</p>
 <p>指令中使用的地址，数据存放的地址都是相对起始地址而言的逻辑地址。可根据内存的当前情况，将装入模块装入到内存的适当位置。装入时对地址进行“<strong>重定位</strong>“，将逻辑地址变换为物理地址（地址变换是在装入时一次完成的）</p>
 <p>特点：一个作业装入内存时，<strong>必须分配其要求的全部内存空间</strong>，如果没有足够的内存，就不能装入该作业。作业一旦进入内存后，<strong>在运行期间就不能再移动</strong>，也不能再申请内存空间。</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108195527475.png" alt="image-20211108195527475"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211108195527475.png" alt="image-20211108195527475"></p>
 <h4 id="动态运行时装入"><a href="#动态运行时装入" class="headerlink" title="动态运行时装入"></a>动态运行时装入</h4><p><strong>动态重定位</strong>：又称<strong>动态运行时装入</strong>。编译，链接后的装入模块都是从0开始的。</p>
 <p>装入程序把装入模块装入内存后，并不会立即把逻辑地址转换为物理地址，而是把<strong>地址转换为推迟到程序真正要执行时才进行</strong>。因此装入内存后所有的地址依然是逻辑地址。这种方式需要一个<strong>重定位寄存器</strong>的支持。</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108195900451.png" alt="image-20211108195900451"></p>
-<h3 id="从写程序到运行"><a href="#从写程序到运行" class="headerlink" title="从写程序到运行"></a>从写程序到运行</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108195920041.png" alt="image-20211108195920041"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211108195900451.png" alt="image-20211108195900451"></p>
+<h3 id="从写程序到运行"><a href="#从写程序到运行" class="headerlink" title="从写程序到运行"></a>从写程序到运行</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211108195920041.png" alt="image-20211108195920041"></p>
 <h3 id="链接的三种方式"><a href="#链接的三种方式" class="headerlink" title="链接的三种方式"></a>链接的三种方式</h3><p><strong>静态链接</strong>：在程序运行之前，先将各目标模块及他们所需的库函数连接成一个完整的可执行文件（装入模块），之后不再拆开。</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108200036714.png" alt="image-20211108200036714"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211108200036714.png" alt="image-20211108200036714"></p>
 <p><strong>装入时动态链接</strong>：将各目标模块装入内存时，边装入边链接的 方式。</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108200127778.png" alt="image-20211108200127778"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211108200127778.png" alt="image-20211108200127778"></p>
 <p><strong>运行时动态链接：</strong>在程序执行中需要该目标模块时，才对它进行链接。其优点是便于修改和更新，便于实现对目标模块的共享。</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211108200219921.png" alt="image-20211108200219921"></p>
-<h3 id="内存保护"><a href="#内存保护" class="headerlink" title="内存保护"></a>内存保护</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109102641039.png" alt="image-20211109102641039"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211108200219921.png" alt="image-20211108200219921"></p>
+<h3 id="内存保护"><a href="#内存保护" class="headerlink" title="内存保护"></a>内存保护</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109102641039.png" alt="image-20211109102641039"></p>
 <ol>
 <li>在CPU中<strong>设置一对上，下限寄存器</strong>，存放进程的上，下限地址。进程的指令要访问某个地址时，CPU检查是否越界</li>
 <li>采用<strong>重定位寄存器（基址寄存器）</strong>和<strong>界地址寄存器（限长寄存器）</strong>进行越界检查。重定位寄存器中存放的是进程的<strong>起始物理地址</strong>。界地址寄存器中存放的是进程的<strong>最大逻辑地址</strong></li>
 </ol>
-<h3 id="覆盖与交换"><a href="#覆盖与交换" class="headerlink" title="覆盖与交换"></a>覆盖与交换</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109103858829.png" alt="image-20211109103858829"></p>
+<h3 id="覆盖与交换"><a href="#覆盖与交换" class="headerlink" title="覆盖与交换"></a>覆盖与交换</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109103858829.png" alt="image-20211109103858829"></p>
 <h4 id="覆盖"><a href="#覆盖" class="headerlink" title="覆盖"></a>覆盖</h4><p><strong>覆盖技术</strong>：<strong>解决程序大小超过了物理内存总和  的问题</strong></p>
 <p>思想：将<strong>程序分为多个段</strong>，常用的段常驻内存，不常用的段在需要时调入内存</p>
 <p>内存中分为<strong>固定区</strong>和若干个“<strong>覆盖区</strong>”。常驻的内容放在固定区，覆盖区放需要的内容</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109103104887.png" alt="image-20211109103104887"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109103104887.png" alt="image-20211109103104887"></p>
 <p><strong>必须由程序员声明覆盖结构</strong>，操作系统完成自动覆盖。</p>
 <p>缺点：<strong>对用户不透明，</strong>增加了用户编程负担。只用于早期的操作系统</p>
 <h4 id="交换"><a href="#交换" class="headerlink" title="交换"></a>交换</h4><p>内存空间紧张时，系统将内存中某些进程暂时<strong>换出</strong>外存，把外存已具备运行条件的进程<strong>换入</strong>内存（进程在内存与磁盘间动态调度）</p>
 <p><strong>内存调度（中级调度）</strong></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109103406861.png" alt="image-20211109103406861"></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109103539109.png" alt="image-20211109103539109">   在有对换功能的操作系统中，通常把磁盘空间分为<strong>对换区和文件区</strong>。文件区主要存放文件，<strong>主要追求存储空间的利用率</strong>，对文件区空间的管理<strong>采用离散分配方式。对换区</strong>空间只占磁盘空间的小部分，<strong>被换出的进程放在对换区。主要追求换入换出速度</strong>，因此<strong>通常采用连续分配方式。对换区的IO速度比文件区快</strong></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109103406861.png" alt="image-20211109103406861"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109103539109.png" alt="image-20211109103539109">   在有对换功能的操作系统中，通常把磁盘空间分为<strong>对换区和文件区</strong>。文件区主要存放文件，<strong>主要追求存储空间的利用率</strong>，对文件区空间的管理<strong>采用离散分配方式。对换区</strong>空间只占磁盘空间的小部分，<strong>被换出的进程放在对换区。主要追求换入换出速度</strong>，因此<strong>通常采用连续分配方式。对换区的IO速度比文件区快</strong></p>
 <p><strong>PCB会常驻内存</strong></p>
-<h4 id="交换-分配方式"><a href="#交换-分配方式" class="headerlink" title="交换-分配方式"></a>交换-分配方式</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109111844012.png" alt="image-20211109111844012"></p>
+<h4 id="交换-分配方式"><a href="#交换-分配方式" class="headerlink" title="交换-分配方式"></a>交换-分配方式</h4><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109111844012.png" alt="image-20211109111844012"></p>
 <p>—-<strong>单一连续分配</strong>—-</p>
 <p>系统区通常位于内存低地址部分，存放操作系统相关数据。用户区存放用户进程相关数据。</p>
 <p>内存中<strong>只能有一道用户程序</strong>，用户程序独占整个用户区空间</p>
 <p><strong>优点：</strong>实现简单，<strong>无外部碎片</strong>；可采用覆盖技术扩充内存，不一定需要采取内存保护</p>
 <p><strong>缺点：</strong>只能用于单用户，单任务的操作系统。<strong>有内部碎片</strong>，存储器利用率极低</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109104426119.png" alt="image-20211109104426119"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109104426119.png" alt="image-20211109104426119"></p>
 <p>—-<strong>固定分区分配</strong>—-</p>
 <p>其中需要 一个数据结构—<strong>分区说明表</strong>，每个表项对应一个分区，包括对应分区的<strong>大小，起始地址，状态</strong></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109112407539.png" alt="image-20211109112407539"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109112407539.png" alt="image-20211109112407539"></p>
 <p>优点：实现简单，<strong>无外部碎片</strong></p>
 <p>缺点：用户程序太大时，可能所有分区都不能满足需求，不得不采用覆盖技术，会降低性能</p>
 <p><strong>会产生内部碎片</strong>，内存利用率低</p>
@@ -73,7 +73,7 @@
 <p>**外部碎片;**内存中的某些空闲分区太小难以利用</p>
 <p>回收内存分区时，可能遇到的四种情况</p>
 <p>具体的操作就是，如果前面有相邻分区，只需要将分区大小改一下。如果是后面有相邻空闲分区，则需要改 下标和分区大小</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109111622172.png" alt="image-20211109111622172"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109111622172.png" alt="image-20211109111622172"></p>
 <ol>
 <li>回收区之后有相邻的空闲分区</li>
 <li>回收区之前有相邻的空闲分区</li>
@@ -87,7 +87,7 @@
 <p><strong>思想：</strong>动态分区分配是一种连续分配方式。为了保证打进程到来有连续的空间。尽可能留下大片空闲区，优先使用小空闲区</p>
 <p>实现：空闲分区<strong>按容量递增次序链接</strong>。每次分配内存时顺序查找<strong>空闲分区链/表</strong>，找到大小能满足要求的第一个分区</p>
 <p><strong>缺点：每次都选最小的分区进行分配，会留下越来越多的小，小的难以利用的内存快。会产生很多外部碎片</strong></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109113014395.png" alt="image-20211109113014395"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109113014395.png" alt="image-20211109113014395"></p>
 <p>—-<strong>最坏适应算法</strong>—-</p>
 <p><strong>思想：优先使用 最大的连续空闲区</strong></p>
 <p><strong>实现：</strong>空闲分区<strong>按容量递减次序链接</strong>。每次分配找到大小能满足要求的第一个空闲分区（最大的）</p>
@@ -95,8 +95,8 @@
 <p>—-<strong>邻近适应算法</strong>—-</p>
 <p><strong>思想：</strong>每次从上次结束的位置开始检索。</p>
 <p><strong>实现：</strong>空闲分区以地址递增的顺序排列（可排为循环链表）。每次分配内存时<strong>从上次查找结束的位置开始</strong>查找<strong>空闲分区表/链</strong>，找到大小能满足要求的第一个空闲分区</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109113604367.png" alt="image-20211109113604367"></p>
-<h3 id="分页存储"><a href="#分页存储" class="headerlink" title="分页存储"></a>分页存储</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109124645089.png" alt="image-20211109124645089"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109113604367.png" alt="image-20211109113604367"></p>
+<h3 id="分页存储"><a href="#分页存储" class="headerlink" title="分页存储"></a>分页存储</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109124645089.png" alt="image-20211109124645089"></p>
 <p>将内存分为<strong>大小相等的 分区</strong>，称为<strong>页框（页框=页帧=内存块=物理块=物理页面）</strong>，每个分区有一个<strong>页框号（页框 号=页帧号=内存块号=物理块号=物理页号）</strong>。<strong>页框号从0开始</strong></p>
 <p>进程的逻辑空间也分为<strong>和页框号大小相等</strong>的一个个部分，称为 页/页面。<strong>页面号从0开始</strong>。每个页面对应一个页框，<strong>可以不连续存放</strong>。</p>
 <blockquote>
@@ -109,7 +109,7 @@
 <li>页表记录进程<strong>页面</strong>和实际存放的<strong>内存块</strong>之间的<strong>映射关系</strong></li>
 <li>每个页表项长度相同</li>
 </ol>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109122354619.png" alt="image-20211109122354619"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109122354619.png" alt="image-20211109122354619"></p>
 <p>—<strong>页表项占用多少字节</strong>—</p>
 <p>其中页号，是按顺序来算的。例如数组下标，所以不占用内存，是逻辑上显示，物理上没有的。所以只需要存储块号。</p>
 <p><strong>内存块大小=页面大小</strong>=4KB=2^12B</p>
@@ -117,20 +117,20 @@
 <p><strong>—实现地址的转换—</strong></p>
 <p>重定位寄存器指明了进程在内存中的起始位置。后面的地址就是相对于起始位置的”<strong>偏移量</strong>”</p>
 <p>–如何确定一个逻辑地址对应的页号、页内偏移量–</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109124458921.png" alt="image-20211109124458921"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109124458921.png" alt="image-20211109124458921"></p>
 <blockquote>
 <p>如果是2为整数幂，则页号有规律。红色部分的数字是多少，页号就是多少</p>
 </blockquote>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109124513407.png" alt="image-20211109124513407"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109124513407.png" alt="image-20211109124513407"></p>
 <p>–子问题 为何页面大小要取 2 的整数幂–</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109124608960.png" alt="image-20211109124608960"></p>
-<h4 id="逻辑地址结构（上面页号的结构）"><a href="#逻辑地址结构（上面页号的结构）" class="headerlink" title="逻辑地址结构（上面页号的结构）"></a>逻辑地址结构（上面页号的结构）</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109124628180.png" alt="image-20211109124628180"></p>
-<h4 id="基本地址变换机构"><a href="#基本地址变换机构" class="headerlink" title="基本地址变换机构"></a>基本地址变换机构</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109192655065.png" alt="image-20211109192655065"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109124608960.png" alt="image-20211109124608960"></p>
+<h4 id="逻辑地址结构（上面页号的结构）"><a href="#逻辑地址结构（上面页号的结构）" class="headerlink" title="逻辑地址结构（上面页号的结构）"></a>逻辑地址结构（上面页号的结构）</h4><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109124628180.png" alt="image-20211109124628180"></p>
+<h4 id="基本地址变换机构"><a href="#基本地址变换机构" class="headerlink" title="基本地址变换机构"></a>基本地址变换机构</h4><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109192655065.png" alt="image-20211109192655065"></p>
 <p>通常会在系统中设置一个<strong>页表寄存器</strong>(PTR)，存放<strong>页表在内存中的起始地址F</strong>和<strong>页表长度M</strong>。</p>
 <p>进程未执行时，页表的始址 和 页表长度 <strong>放在进程控制块（PCB）中</strong>，当进程被调度时，操作系统内核会把他们放到页表寄存器中。</p>
 <p><strong>页面大小是2的整数幂。</strong></p>
 <p>例 设页面大小为L，逻辑地址A到物理地址E的变换过程如下</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109191734152.png" alt="image-20211109191734152"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109191734152.png" alt="image-20211109191734152"></p>
 <p>具体过程</p>
 <ol>
 <li>计算页号P和业内偏移量W（十进制计算是  P=A/L，W=A%L；但在计算机实际运行时，逻辑地址结构是固定不变的，计算机硬件可以很快得到二进制页号，页内偏移量）</li>
@@ -140,11 +140,11 @@
 </ol>
 <blockquote>
 <p>例题</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109192526458.png" alt="image-20211109192526458"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109192526458.png" alt="image-20211109192526458"></p>
 </blockquote>
 <p><strong>页面管理中地址是一维的。</strong>：只要给出一个逻辑地址，系统就可以自动的算出页号，页内偏移量两个部分。</p>
 <h4 id="快表的基本地址变换机构"><a href="#快表的基本地址变换机构" class="headerlink" title="快表的基本地址变换机构"></a>快表的基本地址变换机构</h4><p><strong>快表</strong>，又称<strong>联想寄存器（TLB</strong>，translation lookaside buffer），是一种<strong>访问速度比内存快很多</strong>的高速缓存（<strong>TLB不是内存</strong>），用来存放<strong>最近访问的页表项的副本</strong>，可以加速地址变换的速度。与此对应，内存中的页表常称为<strong>慢表</strong></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109202258379.png" alt="image-20211109202258379"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109202258379.png" alt="image-20211109202258379"></p>
 <p>CPU给出逻辑地址，由某个硬件算得页号、页内偏移量，将页号与快表中的所有页号进行比较。 </p>
 <p>② 如果找到匹配的页号，说明要访问的页表项在快表中有副本，则直接从中取出该页对应的内存块 号，再将内存块号与页内偏移量拼接形成物理地址，最后，<strong>访问</strong>该物理地址对应的<strong>内存单元</strong>。因此，若<strong>快表命中</strong>，则访问某个逻辑地址仅需<strong>一次访存</strong>即可。 </p>
 <p>③ 如果没有找到匹配的页号，则<strong>需要访问内存中的页表</strong>，找到对应页表项，得到页面存放的内存块号，再将内存块号与页内偏移量拼接形成物理地址，最后，<strong>访问</strong>该物理地址对应的<strong>内存单元</strong>。因此，<strong>若快表未命中</strong>，则访问某个逻辑地址需要<strong>两次访存（注意：在找到页表项后，应同时将其存入快表，</strong> 以便后面可能的再次访问。但若快表已满，则必须按照一定的算法对旧的页表项进行替换） </p>
@@ -162,8 +162,8 @@
 <p>组原里面有介绍。分为时间局部性和空间局部性。简单来说</p>
 <p>时间局部性，如果执行了程序中的某条指令，那么不久后这条指令可能再次执行。如果数据被访问过，那么数据还可能再被访问</p>
 <p>空间局部性，程序执行的语句，不久之后，其附近的语句也可能会被执行。</p>
-<h4 id="–区别–"><a href="#–区别–" class="headerlink" title="–区别–"></a>–<strong>区别</strong>–</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109202829839.png" alt="image-20211109202829839"></p>
-<h4 id="两级页表"><a href="#两级页表" class="headerlink" title="两级页表"></a>两级页表</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109205117393.png" alt="image-20211109205117393"></p>
+<h4 id="–区别–"><a href="#–区别–" class="headerlink" title="–区别–"></a>–<strong>区别</strong>–</h4><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109202829839.png" alt="image-20211109202829839"></p>
+<h4 id="两级页表"><a href="#两级页表" class="headerlink" title="两级页表"></a>两级页表</h4><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109205117393.png" alt="image-20211109205117393"></p>
 <p>先说单级页表的缺点。</p>
 <ol>
 <li><strong>所有的页表项都需要连续存放</strong>。不然就不能找到页表项。</li>
@@ -171,7 +171,7 @@
 </ol>
 <p>采用两级页表解决第一个问题</p>
 <p>采用两级页表，二级页表还是存放 内存块号，新加的一级页号存放二级页表的内存块号</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109203523293.png" alt="image-20211109203523293"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109203523293.png" alt="image-20211109203523293"></p>
 <p>注意的是，物理地址是几个逻辑地址合起来的。</p>
 <blockquote>
 <p>例 找 块号4的内存块。</p>
@@ -182,11 +182,11 @@
 <p>问题二解决</p>
 <p>可以在需要访问页面时才把页面调入内存（虚拟存储技术）。可以在页表项中增加一个标志位，用于表示该页面是否已调入内存。</p>
 <p>若想访问的页面不再内存中，则产生缺页中断（内中断/异常），然后将目标页面从外存调入内存。</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109204836430.png" alt="image-20211109204836430"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109204836430.png" alt="image-20211109204836430"></p>
 <p>注意的细节</p>
 <ol>
 <li><p>若分为两级页表之后，页表依然很长，还可以采用更多级页表，一般来说<strong>各级页表的大小不能超过一个页面</strong></p>
-<p>例如<img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109205002232.png" alt="image-20211109205002232"></p>
+<p>例如<img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109205002232.png" alt="image-20211109205002232"></p>
 </li>
 <li><p>两级页表的<strong>访存次数</strong>分析（假设没有快表）</p>
 <p>第一次访存：访问内存中的页目录表</p>
@@ -194,21 +194,21 @@
 <p>第三次访存：访问目标内存单元</p>
 </li>
 </ol>
-<h4 id="基本分段存储管理方式"><a href="#基本分段存储管理方式" class="headerlink" title="基本分段存储管理方式"></a>基本分段存储管理方式</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109211804412.png" alt="image-20211109211804412"></p>
+<h4 id="基本分段存储管理方式"><a href="#基本分段存储管理方式" class="headerlink" title="基本分段存储管理方式"></a>基本分段存储管理方式</h4><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109211804412.png" alt="image-20211109211804412"></p>
 <p><strong>分段：</strong>进程的地址空间，按照程序<strong>自身的逻辑</strong>关系<strong>划分为若干个段</strong>，每个段都有一个段明（在低级语言中，程序员使用段名来编程），<strong>每段从0开始编制</strong></p>
 <p>内存分配规则：以段位单位进行分配，<strong>每个段在内存中占据连续空间，但各段之间可以不相邻</strong></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109205403027.png" alt="image-20211109205403027"></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109210651556.png" alt="image-20211109210651556"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109205403027.png" alt="image-20211109205403027"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109210651556.png" alt="image-20211109210651556"></p>
 <p><strong>段号的位数决定了每个进程最多可以分几个段</strong> </p>
 <p><strong>段内地址位数决定了每个段的最大长度是多少</strong></p>
 <p>上面图中三个颜色可以从上到下 0-2的段号</p>
 <h5 id="段表"><a href="#段表" class="headerlink" title="段表"></a>段表</h5><p>类似与 页表</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109210934214.png" alt="image-20211109210934214"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109210934214.png" alt="image-20211109210934214"></p>
 <ol>
 <li>每个段对应一个段表项，其中记录了该段在内存中的<strong>起始位置</strong>（又称 “<strong>基址</strong>”）和<strong>段的长度</strong></li>
 <li><strong>各个段表项的长度是相同的。且段号是可以隐含的，不占存储空间。</strong></li>
 </ol>
-<h5 id="地址变换"><a href="#地址变换" class="headerlink" title="地址变换"></a>地址变换</h5><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109211218662.png" alt="image-20211109211218662"></p>
+<h5 id="地址变换"><a href="#地址变换" class="headerlink" title="地址变换"></a>地址变换</h5><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109211218662.png" alt="image-20211109211218662"></p>
 <h5 id="分段分页对比"><a href="#分段分页对比" class="headerlink" title="分段分页对比"></a>分段分页对比</h5><p><strong>页</strong>是<strong>信息的物理单位</strong>。分页的主要目的是为了实现离散分配，提高内存利用率。分页仅仅是系统管 理上的需要，完全是系统行为，<strong>对用户是不可见的</strong>。 </p>
 <p><strong>段</strong>是<strong>信息的逻辑单位</strong>。分段的主要目的是更好地满足用户需求。一个段通常包含着一组属于一个逻辑模块的信息。<strong>分段对用户是可见的</strong>，用户编程时需要显式地给出段名。 </p>
 <p>页的大小固定且由系统决定。段的长度却不固定，决定于用户编写的程序。 </p>
@@ -221,20 +221,20 @@
 <p><strong>分页（单级页表）</strong>：第一次访存——查内存中的页表，第二次访存——访问目标内存单元。总共<strong>两次 访存</strong></p>
 <p><strong>分段</strong>：第一次访存——查内存中的段表，第二次访存——访问目标内存单元。总共<strong>两次访存</strong> </p>
 <p>与分页系统类似，分段系统中也<strong>可以引入快表机构</strong>，将近期访问过的段表项放到快表中，这样<strong>可以</strong> <strong>少一次</strong>访问，加快地址变换速度。</p>
-<h4 id="段页管理方式"><a href="#段页管理方式" class="headerlink" title="段页管理方式"></a>段页管理方式</h4><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109212904572.png" alt="image-20211109212904572"></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109211859707.png" alt="image-20211109211859707"></p>
+<h4 id="段页管理方式"><a href="#段页管理方式" class="headerlink" title="段页管理方式"></a>段页管理方式</h4><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109212904572.png" alt="image-20211109212904572"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109211859707.png" alt="image-20211109211859707"></p>
 <p>使用分段+分页=段页式管理</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109211943020.png" alt="image-20211109211943020"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109211943020.png" alt="image-20211109211943020"></p>
 <p><strong>逻辑结构</strong></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109212033084.png" alt="image-20211109212033084"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109212033084.png" alt="image-20211109212033084"></p>
 <blockquote>
 <p>分段是对用户可见的，分页是对用户不可见的。系统会根据段内地址自动划分页号和页内偏移量。因此<strong>段页式</strong>管理的<strong>地址结构是二维的</strong></p>
 </blockquote>
 <p><strong>段号的位数决定了每个进程最多可以分几个段，页号位数决定了每个段最大有多少页，页内偏移量决定了页面大小，内存块大小是多少</strong></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109212806680.png" alt="image-20211109212806680"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109212806680.png" alt="image-20211109212806680"></p>
 <hr>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211109212840643.png" alt="image-20211109212840643"></p>
-<h2 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112210535212.png" alt="image-20211112210535212"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211109212840643.png" alt="image-20211109212840643"></p>
+<h2 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112210535212.png" alt="image-20211112210535212"></p>
 <p>先说  传统存储管理方式的特征、缺点</p>
 <ul>
 <li><strong>一次性：作业必须一次性全部装入内存后才能开始运行</strong>。会造成两个问题<ul>
@@ -272,14 +272,14 @@
 <li>请求分段存储管理</li>
 <li>请求段页式存储管理</li>
 </ul>
-<h3 id="请求分页的方式"><a href="#请求分页的方式" class="headerlink" title="请求分页的方式"></a>请求分页的方式</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112212651952.png" alt="image-20211112212651952"></p>
+<h3 id="请求分页的方式"><a href="#请求分页的方式" class="headerlink" title="请求分页的方式"></a>请求分页的方式</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112212651952.png" alt="image-20211112212651952"></p>
 <p><strong>请求分页</strong>存储管理与<strong>基本分页</strong>存储管理的主要区别是：</p>
 <p>在程序执行过程中，当所<strong>访问的信息不在内存时，由操作系统负责将所需信息从外存调入</strong>，然后继续执行程序。若内存空间不足，由操作系统负责<strong>将内存中暂时用不到的信息换出外存</strong></p>
 <h4 id="页表机制"><a href="#页表机制" class="headerlink" title="页表机制"></a><strong>页表机制</strong></h4><blockquote>
 <p>与基本分页管理相比，请求分页管理中，为了实现“请求调页”，操作系统需要 知道每个页面是否已经调入内存；如果还没调入，那么也需要知道该页面在外存 中存放的位置。 </p>
 <p>当内存空间不够时，要实现“页面置换”，操作系统需要通过某些指标来决定到 底换出哪个页面；有的页面没有被修改过，就不用再浪费时间写回外存。有的页 面修改过，就需要将外存中的旧数据覆盖，因此，操作系统也需要记录各个页面是否被修改的信息。</p>
 </blockquote>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112211252646.png" alt="image-20211112211252646"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112211252646.png" alt="image-20211112211252646"></p>
 <h4 id="缺页中断机构"><a href="#缺页中断机构" class="headerlink" title="缺页中断机构"></a><strong>缺页中断机构</strong></h4><p><strong>属于内中断</strong>，<strong>一条指令</strong>在执行期间，<strong>可能产生多次缺页中断</strong></p>
 <p>假如此时要访问逻辑地址 = （页号，页内偏移量） = （0，1024）</p>
 <p>在请求分页系统中，每当要访问的<strong>页面不存在时</strong>，就会产生<strong>缺页中断</strong>，然后由操作系统的缺页<strong>中断处理程序处理中断</strong></p>
@@ -292,8 +292,8 @@
 <li>页面置换（需要调入页面，但没有空闲内存块时进行）</li>
 <li>需要修改请求页表中新增的表项</li>
 </ol>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112212311567.png" alt="image-20211112212311567"></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112212516506.png" alt="image-20211112212516506"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112212311567.png" alt="image-20211112212311567"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112212516506.png" alt="image-20211112212516506"></p>
 <blockquote>
 <p>补充细节： 图中1-5，王道考研书3-24</p>
 <p>①只有“写指令”才需要修改 “修改位”。并且，一般来说只需修改快表中的数据，只有要将快表项删除时才需要写回内存中的慢表。这样可以减少访存次数。 </p>
@@ -303,18 +303,18 @@
 <p>⑤页面调入内存后，需要修改慢 表，同时也需要将表项复制到快 表中。</p>
 </blockquote>
 <h3 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h3><p>需求：<strong>追求更少的缺页率</strong></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112215635730.png" alt="image-20211112215635730"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112215635730.png" alt="image-20211112215635730"></p>
 <h4 id="最佳置换算法"><a href="#最佳置换算法" class="headerlink" title="最佳置换算法"></a>最佳置换算法</h4><p>OPT , Optimal : 每次选择<strong>淘汰的页面</strong>将是<strong>以后永不使用</strong>，或者<strong>在最长时间内不再被访问的页面</strong>，这样可以保证最低的缺页率</p>
 <p>注意：最佳置换算法可以保证最低的缺页率。但进程执行过程中才能知道接下来会访问到的是哪一个页面。操作系统无法预知页面访问序列。因此<strong>最佳置换算法无法实现</strong></p>
 <blockquote>
 <p>例题这里是假设已知所有进程的序列。所以才能做到最佳置换算法</p>
 </blockquote>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112213154551.png" alt="image-20211112213154551"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112213154551.png" alt="image-20211112213154551"></p>
 <h4 id="先进先出置换算法（FIFO）"><a href="#先进先出置换算法（FIFO）" class="headerlink" title="先进先出置换算法（FIFO）"></a>先进先出置换算法（FIFO）</h4><p>每次选择<strong>淘汰的页面</strong>是<strong>最早进入内存的页面</strong></p>
 <p>实现方法：把调入内存的页面根据调入的先后顺序排成一个队列，需要换出页面时选择队头页面即可。队列的最大长度取决于系统为进程分配了多少个内存块。</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112213710918.png" alt="image-20211112213710918"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112213710918.png" alt="image-20211112213710918"></p>
 <hr>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112213728049.png" alt="image-20211112213728049"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112213728049.png" alt="image-20211112213728049"></p>
 <hr>
 <p>注意到：分配4个内存块的反而比3个内存块的缺页次数更多。<strong>Belady异常</strong>—-当为进程分配的物理快增大时，缺页次数不减反增的异常现象</p>
 <p><strong>只有FIFO算法会产生Belady异常。</strong>FIFO算法虽然<strong>实现简单</strong>。但算法与进程实际运行规律不适应，先进入的页面也有可能最经常被访问。<strong>算法性能差</strong></p>
@@ -325,10 +325,10 @@
 <p>这里到3的位置那里，最久未使用的是7，则7被置换</p>
 <p>手动做题时，若需要淘汰页面，可以逆向检查此时在内存中的几个页面号，在<strong>逆向扫描过程中最后一个出现的页号就是要淘汰的页面</strong></p>
 </blockquote>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112214207507.png" alt="image-20211112214207507"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112214207507.png" alt="image-20211112214207507"></p>
 <h4 id="时钟置换算法（CLOCK）"><a href="#时钟置换算法（CLOCK）" class="headerlink" title="时钟置换算法（CLOCK）"></a>时钟置换算法（CLOCK）</h4><p>又称<strong>最近未用算法（NRU，Not Recently Used）</strong></p>
 <p>实现方法：为每个页面设置一个<strong>访问位</strong>，再将内存中的页面都通过链接指针<strong>链接称一个循环队列</strong>。当某页被访问时，其访问位置为1。当需要淘汰一个页面时，只需检查页的访问位，如果是0，就选择该页换出；如果是1，则将他置为0，暂不换出，继续检查下一个页面，若第一轮扫描中所有页面都是1，则将这些页面的访问位依次置为0后，再进行第二轮扫描（一定会有0的页面，因此<strong>简单的CLOCK算法</strong>选择一个淘汰页面<strong>最多会经过两轮扫描</strong>）</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112214925547.png" alt="image-20211112214925547"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112214925547.png" alt="image-20211112214925547"></p>
 <h4 id="改进的时钟置换算法"><a href="#改进的时钟置换算法" class="headerlink" title="改进的时钟置换算法"></a>改进的时钟置换算法</h4><p>简单的时钟置换算法只考虑到了是否被访问过，改进的是，增加了<strong>只有被淘汰的页面被修改过，才需要写回外存</strong>。在<strong>其他条件都相同时，应优先淘汰没有修改过的页面</strong>，避免IO操作。</p>
 <p><strong>修改位=0 页面没有被修改——————修改位=1 页面被修改</strong>。<strong>（讨论位，修改位）</strong></p>
 <p>算法规则–四个步骤</p>
@@ -339,7 +339,7 @@
 <li>第三轮扫描失败，重新扫描。查找第一个（0，1）的帧用于替换</li>
 </ol>
 <p>由于第二轮已将所有帧的访问位置为0，因此经过第三轮第四轮扫描，一定会有帧被选中，因此<strong>改进型CLOCK置换算法</strong>选择一个淘汰页面<strong>最多会进行四轮扫描</strong></p>
-<h3 id="页面分配策略"><a href="#页面分配策略" class="headerlink" title="页面分配策略"></a>页面分配策略</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112223243687.png" alt="image-20211112223243687"></p>
+<h3 id="页面分配策略"><a href="#页面分配策略" class="headerlink" title="页面分配策略"></a>页面分配策略</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112223243687.png" alt="image-20211112223243687"></p>
 <p><strong>驻留集：</strong>指请求分页存储管理中给进程分配的物理快的集合</p>
 <blockquote>
 <p>若驻留集太小：会导致缺页频繁，系统要花大量的时间处理缺页。</p>
@@ -351,7 +351,7 @@
 <li><strong>局部置换：</strong>发生缺页时只能选进程自己的物理块进行置换</li>
 <li><strong>全局置换：</strong>可以将操作系统保留的空闲物理块分配给缺页进程，也可以将别的进程持有的物理块置换到外存，再分配给缺页进程</li>
 </ul>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112220357770.png" alt="image-20211112220357770"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112220357770.png" alt="image-20211112220357770"></p>
 <p><strong>固定分配局部置换：</strong>系统为每个进程分配一定数量的物理块，在整个运行期间都不改变。若进程在运行中缺页，则只能从该进程在内存中的页面中选出一页换出，然后再调入需要的页面。</p>
 <p>优缺点：很难从刚开始就确定应为每个进程分配多少个物理块才算合理。（这种策略的系统可以根据进程大小，优先级，或是根据程序员给出的参数来确定为一个进程分配的内存块数）</p>
 <p><strong>可变分配全局置换</strong>：刚开始会为每个进程分配一定数量的物理块。操作系统会保持一个空闲物理块队列。当某进程发生缺页时，从空闲物理块中取出一块分配给进程；若已无空闲物理块，则可选择一个<strong>未锁定</strong>的页面换出外存，再将该物理块分配给缺页的进程。采用这种策略时，<strong>只要某进程发生缺页，都将获得新的物理块</strong>，仅当空闲物理块用完时，系统才选择一个未锁定的页面调出。被选择调出的页可能是系统中任何一个进程中的页，因此这个<strong>被选中的进程拥有的物理块会减少，缺页率会增加</strong></p>
@@ -374,8 +374,8 @@
 <p>解决 Denning “工作集概念</p>
 <h4 id="工作集"><a href="#工作集" class="headerlink" title="工作集"></a>工作集</h4><p>在某段时间间隔内，进程实际访问页面的集合</p>
 <p>操作系统会根据 ”窗口尺寸“ 来算出工作集</p>
-<p>例<img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211112222725247.png" alt="image-20211112222725247"></p>
+<p>例<img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211112222725247.png" alt="image-20211112222725247"></p>
 <p><strong>工作集大小</strong>可能小于窗口尺寸。实际应用中，操作系统可以统计进程的工作集大小，根据工作集大小给进程分配若干内存块。</p>
 <p>如 窗口尺寸5，一段时间检测发现某进程工作集最大为3，那么说明该进程有很好的局部性，只需要分配3个以上的内存块即可满足进程的需要。</p>
 <p><strong>驻留集大小不能小于工作集大小，否则进程运行过程中将频繁缺页</strong></p>
-</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>操作系统-第三章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-11-09</p><p><span>最后更新：</span>2021-11-12</p><p><span>原始链接：</span><a href="/2021/操作系统-第三章/">https://yvenxx.github.io/yvenxx/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/" data-id="cl1p5jqaf002dowu340tug6wx" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKElEQVR42u3awXLiQAwEUP7/p9mq3CHdkreIh+cT5YCZNxwUtebxiK/nz/X+9ezOM76S9Vx8YWNjY9+EnXxZ/uj3G/Qe8+qdyWpzCzY2Nvap7ASQb0ryzms3IrdgY2NjfzN71jy8+uysELatETY2Njb2++Xmhef9nbZ8fqBuY2NjY/95dhvW1CFOua37O5dladjY2Nh/nn3VoPcvvP7AfBsbGxv7o+xneSUHcdqxwSxyWimwsbGxD2In4XsSIeVNy2bwsGlpHknOhI2NjX1z9qxQ5SOETSnKy1s+HsbGxsY+g50PU/etRd7e7AcV2NjY2N/Jbg/BJF+2WeJmJBBNtrGxsbGPYxe9y4iXFLZi6aOM6GXdxsbGxj6C3RawfKA7G8duIipsbGzs72G3B242cX++HbNWJy+N2NjY2OexZ6WoHRi0I4dZWSq2FRsbG/sgdhvizEYCs9qRP6EGY2NjYx/EzmOdPO7ZjAQ2x4OKnwEbGxv7IHYbFSXIpOxtCmfeGkXjAWxsbOwj2Ekh2bQNbcyUH9bZjDqwsbGx786ejUjzBiAfAOQraVugovZiY2Nj35A9OxaTNwbJdueNRzLWLdoPbGxs7CPYCak9ZJP/dT9OHo6HsbGxsQ9ibxqD/xE2zQrYMMbCxsbGPoK9/+c+j/43TcWmRcHGxsb+BnZ7OGbWouRbsDn0E60EGxsb+wvYbUOyb1TaYKs9coSNjY19Nrsd5c6Gwe1C2+M4xbgXGxsb+yD2hpE3KpuNu+rn+eX4DjY2NvZt2e/bhgS2uZOUn02o9PJbsLGxsQ9i5wci20MzSZvRRvx541EPCbCxsbFvy25Lyyz6v7YUzYbE2NjY2Gez8yi/bSf2wVNeuop3YmNjYx/HvuoITj5CaDcrD5uip2FjY2MfxM6vNgzKh8Rtm5Fs+r74YWNjY9+L3RatvOXIo/w8ospjrF9KFzY2NvZx7Dxymi03f2ZbtJIWBRsbGxs7L0LtZ9sQ6qqii42Njf3N7DzWmY1v28JZNyHY2NjYh7Lb4D5Z1iZIaluL/OAmNjY29nnsdtCbjGbzozPtk6/6FDY2NvYR7H92cEUomCclrgAAAABJRU5ErkJggg==">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a><a class="next" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%94%E7%AB%A0/">操作系统 第五章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/">操作系统-第三章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/">计算机组成原理-第七章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a><ul></ul><a href="https://wjjhui.github.io/" title="兔哦鸡" target="_blank">兔哦鸡</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>操作系统-第三章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-11-09</p><p><span>最后更新：</span>2022-04-09</p><p><span>原始链接：</span><a href="/2021/操作系统-第三章/">https://yvenxx.github.io/yvenxx/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/" data-id="cl1r998i3002bkku333kndm9o" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKElEQVR42u3awXLiQAwEUP7/p9mq3CHdkreIh+cT5YCZNxwUtebxiK/nz/X+9ezOM76S9Vx8YWNjY9+EnXxZ/uj3G/Qe8+qdyWpzCzY2Nvap7ASQb0ryzms3IrdgY2NjfzN71jy8+uysELatETY2Njb2++Xmhef9nbZ8fqBuY2NjY/95dhvW1CFOua37O5dladjY2Nh/nn3VoPcvvP7AfBsbGxv7o+xneSUHcdqxwSxyWimwsbGxD2In4XsSIeVNy2bwsGlpHknOhI2NjX1z9qxQ5SOETSnKy1s+HsbGxsY+g50PU/etRd7e7AcV2NjY2N/Jbg/BJF+2WeJmJBBNtrGxsbGPYxe9y4iXFLZi6aOM6GXdxsbGxj6C3RawfKA7G8duIipsbGzs72G3B242cX++HbNWJy+N2NjY2OexZ6WoHRi0I4dZWSq2FRsbG/sgdhvizEYCs9qRP6EGY2NjYx/EzmOdPO7ZjAQ2x4OKnwEbGxv7IHYbFSXIpOxtCmfeGkXjAWxsbOwj2Ekh2bQNbcyUH9bZjDqwsbGx786ejUjzBiAfAOQraVugovZiY2Nj35A9OxaTNwbJdueNRzLWLdoPbGxs7CPYCak9ZJP/dT9OHo6HsbGxsQ9ibxqD/xE2zQrYMMbCxsbGPoK9/+c+j/43TcWmRcHGxsb+BnZ7OGbWouRbsDn0E60EGxsb+wvYbUOyb1TaYKs9coSNjY19Nrsd5c6Gwe1C2+M4xbgXGxsb+yD2hpE3KpuNu+rn+eX4DjY2NvZt2e/bhgS2uZOUn02o9PJbsLGxsQ9i5wci20MzSZvRRvx541EPCbCxsbFvy25Lyyz6v7YUzYbE2NjY2Gez8yi/bSf2wVNeuop3YmNjYx/HvuoITj5CaDcrD5uip2FjY2MfxM6vNgzKh8Rtm5Fs+r74YWNjY9+L3RatvOXIo/w8ospjrF9KFzY2NvZx7Dxymi03f2ZbtJIWBRsbGxs7L0LtZ9sQ6qqii42Njf3N7DzWmY1v28JZNyHY2NjYh7Lb4D5Z1iZIaluL/OAmNjY29nnsdtCbjGbzozPtk6/6FDY2NvYR7H92cEUomCclrgAAAABJRU5ErkJggg==">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a><a class="next" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%94%E7%AB%A0/">操作系统 第五章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/">操作系统-第三章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/">计算机组成原理-第七章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a><ul></ul><a href="https://wjjhui.github.io/" title="兔哦鸡" target="_blank">兔哦鸡</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>

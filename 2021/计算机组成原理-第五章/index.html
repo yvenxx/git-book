@@ -42,7 +42,7 @@
 <p>如R0out为<strong>1时R0中的数据输出到A端</strong>，R0out为<strong>0时R0数据无法输出到B端</strong></p>
 </li>
 </ul>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021165001610.png" alt="image-20211021165001610"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211021165001610.png" alt="image-20211021165001610"></p>
 <p>另一种总线结构</p>
 <ul>
 <li><p>暂存寄存器：用于暂存从主存读来的数据，这个数据不能存放在通用寄存器中，否则会破坏其原有内容。</p>
@@ -60,7 +60,7 @@
 <blockquote>
 <p>其中移位寄存器，实际是暂存寄存器拥有移位寄存器的功能。图中不好画出</p>
 </blockquote>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021165904690.png" alt="image-20211021165904690"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211021165904690.png" alt="image-20211021165904690"></p>
 <h2 id="控制器的基本结构"><a href="#控制器的基本结构" class="headerlink" title="控制器的基本结构"></a>控制器的基本结构</h2><ul>
 <li>程序计数器；用于指出下一条指令在主存中的存放地址。CPU就是根据PC的内容去主存中取指令的。因程序中指令（通常）是顺序执行的，所以PC有自增功能</li>
 <li>指令寄存器：用于保存当前正在执行的那条指令</li>
@@ -70,23 +70,23 @@
 <li>存储器地址寄存器：用于存放所要访问的主存单元的地址</li>
 <li>存储器数据寄存器：用于存放向主存写入的信息或从主存中读出的信息</li>
 </ul>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021171245774.png" alt="image-20211021171245774"></p>
-<h2 id="CPU的基本结构"><a href="#CPU的基本结构" class="headerlink" title="CPU的基本结构"></a>CPU的基本结构</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021172021116.png" alt="image-20211021172021116"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211021171245774.png" alt="image-20211021171245774"></p>
+<h2 id="CPU的基本结构"><a href="#CPU的基本结构" class="headerlink" title="CPU的基本结构"></a>CPU的基本结构</h2><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211021172021116.png" alt="image-20211021172021116"></p>
 <p><strong>其中橙色的是，用户可见的寄存器（可编程）</strong></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021171901641.png" alt="image-20211021171901641"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211021171901641.png" alt="image-20211021171901641"></p>
 <h2 id="指令执行过程"><a href="#指令执行过程" class="headerlink" title="指令执行过程"></a>指令执行过程</h2><p><strong>指令周期</strong>：CPU从主存中每取出并执行一条指令所需的全部时间。<strong>指令周期</strong>常常用若干<strong>机器周期</strong>来表示，机器周期又叫<strong>CPU周期</strong>，一个<strong>机器周期</strong>又包含若干<strong>时钟周期</strong>（<strong>节拍、T周期或CPU时钟周期</strong>，是CPU<strong>最基本单位</strong>）</p>
 <blockquote>
 <p>其中T0就是时钟周期，也就是节拍。</p>
 <p>每个指令周期内机器周期数可以不等，每个机器周期内的节拍数也可以不等，每个机器周期内的节拍数也可以不等</p>
 </blockquote>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025125410605.png" alt="image-20211025125410605"></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025125824192.png" alt="image-20211025125824192"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025125410605.png" alt="image-20211025125410605"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025125824192.png" alt="image-20211025125824192"></p>
 <p>FE，IND，EX，INT分别是取指，间址，执行和中断4个周期，以1状态表示有效</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025130334329.png" alt="image-20211025130334329"></p>
-<h3 id="取指周期"><a href="#取指周期" class="headerlink" title="取指周期"></a>取指周期</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025132451806.png" alt="image-20211025132451806"></p>
-<h3 id="间址周期"><a href="#间址周期" class="headerlink" title="间址周期"></a>间址周期</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025132601408.png" alt="image-20211025132601408"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025130334329.png" alt="image-20211025130334329"></p>
+<h3 id="取指周期"><a href="#取指周期" class="headerlink" title="取指周期"></a>取指周期</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025132451806.png" alt="image-20211025132451806"></p>
+<h3 id="间址周期"><a href="#间址周期" class="headerlink" title="间址周期"></a>间址周期</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025132601408.png" alt="image-20211025132601408"></p>
 <h3 id="执行周期"><a href="#执行周期" class="headerlink" title="执行周期"></a>执行周期</h3><p>执行周期的任务是根据 <strong>IR</strong> 中的指令字的操作码和操作数通过ALU操作产生执行结果。不同指令的执行周期操作不同，因此没有统一的数据流向</p>
-<h3 id="中断周期"><a href="#中断周期" class="headerlink" title="中断周期"></a>中断周期</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025132740721.png" alt="image-20211025132740721"></p>
+<h3 id="中断周期"><a href="#中断周期" class="headerlink" title="中断周期"></a>中断周期</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025132740721.png" alt="image-20211025132740721"></p>
 <p>暂停当前任务去完成其他任务。为了能够恢复当前任务，需要<strong>保存断点</strong>。一般使用堆栈来保存断点，这里用SP表示栈顶地址，假设<strong>SP指向栈顶元素</strong>，进栈操作是<strong>先修改指针，后存入数据</strong>。</p>
 <p>CU控制将SP减1，修改后的地址送入MAR，记作：(SP)-1—&gt;SP，(SP)—&gt;MAR，本质上是将断点存入某个存储单元，假设其地址为a，可记作a—–&gt;MAR，然后3那里CU发出控制信号，启动主存<strong>写操作</strong></p>
 <h2 id="指令执行方案"><a href="#指令执行方案" class="headerlink" title="指令执行方案"></a>指令执行方案</h2><ol>
@@ -100,7 +100,7 @@
 <p>在每一个时钟周期启动一条指令，尽量让多条指令同时运行，但各自处在不同的执行步骤中，指令之间<strong>并行</strong>执行</p>
 </li>
 </ol>
-<h2 id="数据通路和两种结构"><a href="#数据通路和两种结构" class="headerlink" title="数据通路和两种结构"></a>数据通路和两种结构</h2><h3 id="基本单总线结构"><a href="#基本单总线结构" class="headerlink" title="基本单总线结构"></a>基本单总线结构</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211021172021116.png"></p>
+<h2 id="数据通路和两种结构"><a href="#数据通路和两种结构" class="headerlink" title="数据通路和两种结构"></a>数据通路和两种结构</h2><h3 id="基本单总线结构"><a href="#基本单总线结构" class="headerlink" title="基本单总线结构"></a>基本单总线结构</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211021172021116.png"></p>
 <ul>
 <li>内部总线：是指同一部件，如CPU内部连接各寄存器及运算部件之间的总线</li>
 <li>系统总线：是指同一台计算机系统的各部件，如CPU，内存，通道和各类I/O接口间互相连接的总线</li>
@@ -122,17 +122,17 @@
 <li>MDR→Bus→Y</li>
 <li>(ACC)+(Y)→Z</li>
 <li>Z→ACC</li>
-<li><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025142328186.png" alt="image-20211025142328186"></li>
+<li><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025142328186.png" alt="image-20211025142328186"></li>
 </ul>
 </li>
 </ul>
 <h3 id="专用数据通路结构"><a href="#专用数据通路结构" class="headerlink" title="专用数据通路结构"></a>专用数据通路结构</h3><p>以取指周期为例</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025143833413.png" alt="image-20211025143833413"></p>
-<h2 id="硬部件控制器"><a href="#硬部件控制器" class="headerlink" title="硬部件控制器"></a>硬部件控制器</h2><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025164006649.png" alt="image-20211025164006649"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025143833413.png" alt="image-20211025143833413"></p>
+<h2 id="硬部件控制器"><a href="#硬部件控制器" class="headerlink" title="硬部件控制器"></a>硬部件控制器</h2><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025164006649.png" alt="image-20211025164006649"></p>
 <p>紫色的那里是机器周期，绿色是机器状态条件。红色是发出的 “微命令”</p>
 <p>电路是在CU内部。例如要进行一个取指PC—&gt;MAR，则将 FE*T0=C1（假设以便理解）</p>
 <p>再一个简单的电路图</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025164721781.png" alt="image-20211025164721781"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025164721781.png" alt="image-20211025164721781"></p>
 <p>公式的意思是，FE*T1代表的是所有公式都需要FE*T1这个操作。IND<em>T1(ADD+STA+LDA+JMP+BAN)是ADD STA这些要IND\</em>T1这个操作。且这些操作都是在T1实现的，这个电路就可以是前面CU里面的电路，当然实际的肯定更复杂，不会只有这么多功能。</p>
 <h3 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h3><ol>
 <li>分析每个阶段的微操作序列（取指，间址，执行，中断四个阶段，也就是确定哪些指令的什么阶段，在什么条件下会使用到的微操作）</li>
@@ -141,7 +141,7 @@
 <li>电路设计（确定每个微操作命令的逻辑表达式，并实现电路）</li>
 </ol>
 <p><strong>1</strong>.分析</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025165326869.png" alt="image-20211025165326869"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025165326869.png" alt="image-20211025165326869"></p>
 <p><strong>2</strong>.假设只有3个节拍</p>
 <p><strong>3</strong>.安排微操作时序</p>
 <blockquote>
@@ -164,17 +164,17 @@
 <p>列出操作时间表，写出微操作命令的最简表达式，画出逻辑图</p>
 <p><strong>操作时间表</strong></p>
 <p>取指阶段</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025171526784.png" alt="image-20211025171526784"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025171526784.png" alt="image-20211025171526784"></p>
 <p>间址阶段</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025171604766.png" alt="image-20211025171604766"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025171604766.png" alt="image-20211025171604766"></p>
 <p>执行周期</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025171424908.png" alt="image-20211025171424908"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025171424908.png" alt="image-20211025171424908"></p>
 <p><strong>微操作命令的最简表达式</strong></p>
 <p>以M(MAR)—-&gt;MDR为例</p>
 <p>取指阶段是所有都为1都有这个操作，间址阶段CLA到STP是没有的。执行阶段只有ADD,LDA有。且所有都在T1的节拍中。所以最后公式如下</p>
 <p>FE*T1 + IND*T1(ADD+STA+LDA+JMP+BAN) + EX*T1(ADD+LDA)，这里还要化简省略了</p>
 <p><strong>逻辑图如下</strong></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025172006381.png" alt="image-20211025172006381"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025172006381.png" alt="image-20211025172006381"></p>
 <h2 id="微程序控制器"><a href="#微程序控制器" class="headerlink" title="微程序控制器"></a>微程序控制器</h2><p>设计思路：采用 ”存储程序“，将所有指令的 ”微程序“ 存入 ”控制器存储器“ 中</p>
 <p>相当于，微程序包含多个微操作，微操作包含多个微命令。</p>
 <p>指令是对<strong>程序</strong>执行步骤的描述</p>
@@ -183,10 +183,10 @@
 
 
 <p><strong>这里和硬布线不同，硬布线最后一步进入ID指令译码器，微程序这里进入的是微地址形成部件</strong>，且其中还需要加入一些其它微命令，在微程序设计那里进行讨论</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025174009279.png" alt="image-20211025174009279"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025174009279.png" alt="image-20211025174009279"></p>
 <p>其中<strong>下地址</strong>的存放的是下一个指令的地址。下地址左边的是现在的微指令</p>
 <p>CM控制存储器</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211025174233544.png" alt="image-20211025174233544"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211025174233544.png" alt="image-20211025174233544"></p>
 <p><strong>存放了所有的指令</strong>，左边的数字是地址信息</p>
 <p>补充：</p>
 <p>因为是顺序逻辑来进行的操作。所以就这个图中，取指完了之后实际是间址，但是有的指令不需要进行间址。所以图中顺序逻辑的位置实际是有个标志位进行标识。 OP那里有带标志位。间址周期完成之后，就进入到执行周期（<strong>转执行周期</strong>）</p>
@@ -194,11 +194,11 @@
 <p>执行周期执行玩之后，最后的下地址是0，所以就会走回到取指周期</p>
 <p><strong>取指周期：通常是公用的，如果某指令系统中有n条机器指令（LDA，ADD等），则CM中微程序的个数至少是n+1个。间址周期和中断周期不算在计算中。</strong>因为一些早期的CPU，物联网设备的CPU可以不提供间接寻址和中断功能，因此这类CPU可以不包含间址周期，中断周期的微程序段。</p>
 <p>在物理上看，取指周期，执行周期是两个微程序，但逻辑上他们其实是一个整体。所以<strong>一条指令对应一个微程序</strong></p>
-<h3 id="微指令格式"><a href="#微指令格式" class="headerlink" title="微指令格式"></a>微指令格式</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026124551152.png" alt="image-20211026124551152"></p>
+<h3 id="微指令格式"><a href="#微指令格式" class="headerlink" title="微指令格式"></a>微指令格式</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026124551152.png" alt="image-20211026124551152"></p>
 <h3 id="微指令编码方式"><a href="#微指令编码方式" class="headerlink" title="微指令编码方式"></a>微指令编码方式</h3><h4 id="直接编码（直接控制）方式"><a href="#直接编码（直接控制）方式" class="headerlink" title="直接编码（直接控制）方式"></a>直接编码（直接控制）方式</h4><p>在微指令的操作控制字段中，<strong>每一位代表一个微操作命令</strong>，某位的”1“ 表示该控制命令有效</p>
 <p>优点：简单，直观，执行速度快，操作并行性好</p>
 <p>缺点：微指令字长过长，n个微命令就要求微指令的操作字段有n位，造成控存容量极大</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026125036268.png" alt="image-20211026125036268"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026125036268.png" alt="image-20211026125036268"></p>
 <h4 id="字段直接编址方式"><a href="#字段直接编址方式" class="headerlink" title="字段直接编址方式"></a>字段直接编址方式</h4><p>将微指令的控制字段分成若干 ”段“，<strong>每段经译码后发出控制信号</strong></p>
 <p>原则：</p>
 <ol>
@@ -209,7 +209,7 @@
 <p>优点：可以缩短微指令字长</p>
 <p>缺点：要通过译码电路后再发出微命令，因此比直接编码方式慢</p>
 <p>如下图，其中分段进行划分，PC—&gt;MAR 和 (PC)+1—&gt;PC是互斥的，放在同一个段</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026125646325.png" alt="image-20211026125646325"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026125646325.png" alt="image-20211026125646325"></p>
 <blockquote>
 <p>例题</p>
 <p>某计算机的控制器采用微程序控制方式，微指令中的操作控制字段采用字段直接编码法，共有33个微命令，构成5个互斥类，分别包含7，3，12，5和6个微命令，则操作控制字段至少有多少位？</p>
@@ -220,7 +220,7 @@
 <p>优点：可进一步缩短微指令字长</p>
 <p>缺点：削弱了微指令的并行控制能力，故通常作为字段直接的一种辅助手段</p>
 <p>译码之后又进行了一次译码</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026130530514.png" alt="image-20211026130530514"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026130530514.png" alt="image-20211026130530514"></p>
 <h3 id="微指令的地址形成方式"><a href="#微指令的地址形成方式" class="headerlink" title="微指令的地址形成方式"></a>微指令的地址形成方式</h3><ol>
 <li><p>微指令的<strong>下地址字段</strong>指出：微指令格式中设置一个下地址字段，由微指令的下地址字段直接指出后继微指令的地址，<strong>断定方式</strong></p>
 </li>
@@ -229,10 +229,10 @@
 <li><p>增量计数器法 （CMAR)+1—-&gt;CMAR</p>
 </li>
 <li><p>分支转移   转移方式：指明判别条件；   转移地址指明转移成功后的去向</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026130959621.png" alt="image-20211026130959621"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026130959621.png" alt="image-20211026130959621"></p>
 </li>
 <li><p>通过测试网络   </p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026131229661.png" alt="image-20211026131229661"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026131229661.png" alt="image-20211026131229661"></p>
 </li>
 <li><p>由硬件产生微程序入口地址，<strong>第一条微指令地址</strong>由专门的<strong>硬件产生</strong>，中断周期也由<strong>硬件</strong>产生<strong>中断周期微程序首地址</strong></p>
 </li>
@@ -249,7 +249,7 @@
 <li><p>分析每个阶段的微操作序列（这里只进行取指的分析）</p>
 </li>
 <li><p>写出对应机器指令的微操作命令及节拍安排</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026132334342.png" alt="image-20211026132334342"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026132334342.png" alt="image-20211026132334342"></p>
 </li>
 <li><p>确定微指令格式</p>
 <p>根据微操作个数决定采用何种编码方式，以确定微指令的操作控制字段的位数。由微指令数确定微指令的控制字段的位数，最后按操作控制字段位数和顺序控制字段位数就可确定微指令字长</p>
@@ -270,31 +270,31 @@
 <p>毫微指令与微指令的关系好比微指令与机器指令的关系</p>
 </li>
 </ol>
-<h3 id="比较硬布线和微程序"><a href="#比较硬布线和微程序" class="headerlink" title="比较硬布线和微程序"></a>比较硬布线和微程序</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026133143470.png" alt="image-20211026133143470"></p>
-<h3 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026133303687.png" alt="image-20211026133303687"></p>
+<h3 id="比较硬布线和微程序"><a href="#比较硬布线和微程序" class="headerlink" title="比较硬布线和微程序"></a>比较硬布线和微程序</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026133143470.png" alt="image-20211026133143470"></p>
+<h3 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026133303687.png" alt="image-20211026133303687"></p>
 <h2 id="指令流水线"><a href="#指令流水线" class="headerlink" title="指令流水线"></a>指令流水线</h2><p>一条指令的执行过程可以分成多个阶段，根据计算机的不同，具体的分法也不同。假如是  取指，分析，执行。</p>
 <p><strong>顺序执行方式</strong></p>
 <p>优点：控制简单，硬件代价小</p>
 <p>缺点：执行指令的速度较慢，在任何时刻，处理机中只有一条指令在执行，各功能部件的利用率很低</p>
 <p>耗时：T=n*3t = 3nt</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026133641492.png" alt="image-20211026133641492"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026133641492.png" alt="image-20211026133641492"></p>
 <p><strong>一次重叠执行方式</strong></p>
 <p>耗时：T = 3t + (n-1)*2t = (1+2n)t)</p>
 <p>优点：程序的执行时间缩短了1/3，各功能部件的利用率明显提高</p>
 <p>缺点：需要付出硬件上较大开销的代价，控制过程也比顺序执行复杂了</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026133832790.png" alt="image-20211026133832790"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026133832790.png" alt="image-20211026133832790"></p>
 <p><strong>二次重叠执行方式</strong></p>
 <p>指令的执行时间缩短2/3。是一种理想的指令执行方式，正常情况下处理机中同时有3条指令在执行</p>
 <p>耗时：T = 3t + (n-1)*t = (2+n)t</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026134005386.png" alt="image-20211026134005386"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026134005386.png" alt="image-20211026134005386"></p>
 <p><strong>流水线的表示方法</strong></p>
 <p>这里时空图是把执行分为5个阶段。但是这里是理想状态</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026134352713.png" alt="image-20211026134352713"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026134352713.png" alt="image-20211026134352713"></p>
 <h3 id="流水线的性能指标"><a href="#流水线的性能指标" class="headerlink" title="流水线的性能指标"></a>流水线的性能指标</h3><h4 id="吞吐率"><a href="#吞吐率" class="headerlink" title="吞吐率"></a>吞吐率</h4><p>指在单位时间内流水线所完成的任务数量，或是输出结果的数量。</p>
 <p>任务数为n，处理n个任务所用的时间为Tk，吞吐率为TP</p>
 <p>TP=n/Tk</p>
 <p>例，此图是理想情况的图</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026134910109.png" alt="image-20211026134910109"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026134910109.png" alt="image-20211026134910109"></p>
 <p>Tk=(k+n-1) △t，则 TP= n/TK</p>
 <h4 id="加速比"><a href="#加速比" class="headerlink" title="加速比"></a>加速比</h4><p>完成同样一批任务，<strong>不使用流水线所用的时间</strong>与<strong>使用流水线所用的时间</strong>之比。也就是T0/Tk</p>
 <p>就上图来说，T0=kn△t</p>
@@ -302,7 +302,7 @@
 <p>流水线效率（E）的一般公式为  </p>
 <p>E=n个任务占用k时空区有效面积 / n个任务所用的时间与k个流水段所围城的时空区总面积   </p>
 <p>E=T0/kTk</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026135900185.png" alt="image-20211026135900185"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026135900185.png" alt="image-20211026135900185"></p>
 <h3 id="影响因素"><a href="#影响因素" class="headerlink" title="影响因素"></a>影响因素</h3><p><strong>结构相关（资源冲突）</strong></p>
 <p>问题</p>
 <p>由于多条指令在同一时刻争用同一资源而形成的冲突称为结构相关</p>
@@ -311,15 +311,15 @@
 <li>后一相关指令暂停一周期</li>
 <li>资源重复配置：数据存储器+指令存储器</li>
 </ol>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026141900701.png" alt="image-20211026141900701"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026141900701.png" alt="image-20211026141900701"></p>
 <p><strong>数据相关（数据冲突）</strong></p>
 <p>数据相关指在一个程序中，存在必须等前一条指令执行完才能执行h后一条指令的情况，则这两条指令为数据相关</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026142254023.png" alt="image-20211026142254023"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026142254023.png" alt="image-20211026142254023"></p>
 <p>解决</p>
 <ol>
 <li><p>把遇到数据相关的指令极其后序指令都暂停 一至几个时钟周期，知道数据相关问题消失后再继续执行。可分为硬件阻塞（stall）和软件插入（NOP）</p>
 <p>如下是NOP的图，硬件的图也差不多，把NOP变成stall就行</p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026142840478.png" alt="image-20211026142840478"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026142840478.png" alt="image-20211026142840478"></p>
 </li>
 <li><p>数据旁路技术</p>
 <p>简单来说就是，下面的需要r1，需要第一条指令 执行完成，但是我们可以在他计算完之后，直接从ALU把数据就取过来。不需要经过内存</p>
@@ -341,7 +341,7 @@
 <li><p>提高转移方向的猜准率</p>
 </li>
 </ol>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026143403202.png" alt="image-20211026143403202"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026143403202.png" alt="image-20211026143403202"></p>
 <h3 id="流水线的分类"><a href="#流水线的分类" class="headerlink" title="流水线的分类"></a>流水线的分类</h3><ol>
 <li><strong>部件功能级，处理机级和处理机间的级流水线</strong><ol>
 <li><strong>部件功能级流水</strong>就是将复杂的算数逻辑运算组成流水线工作方式。例如，可将浮点加法操作分成求阶差，对阶，尾数相加以及结果规格化等4个过程</li>
@@ -365,8 +365,8 @@
 </ol>
 </li>
 </ol>
-<h3 id="流水线的多发技术"><a href="#流水线的多发技术" class="headerlink" title="流水线的多发技术"></a>流水线的多发技术</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026144829633.png" alt="image-20211026144829633"></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026144836354.png" alt="image-20211026144836354"></p>
-<p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026144846396.png" alt="image-20211026144846396"></p>
-<h3 id="思维导图-1"><a href="#思维导图-1" class="headerlink" title="思维导图"></a>思维导图</h3><p><img src="https://gitee.com/yvenxx/git-book-image/raw/master/images/image-20211026144859586.png" alt="image-20211026144859586"></p>
-</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>计算机组成原理-第五章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-11-09</p><p><span>最后更新：</span>2021-11-09</p><p><span>原始链接：</span><a href="/2021/计算机组成原理-第五章/">https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/" data-id="cl1p5jq9r0023owu32knt40in" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAElElEQVR42u3ay26kSBAF0P7/n/ZIs2vZVb43AqtJfFhZFIbksMh4/fkTHx//H5//Tq75+HR8Pv/qys/Per+Sj7fH+/VfcGDChAkTplsy5bfOF/1+cQl08hlmEMl9vrgDJkyYMGE6nCm/3fv/bTf4PcT79bchxcvzmDBhwoTpFzDl+WCSP7YfIH/uLEzBhAkTJkyYNv/VguZkSRLbJsmYMGHChOl5TPtUc9YZfN/yzH9tEX+wFo4JEyZMmG7G1G7JT/r74gMTJkyYMN2MaZYu5mXWTfNyH2Tkwcc3b40JEyZMmI5lStLC/PXaLfnnirybJxYVAkyYMGHCdHumfBxnv51vRn+SMdOcoL0zJkyYMGF6HtPsxdoR1VlBdtaMnEFjwoQJE6ZnMCXL2g/NRFl4yZGs4YKSMSZMmDBhOpZpw9E2DvOE+dqPsS8xY8KECROm05lmpd6cadaA3KfBs5T75RMxYcKECdPhTLNmZFQkXVzfbuqzZmp0f0yYMGHCdCzTLCV+fybZmPPCbh4i5EXhttCMCRMmTJiewTQrgOZl3FkDNS/ytu3Y9iNhwoQJE6azmPIh0fb1Zi+Qp8pFcXbdlMWECRMmTKczJWntplR6VWm1DS/2jdK/AgJMmDBhwnQs02wps7GeTXN0n363wUEUNWDChAkTphszzRqN7ea9ecn8BfZDPBc0MjFhwoQJ082Y8gRy1mJMGoqzAZrNmbyEHVUIMGHChAnTgUztFj5LRzdPuWqYNXo6JkyYMGF6BFMSCswywfzX/IXbknEeoERVAUyYMGHCdAjTbAvPH5MPBu3HT9vPvAoaMGHChAnTIUz5mOZPbKttQHDVGlo+TJgwYcJ0LtO+/JoPs7YtzD305v5f3AETJkyYMB3INEsO2w07Lyu34Uje8szXgwkTJkyYnso0W/RVEMkd2ue+B8p/xYQJEyZM5zIllyYpbp58ttx5+7Mu2pYlYEyYMGHCdCLTpvyaFFivgpu1M1vcl0/EhAkTJkyPYEqSxnbTbRPO/Pq8edkGH5gwYcKE6UlMeeLabqVtkDErNLeN2Fm7FBMmTJgwnc7Ulmvz9Hg/TNOO7OyDlaIKjgkTJkyYDmHKU9zN+EsbXuQBR925LcMFTJgwYcJ0OtNmWbPNu92MNy/cvgUmTJgwYfptTG16nJdcZyM7147v1Fk7JkyYMGF6BNNsG86vT7b/q4ZvZs/64ldMmDBhwnQg0+xVN+Xg/JPMCrWzJPkbREyYMGHC9Aim2eDO5vXyFuZ+U29X+9cZTJgwYcJ0LNOsPTnb/nPEthlZ5/pxU3M4GYQJEyZMmG7D9FEe7ThOO9aTtx7bsCBPv1/GTZgwYcKE6UCmdmplc7tZ+XV25ewzzwIRTJgwYcJ0f6Y8CNgUZ5NCbVtQboOSzZgRJkyYMGE6nWkWBOwbn3k40haI26jnm+QZEyZMmDD9AqZZ4rrh2BRtryr4YsKECROm38aUF3zzRbSjole1M4tSNSZMmDBhOpxpk8RuNuA2mMiv3xSmL25nYsKECROmf8q0KYDOHta2QmeDQZu7DQ9MmDBhwnQvpv8A5DuAEanXXKkAAAAASUVORK5CYII=">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a><a class="next" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">计算机组成原理-第四章</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%94%E7%AB%A0/">操作系统 第五章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/">操作系统-第三章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/">计算机组成原理-第七章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a><ul></ul><a href="https://wjjhui.github.io/" title="兔哦鸡" target="_blank">兔哦鸡</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
+<h3 id="流水线的多发技术"><a href="#流水线的多发技术" class="headerlink" title="流水线的多发技术"></a>流水线的多发技术</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026144829633.png" alt="image-20211026144829633"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026144836354.png" alt="image-20211026144836354"></p>
+<p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026144846396.png" alt="image-20211026144846396"></p>
+<h3 id="思维导图-1"><a href="#思维导图-1" class="headerlink" title="思维导图"></a>思维导图</h3><p><img src="https://raw.githubusercontent.com/yvenxx/blog_img/main/images/image-20211026144859586.png" alt="image-20211026144859586"></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>计算机组成原理-第五章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-11-09</p><p><span>最后更新：</span>2022-04-09</p><p><span>原始链接：</span><a href="/2021/计算机组成原理-第五章/">https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/" data-id="cl1r998hg001zkku329d356ni" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAElElEQVR42u3ay26kSBAF0P7/n/ZIs2vZVb43AqtJfFhZFIbksMh4/fkTHx//H5//Tq75+HR8Pv/qys/Per+Sj7fH+/VfcGDChAkTplsy5bfOF/1+cQl08hlmEMl9vrgDJkyYMGE6nCm/3fv/bTf4PcT79bchxcvzmDBhwoTpFzDl+WCSP7YfIH/uLEzBhAkTJkyYNv/VguZkSRLbJsmYMGHChOl5TPtUc9YZfN/yzH9tEX+wFo4JEyZMmG7G1G7JT/r74gMTJkyYMN2MaZYu5mXWTfNyH2Tkwcc3b40JEyZMmI5lStLC/PXaLfnnirybJxYVAkyYMGHCdHumfBxnv51vRn+SMdOcoL0zJkyYMGF6HtPsxdoR1VlBdtaMnEFjwoQJE6ZnMCXL2g/NRFl4yZGs4YKSMSZMmDBhOpZpw9E2DvOE+dqPsS8xY8KECROm05lmpd6cadaA3KfBs5T75RMxYcKECdPhTLNmZFQkXVzfbuqzZmp0f0yYMGHCdCzTLCV+fybZmPPCbh4i5EXhttCMCRMmTJiewTQrgOZl3FkDNS/ytu3Y9iNhwoQJE6azmPIh0fb1Zi+Qp8pFcXbdlMWECRMmTKczJWntplR6VWm1DS/2jdK/AgJMmDBhwnQs02wps7GeTXN0n363wUEUNWDChAkTphszzRqN7ea9ecn8BfZDPBc0MjFhwoQJ082Y8gRy1mJMGoqzAZrNmbyEHVUIMGHChAnTgUztFj5LRzdPuWqYNXo6JkyYMGF6BFMSCswywfzX/IXbknEeoERVAUyYMGHCdAjTbAvPH5MPBu3HT9vPvAoaMGHChAnTIUz5mOZPbKttQHDVGlo+TJgwYcJ0LtO+/JoPs7YtzD305v5f3AETJkyYMB3INEsO2w07Lyu34Uje8szXgwkTJkyYnso0W/RVEMkd2ue+B8p/xYQJEyZM5zIllyYpbp58ttx5+7Mu2pYlYEyYMGHCdCLTpvyaFFivgpu1M1vcl0/EhAkTJkyPYEqSxnbTbRPO/Pq8edkGH5gwYcKE6UlMeeLabqVtkDErNLeN2Fm7FBMmTJgwnc7Ulmvz9Hg/TNOO7OyDlaIKjgkTJkyYDmHKU9zN+EsbXuQBR925LcMFTJgwYcJ0OtNmWbPNu92MNy/cvgUmTJgwYfptTG16nJdcZyM7147v1Fk7JkyYMGF6BNNsG86vT7b/q4ZvZs/64ldMmDBhwnQg0+xVN+Xg/JPMCrWzJPkbREyYMGHC9Aim2eDO5vXyFuZ+U29X+9cZTJgwYcJ0LNOsPTnb/nPEthlZ5/pxU3M4GYQJEyZMmG7D9FEe7ThOO9aTtx7bsCBPv1/GTZgwYcKE6UCmdmplc7tZ+XV25ewzzwIRTJgwYcJ0f6Y8CNgUZ5NCbVtQboOSzZgRJkyYMGE6nWkWBOwbn3k40haI26jnm+QZEyZMmDD9AqZZ4rrh2BRtryr4YsKECROm38aUF3zzRbSjole1M4tSNSZMmDBhOpxpk8RuNuA2mMiv3xSmL25nYsKECROmf8q0KYDOHta2QmeDQZu7DQ9MmDBhwnQvpv8A5DuAEanXXKkAAAAASUVORK5CYII=">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a><a class="next" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">计算机组成原理-第四章</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%94%E7%AB%A0/">操作系统 第五章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%89%E7%AB%A0/">操作系统-第三章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%8C%E7%AB%A0/">操作系统-第二章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/">计算机组成原理-第七章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a><ul></ul><a href="https://wjjhui.github.io/" title="兔哦鸡" target="_blank">兔哦鸡</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
