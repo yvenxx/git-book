@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一些我的计算机笔记，JAVA/Python/Linux/后端/计算机基础"><title>程序的机器级代码表示 | 懒人瑜恩</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement('script');
+  hm.src = 'https://hm.baidu.com/hm.js?' + '2059a4484fb666484cf5e9fba7e20ce6';
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">程序的机器级代码表示</h1><a id="logo" href="/.">懒人瑜恩</a><p class="description">sometimes code, sometimes English</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/history/"><i class="fa fa-book"> 历史</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">程序的机器级代码表示</h1><div class="post-meta">2022-05-09<span> | </span><span class="category"><a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2022/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E4%BB%A3%E7%A0%81%E8%A1%A8%E7%A4%BA/#vcomment"><span class="valine-comment-count" data-xid="/2022/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E4%BB%A3%E7%A0%81%E8%A1%A8%E7%A4%BA/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E4%BB%A3%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">程序的机器级代码表示</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.0.1.</span> <span class="toc-text">相关寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.0.2.</span> <span class="toc-text">汇编指令格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">1.0.3.</span> <span class="toc-text">常用指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.0.4.</span> <span class="toc-text">过程调用的机器级表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.0.5.</span> <span class="toc-text">选择语句的机器级表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.0.6.</span> <span class="toc-text">循环语句的机器级表示</span></a></li></ol></li></ol></li></ol></div></div><div class="post-content"><a id="more"></a>
+
+
+
+<h1 id="程序的机器级代码表示"><a href="#程序的机器级代码表示" class="headerlink" title="程序的机器级代码表示"></a>程序的机器级代码表示</h1><p>22 408考纲新增内容</p>
+<h3 id="相关寄存器"><a href="#相关寄存器" class="headerlink" title="相关寄存器"></a><strong>相关寄存器</strong></h3><p>这里高低两位 0-7，8-15，分别还可以作为两个8位寄存器，具体看表</p>
+<table>
+<thead>
+<tr>
+<th>16bit(高15-8，低7-0)</th>
+<th>32bit</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AX (AH,AL)</td>
+<td>EAX</td>
+<td>累加器（Accumulator）</td>
+</tr>
+<tr>
+<td>BX (BH,BL)</td>
+<td>EBX</td>
+<td>基地址寄存器（Base Register）</td>
+</tr>
+<tr>
+<td>CX (CH,CL)</td>
+<td>ECX</td>
+<td>计数寄存器（Count Register）</td>
+</tr>
+<tr>
+<td>DX (DH,DL)</td>
+<td>EDX</td>
+<td>数据寄存器（Data Register）</td>
+</tr>
+<tr>
+<td></td>
+<td>ESI</td>
+<td>变址寄存器（Index Register）</td>
+</tr>
+<tr>
+<td></td>
+<td>EDI</td>
+<td>变址寄存器</td>
+</tr>
+<tr>
+<td></td>
+<td>EBP</td>
+<td>堆栈 基 指针 （Base Pointer）</td>
+</tr>
+<tr>
+<td></td>
+<td>ESP</td>
+<td>堆栈 顶 指针（Stack Pointer）</td>
+</tr>
+</tbody></table>
+<h3 id="汇编指令格式"><a href="#汇编指令格式" class="headerlink" title="汇编指令格式"></a>汇编指令格式</h3><table>
+<thead>
+<tr>
+<th>AT&amp;T</th>
+<th>Intel</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>只能小写字母</td>
+<td>大小写不敏感</td>
+</tr>
+<tr>
+<td><strong>第一个为源操作数，第二个目的操作数</strong></td>
+<td><strong>目的操作数，源操作数</strong></td>
+</tr>
+<tr>
+<td>寄存器前缀 %，立即数前缀 $</td>
+<td>都不需要前缀</td>
+</tr>
+<tr>
+<td>内存寻址格式 ()</td>
+<td>[ ]</td>
+</tr>
+<tr>
+<td>复杂寻址 disp(base,index,scale) 分别 偏移量，基址寄存器，变址寄存器 比例因子。例 8(%edx , %eax, 2)</td>
+<td>[edx+eax*2+8]</td>
+</tr>
+<tr>
+<td>数据长度  操作码的后面紧跟一个字符表明操作数大小 b(byte) w(word) l(long)</td>
+<td>byte ptr, word ptr ,dword ptr</td>
+</tr>
+<tr>
+<td>举例 mov $100, %eax</td>
+<td>mov eax,100</td>
+</tr>
+</tbody></table>
+<h3 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h3><ul>
+<li>&lt;reg&gt;：表示寄存器 , &lt;reg32&gt;表示32位的寄存器(eax,ebx…..)</li>
+<li>&lt;mem&gt;：表示内存地址（[eax], [var+4], dword ptr [eax+ebx]）</li>
+<li>&lt;con&gt;：表示8，16，32位常数 ,  &lt;con32&gt;表示32位常数</li>
+</ul>
+<p><strong>数据传送指令</strong></p>
+<p>这里用intel格式来表示指令</p>
+<ul>
+<li>mov x1,x2。将x2复制到x1。源(x2)可以取内存，寄存器，常数值。放到x1的 内存或寄存器（不能直接内存到内存）</li>
+<li>push x1,将x1压入内存的栈，ESP栈顶减4</li>
+<li>pop x1 ，出栈，ESP+4</li>
+</ul>
+<p><strong>算数和逻辑运算指令</strong></p>
+<ul>
+<li>add/sub x1,x2，将x2和x1加减，数据放到x1中。</li>
+<li>inc/dec x1 ，分别表示自加，自减</li>
+<li>imul x1,x2，带符号乘法，将结果保存在第一个操作数，且第一个操作数必须是寄存器。若是三个操作数x1,x2,x3就将x3,x2相乘放到x1</li>
+<li>idiv x1，只有一个除数，被除数放在 edx:eax(64位整数)，操作结果两部分，商送到eax，余数送到edx</li>
+<li>and/or/xor x1,x2，与，或，异或，操作结果放在x1</li>
+<li>not x1, 取非</li>
+<li>neg x1 ，取负 neg eax= -eax</li>
+<li>shl/shr x1,x2 , 逻辑左移和右移，x1是被操作的数，x2(&lt;con&gt; , &lt;cl&gt;) 是常数，表示被移的位数</li>
+</ul>
+<p><strong>控制流指令</strong></p>
+<ul>
+<li>jmp &lt;labe&gt; ：程序跳转指令</li>
+<li>jcondition 条件转移指令<ul>
+<li>je &lt;label&gt;   jump when equal</li>
+<li>jne &lt;label&gt;   jump when not equal</li>
+<li>jz &lt;label&gt; jump when last result was zero</li>
+<li>jg &lt;label&gt; jump when greater than</li>
+<li>jge &lt;label&gt; jump when greater than or equal to</li>
+<li>jl &lt;label&gt; jump when less than</li>
+<li>jle &lt;label&gt; jump when less than or equal to</li>
+</ul>
+</li>
+<li>cmp/test ： cmp用于比较两个操作数的值，test指令对两个操作数进行逐位相与     <ul>
+<li>cmo &lt;reg&gt;,&lt;mem&gt;      test &lt;reg&gt;,&lt;con&gt;</li>
+</ul>
+</li>
+<li>call/ret：实现子程序的调用及返回<ul>
+<li>call &lt;label&gt;</li>
+<li>ret</li>
+</ul>
+</li>
+</ul>
+<h3 id="过程调用的机器级表示"><a href="#过程调用的机器级表示" class="headerlink" title="过程调用的机器级表示"></a>过程调用的机器级表示</h3><p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/202205092134875.png" alt="image-20220509213447726"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/202205092135010.png" alt="image-20220509213501947"></p>
+<p>对应汇编代码为</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/202205092135994.png" alt="image-20220509213518864"></p>
+<h3 id="选择语句的机器级表示"><a href="#选择语句的机器级表示" class="headerlink" title="选择语句的机器级表示"></a>选择语句的机器级表示</h3><p><strong>条件码</strong></p>
+<p>CF：进（借）位标志。最近的无符号整数加减的进位结果。有进位1，无进位0</p>
+<p>ZF：零标志。最近的操作是否为0，若为0。则为1</p>
+<p>SF：符号标志。最近的带符号运算结果的符号</p>
+<p>OF：溢出标志。最近的带符号运算结果是否溢出。溢出OF=1</p>
+<p><strong>IF语句</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_cont</span><span class="params">(<span class="keyword">int</span> *p1,<span class="keyword">int</span> *p2)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(p1&gt;p2)</span><br><span class="line">        <span class="keyword">return</span> *p2;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> *p1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对应汇编</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/202205092140791.png" alt="image-20220509214025696"></p>
+<p><strong>switch语句</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/202205092140073.png" alt="image-20220509214057960"></p>
+<h3 id="循环语句的机器级表示"><a href="#循环语句的机器级表示" class="headerlink" title="循环语句的机器级表示"></a>循环语句的机器级表示</h3><p><strong>do-while</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span></span><br><span class="line">    body_statement;</span><br><span class="line">    <span class="keyword">while</span>(test_expr);</span><br></pre></td></tr></table></figure>
+<p>goto语句形式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">loop:</span><br><span class="line">	body_statement;</span><br><span class="line">	t=test_expr;</span><br><span class="line">	<span class="keyword">if</span>(t)</span><br><span class="line">        <span class="keyword">goto</span> loop;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>while</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(test_expr)</span><br><span class="line">    body_statement;</span><br></pre></td></tr></table></figure>
+<p>goto形式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">	t=test_expr;</span><br><span class="line">	<span class="keyword">if</span>(!t)</span><br><span class="line">        	<span class="keyword">goto</span> done;</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">        body_statement</span><br><span class="line">        <span class="keyword">while</span>(test_expr);</span><br><span class="line">done;</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>for</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(init_expr; test_expr; update_expr)</span><br><span class="line">    body_statement;</span><br><span class="line"><span class="comment">//与下面while一样</span></span><br><span class="line">init_expr;</span><br><span class="line"><span class="keyword">while</span>(test_expr)&#123;</span><br><span class="line">    body_statement;</span><br><span class="line">    update_expr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>goto形式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">init_expr;</span><br><span class="line">t=test_expr;</span><br><span class="line"><span class="keyword">if</span>(!t)</span><br><span class="line">    <span class="keyword">goto</span> done;</span><br><span class="line">loop:</span><br><span class="line">	body_statement;</span><br><span class="line">	update_expr;</span><br><span class="line">	t=test_expr;</span><br><span class="line">	<span class="keyword">if</span>(t)</span><br><span class="line">        <span class="keyword">goto</span> loop;</span><br><span class="line">done:</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+<p><strong>实例</strong></p>
+<p>for循环求和</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nsum_for</span><span class="params">(<span class="keyword">int</span> n )</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		result+=i;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/202205092149262.png" alt="image-20220509214911113"></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>程序的机器级代码表示</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2022-05-09</p><p><span>最后更新：</span>2022-05-09</p><p><span>原始链接：</span><a href="/2022/程序的机器级代码表示/">https://yvenxx.github.io/yvenxx/2022/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E4%BB%A3%E7%A0%81%E8%A1%A8%E7%A4%BA/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2022/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E4%BB%A3%E7%A0%81%E8%A1%A8%E7%A4%BA/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2022/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E4%BB%A3%E7%A0%81%E8%A1%A8%E7%A4%BA/" data-id="cl2ys9bp10000ocu398umcmyk" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEi0lEQVR42u3aSW7bUBAFQN//0gqQlReW8l43hfDLxZWhSByKAXr8+oqPx9/j+9/PPvn++bPfvj7Ps6vn53l9V8+ucsGBCRMmTJhuyfR4ebQQ+TlzjuTB2m/W94kJEyZMmA5napOAhG/2nTZ1yM/Z/hYTJkyYMP02pvax83Qhf4DXgfzaYhsTJkyYMGHKg25SMO9bz0lBiwkTJkyYfidTe7pHfOyTjLbFnJffb+mFY8KECROmmzHtQ++5f799vwkTJkyYMP1Xpkd5tMG7bctugnF+P/VTY8KECROmY5ny4WKeKLSgbTrSlrWza0UdAkyYMGHCdHumZPnm2jHkbJQ4+2T2X+GHf8WECRMmTMcy5WXnrFhtw/PqMYLY3f4KEyZMmDB9NtPm883Dvy6q2xJ91jium7yYMGHChOnGTG0n86ow3Ib5thGcrMMOa3dMmDBhwnQI02xNZ1Yqz26xxZ0lMUUvHBMmTJgwHcg0a6fOmqfJ6mp+zk3BXJTxmDBhwoTpcKar2ruzYjgfec7avhckB5gwYcKE6XCmvOAcBtRRy3jWa01o2l4uJkyYMGE6nSlvj7a3Mlup2RTkV41dMWHChAnTJzHtbz0HnbV9W/q8xI3OhgkTJkyYPoKpPelsuSdf2dmnI+2qUDH1xYQJEyZMRzFtGqCb0veqBZ326vUSEiZMmDBhOpbpfWF+NhDdPPCGMkmMMGHChAnTiUzJEsy+KJ2F5NkSzyY1eforTJgwYcL0oUz55/lRZyuv26/lgDMv+IuEABMmTJgwHc60KWVnATsZUubd19nfdfaBCRMmTJhuyZQvr7RBejY+3CclbdE+JMOECRMmTIcwFSEwTgVmlLN2cJ5GtMs6P5S+mDBhwoTpWKZk/WXfhM2D91WjyrqZmzR5MWHChAnTgUyb0NsWz21Z2yYfs0WiuqWLCRMmTJgOZ2pvMU8F2lI5H3/m36kTF0yYMGHCdDjT+wLwJkgnDeL2KkNETJgwYcJ0LNMskLdrMW2beJY0tK+qvjomTJgwYTqWKQnSs1Jzj5i/qjb5mMFhwoQJE6YTmfLm6Sa4tiPSWZO3HYgWCQcmTJgwYTqWaTaq3N9iki7kyUTeGm7TF0yYMGHCdC5THjKTJGCfCuzL7/bFFFNfTJgwYcJ0ONOMZs/a5i9tI/iC8SomTJgwYTqcKR8lJis+OcHsm3nIzxu7/0hWMGHChAnT4UybBmsb8mfc+SO1yUE02sSECRMmTB/BNCti22ZuAtS+nnzpJ3kxUZMXEyZMmDAdwjQDmoXb2Qtov9mu5gyHspgwYcKE6RCmR3nkqzDtN9t0YVOct68TEyZMmDCdyzQrYmdt1jzJyH/bLuu8vtbmvwImTJgwYbozU752kxeTs/Ridt22zB6W95gwYcKE6XCmPEi3N70ZiCbn3BfnRUKACRMmTJg+mqkNpckZ2iRjM4JtE5ELqn9MmDBhwnQgU35zm/FhO0ydlcRF6oAJEyZMmA5napu8bRM2f7Dk+1c1jotWLyZMmDBhOpZps7iTRM9ZnN1E5PaFDVEwYcKECdPdmf4AovligzztLDEAAAAASUVORK5CYII=">分享</a><div class="tags"></div><div class="post-nav"><a class="next" href="/2022/HTML-CSS/">HTML+CSS</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' == 'true' ? true : false;
+var verify = 'false' == 'true' ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'N4VbzTDUCqw4JIrXrqmTYp1b-gzGzoHsz',
+  appKey:'1sOcwRIiKguk8n88JwbgSrCV',
+  placeholder:'Just so so',
+  avatar:'mm',
+  guest_info:guest_info,
+  pageSize:'10'
+})
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%BF%E6%B2%BB/">政治</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E4%BB%A3%E7%A0%81%E8%A1%A8%E7%A4%BA/">程序的机器级代码表示</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/HTML-CSS/">HTML+CSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E6%80%9D%E4%BF%AE%E6%B3%95%E5%9F%BA/">徐涛-基础班-思修法基</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E5%8F%B2%E7%BA%B2/">徐涛-基础班-史纲</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E6%AF%9B%E4%B8%AD%E7%89%B9/">徐涛-基础班-毛中特</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E9%A9%AC%E5%8E%9F/">徐涛-基础班-马原</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%BA%94%E7%AB%A0/">操作系统 第五章</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E5%9B%9B%E7%AB%A0/">操作系统 第四章</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a><ul></ul><a href="https://wjjhui.github.io/" title="兔哦鸡" target="_blank">兔哦鸡</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
