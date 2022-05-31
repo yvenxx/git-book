@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>快排优化</title>
+      <link href="2022/%E5%BF%AB%E6%8E%92%E4%BC%98%E5%8C%96/"/>
+      <url>2022/%E5%BF%AB%E6%8E%92%E4%BC%98%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><h2 id="快排优化"><a href="#快排优化" class="headerlink" title="快排优化"></a>快排优化</h2><p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/202205311035625.png" alt="img"></p><p>利用三数取中法找到枢纽值，并将枢纽值放置在左边第二个位置，然后将low指针指向这个位置，即图中第三列的8。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>程序的机器级代码表示</title>
       <link href="2022/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E4%BB%A3%E7%A0%81%E8%A1%A8%E7%A4%BA/"/>
       <url>2022/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E4%BB%A3%E7%A0%81%E8%A1%A8%E7%A4%BA/</url>
