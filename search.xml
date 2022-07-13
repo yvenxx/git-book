@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>数据结构-时间复杂度的计算</title>
+      <link href="2022/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E8%AE%A1%E7%AE%97/"/>
+      <url>2022/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E8%AE%A1%E7%AE%97/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a><p><strong>如果一个算法的执行次数是 T(n)，只保留最高次项，系数可以忽略，得到函数 f(n)。时间复杂度为 T(n)=O(f(n))</strong></p><ol><li><p>线性 O(n)阶</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">    j=i;</span><br><span class="line">    j++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>平方阶 O(n^2)</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">        <span class="comment">//xxxxxx</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>因为每一次都要做n个循环，所以要n^2个循环  O(n^2)</p></li><li><p>对数阶O(logN)</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>(i&lt;n)&#123;</span><br><span class="line">    i=i*<span class="number">2</span>;  <span class="comment">//重点是这里</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>i=i*2，则有 2^i&lt;n，  可以得到执行次数  i=log2(n)。时间复杂度就为 log2(n)</p></li><li><p>nlog2(n)阶</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">    <span class="keyword">int</span> j=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(j&lt;n)&#123;</span><br><span class="line">        j=j*<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>注意内层循环是  log2(n)，外存还有一层n阶，则复杂度是  n*log2(n)阶</p></li><li><p>O(2^n) </p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> n )</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> test(n<span class="number">-1</span>)+test(n<span class="number">-2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这个要先懂这个递归程序。读不懂的自行去看基础。</p><p>T(n) = T(n-1)+T(n-2)= T(n-2)+T(n-3)+T(n-3)+T(n-4)= T(n-2)+2T(n-3)+T(n-4)…，实际是一个二叉树，则复杂度是   2^n</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>快排优化</title>
       <link href="2022/%E5%BF%AB%E6%8E%92%E4%BC%98%E5%8C%96/"/>
       <url>2022/%E5%BF%AB%E6%8E%92%E4%BC%98%E5%8C%96/</url>
