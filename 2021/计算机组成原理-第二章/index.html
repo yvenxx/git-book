@@ -11,17 +11,17 @@
 
 
 
-<h2 id="进位计数制"><a href="#进位计数制" class="headerlink" title="进位计数制"></a>进位计数制</h2><p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018081735509.png" alt="image-20211018081735509"></p>
+<h2 id="进位计数制"><a href="#进位计数制" class="headerlink" title="进位计数制"></a>进位计数制</h2><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018081735509.png" alt="image-20211018081735509"></p>
 <h2 id="BCD码"><a href="#BCD码" class="headerlink" title="BCD码"></a>BCD码</h2><h3 id="8421（加法）"><a href="#8421（加法）" class="headerlink" title="8421（加法）"></a>8421（加法）</h3><blockquote>
 <p><strong>加法超过1-9的表示范围需要加6来表示</strong></p>
 </blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018082549357.png" alt="image-20211018082549357"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018082549357.png" alt="image-20211018082549357"></p>
 <h3 id="余3码"><a href="#余3码" class="headerlink" title="余3码"></a>余3码</h3><p><strong>在8421码基础上加上一个3</strong></p>
 <h3 id="2421码"><a href="#2421码" class="headerlink" title="2421码"></a>2421码</h3><p>2421分别为每一位的权值，表示0-4时最高位为0，5-9时最高位为1</p>
-<h2 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h2><p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018083836835.png" alt="image-20211018083836835"></p>
+<h2 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h2><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018083836835.png" alt="image-20211018083836835"></p>
 <h2 id="汉字的表示和编码"><a href="#汉字的表示和编码" class="headerlink" title="汉字的表示和编码"></a>汉字的表示和编码</h2><p><strong>GB2312-80</strong></p>
 <p>+80H为了高位为1，与ASCII码进行区分</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018084425246.png" alt="image-20211018084425246"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018084425246.png" alt="image-20211018084425246"></p>
 <p><strong>输入：输入编码</strong></p>
 <p><strong>输出：汉字字形码</strong></p>
 <h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>大端模式：将数据的最高有效字节存放在低地址单元中</p>
@@ -44,21 +44,21 @@
 <p>若干位代码组成的一个字叫<strong>码字</strong>，将两个码字逐位进行对比，具有不同的位的个数称为<strong>两个码字j间的距离</strong>，各合法码字间的最小距离称为<strong>码距（d）</strong></p>
 <p>d=1时，无检错能力。d=2时，有检错能力。d&gt;=3时，设计合理，可能具有检错纠错能力</p>
 <h3 id="奇偶校验"><a href="#奇偶校验" class="headerlink" title="奇偶校验"></a>奇偶校验</h3><p>奇校验码：整个校验码（有效信息位和校验位）中”1“的个数为奇数，偶校验码类似</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018091039245.png" alt="image-20211018091039245"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018091039245.png" alt="image-20211018091039245"></p>
 <p>例：奇校验，给出1001101和1010111的两个二进制数</p>
 <p>设最高位是校验位，7位是信息位。1001101—&gt;<strong>1</strong>1001101，1010111—-&gt;<strong>0</strong>1010111。也就是用校验位保证为1为奇数个，当发送数据时，如果发生数据跳变，其中一个位变化，就会变成偶数个，就可以看到是否有出错。</p>
 <blockquote>
 <p>但是如果有偶数个bit发生跳变，是无法发现错误</p>
 </blockquote>
 <p>计算机中的实现，各信息进行异或，算出是否需要校验位。如下</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018091638976.png" alt="image-20211018091638976"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018091638976.png" alt="image-20211018091638976"></p>
 <h3 id="海明校验码"><a href="#海明校验码" class="headerlink" title="海明校验码"></a>海明校验码</h3><p>思路：将信息位分组进行偶校验，将数据进行分组，每个分组都设置校验位，多个校验位标注出错位置</p>
 <p>其中分组按照2的n次方来计算的。四位是2的3次方，所以分为3个组。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018094018035.png" alt="image-20211018094018035"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018094018035.png" alt="image-20211018094018035"></p>
 <p>校验原理是：按照数据存放的位置，例如H3（011）其中两个1，对应1位和2位，所以与校验码 p1,p2进行对应</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018095035901.png" alt="image-20211018095035901"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018095035901.png" alt="image-20211018095035901"></p>
 <p>数据存放方法，上面为从大到小。如下是从小到大</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018094218710.png" alt="image-20211018094218710"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018094218710.png" alt="image-20211018094218710"></p>
 <blockquote>
 <p>补充</p>
 <p>无法确定是一位出错还是两位出错，如果p1,p2同时出错，就为110，但是实际不是那个位置出错。</p>
@@ -69,8 +69,8 @@
 </blockquote>
 <h3 id="CRC码（循环冗余校验码）"><a href="#CRC码（循环冗余校验码）" class="headerlink" title="CRC码（循环冗余校验码）"></a>CRC码（循环冗余校验码）</h3><p>基本思想：数据接收方和发送方约定一个 ”<strong>除数</strong>“，且给   k个信息位+R个校验位作为 ”<strong>被除数</strong>“，添加校验位后<strong>保证除法的余数为0</strong>。</p>
 <p>收到数据后，进行除法检查余数是否为0，如果为0是为出错，非0表示出错。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018103751182.png" alt="image-20211018103751182"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018103910642.png" alt="image-20211018103910642"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018103751182.png" alt="image-20211018103751182"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018103910642.png" alt="image-20211018103910642"></p>
 <blockquote>
 <p>这里010表示C2出错，是有依据的。但是也不完全正确。如果2^R &gt;= K+R+1，则CRC码可纠错一位的错误。如果不是，则010可能不是表示2的位置，也可能表示9（按照上题）</p>
 <p>001001 001，余数为010，实际是9位出错。101001 011 余数010 ，2位出错。</p>
@@ -87,7 +87,7 @@
 <p>正（0）负（1）</p>
 <p>可用<strong>原码，补码，反码</strong>三种方式来表示定点整数和定点小数。还可用<strong>移码</strong>表示定点整数</p>
 <p>若真值为x，则用[x]原，[x]反，[x]补，[x]移分别表示真值所对应的原码反码……</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018104904524.png" alt="image-20211018104904524"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018104904524.png" alt="image-20211018104904524"></p>
 <p><strong>原码整数</strong>的表示范围：-(2^n-1) &lt;= x &lt;= 2^n-1</p>
 <p><strong>原码小数</strong>的表示范围：-(1-2^-n) &lt;= x &lt;= 1-2^-n</p>
 <h3 id="反码"><a href="#反码" class="headerlink" title="反码"></a>反码</h3><blockquote>
@@ -103,7 +103,7 @@
 <p><strong>原码补码相互转换方法一样</strong></p>
 </blockquote>
 <p>表示范围</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018110254156.png" alt="image-20211018110254156"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018110254156.png" alt="image-20211018110254156"></p>
 <h3 id="移码"><a href="#移码" class="headerlink" title="移码"></a>移码</h3><p>补码的基础上将符号位取反。或者移码=真值+偏置值（计算机中的设定）<strong>移码只能用于整数</strong></p>
 <p>表示范围与补码一致</p>
 <p>移码作用：移码表示的整数很方便对比大小</p>
@@ -129,7 +129,7 @@
 <h5 id="循环移位"><a href="#循环移位" class="headerlink" title="循环移位"></a>循环移位</h5><p>例如左移，会把移出去的那移位，放到最末位。右移类似</p>
 <p>带  进位  位的循环左移：</p>
 <p>例：有8bit位的数值，在前面再加一个位。当左移的时候，将最高位放到进位 位。将进位 位的数值放到末位。</p>
-<h4 id="加减运算"><a href="#加减运算" class="headerlink" title="加减运算"></a>加减运算</h4><p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018143143114.png" alt="image-20211018143143114"></p>
+<h4 id="加减运算"><a href="#加减运算" class="headerlink" title="加减运算"></a>加减运算</h4><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018143143114.png" alt="image-20211018143143114"></p>
 <p>原码进行加减需要太多机制，而且可能会出错。所以用补码进行加减运算。<strong>补码运算如下</strong></p>
 <p>例：A=15,B=-24</p>
 <p>[A+B]补=[A]补+[B]补=0,0001111+1,1101000=1,1110111（再转换为原码）</p>
@@ -142,7 +142,7 @@
 <p>正+正=负（上溢）</p>
 <p>负+负=正（下溢）</p>
 <p><strong>方法一</strong></p>
-<p>采用一位符号位。设A的符号为As,B的符号为Bs，运算结果的符号为Ss,则溢出逻辑表达式为<img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018141531037.png" alt="image-20211018141531037"></p>
+<p>采用一位符号位。设A的符号为As,B的符号为Bs，运算结果的符号为Ss,则溢出逻辑表达式为<img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018141531037.png" alt="image-20211018141531037"></p>
 <p>若V=0，表示无溢出，反之溢出</p>
 <p>例：A=15,C=124</p>
 <p>A+C=0,0001111+0,1111100=1,0001011  等于-117 肯定溢出了</p>
@@ -168,29 +168,29 @@
 <td>0</td>
 </tr>
 </tbody></table>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018142104328.png" alt="image-20211018142104328"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018142104328.png" alt="image-20211018142104328"></p>
 <p><strong>方法三</strong></p>
 <blockquote>
 <p>双符号位，实际存储只存储1个符号位，运算时会复制一个符号位</p>
 </blockquote>
 <p>采用双符号位，正数符号为00，负数符号为11</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018142256958.png" alt="image-20211018142256958"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018142256958.png" alt="image-20211018142256958"></p>
 <h4 id="符号扩展"><a href="#符号扩展" class="headerlink" title="符号扩展"></a><strong>符号扩展</strong></h4><p>8位—》16位</p>
 <p>整数在最高位前面补数字，原码补0反码补码补1。小数就是在后面补0/1，反码补1，原码补码补0</p>
 <h4 id="原码乘法"><a href="#原码乘法" class="headerlink" title="原码乘法"></a>原码乘法</h4><p>直接上实例。其中X和MQ中存的是他们的<strong>绝对值</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018144552008.png" alt="image-20211018144552008"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018144552008.png" alt="image-20211018144552008"></p>
 <p>这里已经是算完的状态，也就是已经都移位完了。如果没有算的状态，ACC里面是全0的状态，每次取灰色的位置，乘以X，放入ACC，然后MQ和ACC统一逻辑右移移位。移到最后一位就可以不用进行运算(灰色的0不参与)。然后进行异或符号，放入最高位的位置。</p>
 <h4 id="补码乘法"><a href="#补码乘法" class="headerlink" title="补码乘法"></a>补码乘法</h4><p>进行n+1轮加法，移位。每次加法可能是 +0，+[x]补，+[-x]补。且每次移位是补码的<strong>算数右移</strong>，符号位参与运算（原码使用的是绝对值，符号位不参加运算）</p>
 <p>红色的为辅助位，X位置的辅助位是双符号位。算法与原码类似。</p>
 <p><strong>有一点不同的是，+0，+[x]补，+[-x]补。具体实现是，辅助位-最低位获得的数字。为0，1，-1来进行对应</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018145357424.png" alt="image-20211018145357424"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018145357424.png" alt="image-20211018145357424"></p>
 <h4 id="原码除法"><a href="#原码除法" class="headerlink" title="原码除法"></a>原码除法</h4><p><strong>恢复余数法</strong></p>
 <p>ACC初始存被除数，当计算开始后存相减之后的余数。</p>
 <p>计算方法：<strong>因为计算机不会判断大小，他会先取1进MQ的位置，然后让 ACC-除数，如果算出来的数字出错（符号位为1），就会将减掉的数字再加上去，将MQ的低位换为0。然后进行逻辑左移右边补0，ACC移出去的数字丢弃。</strong>最后得到的商在MQ中，余数在ACC中，但是余数需要乘以 2^-n次方才是最终余数。然后符号位异或</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018150955305.png" alt="image-20211018150955305"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018150955305.png" alt="image-20211018150955305"></p>
 <p><strong>加减交替法</strong></p>
 <p>和恢复余数法很类似，但是优化了其中的过程。具体如下，<strong>但当最后余数为负，则需商0，并+[Y]补得到正确的余数</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211018152409858.png" alt="image-20211018152409858"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211018152409858.png" alt="image-20211018152409858"></p>
 <h4 id="补码除法"><a href="#补码除法" class="headerlink" title="补码除法"></a>补码除法</h4><p>符号位参与运算，被除数/余数，除数，采用双符号位</p>
 <p>余数和除数<strong>同号</strong>，商<strong>1</strong>，<strong>余数左移一位减去除数</strong></p>
 <p>余数和除数异号，商<strong>0</strong>，<strong>余数左移一位加上除数</strong></p>
@@ -211,9 +211,9 @@
 <blockquote>
 <p>注：其中填充是因为要边界对齐</p>
 </blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211019115407404.png" alt="image-20211019115407404"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211019115407404.png" alt="image-20211019115407404"></p>
 <h2 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h2><p>浮点数的真值：N=r^e * M，r通常为2和2的倍数，M为尾数</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211019130619281.png" alt="image-20211019130619281"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211019130619281.png" alt="image-20211019130619281"></p>
 <p>例：</p>
 <p>a=0,01;1.1001     b=0,10;0.01001</p>
 <p>a的表示为：00111001。但是b的表示 有9位，超出了8bit。所以需要进行规格化</p>
@@ -236,11 +236,11 @@
 <li>正数为0.1xxx，其最大值表示为0.1….1；最小值为0.10….0。尾数表示范围 1/2 &lt;=M&lt;=(1-2^(-n))</li>
 <li>负数为1.0xxx，其最大值表示为1.01….1（这里小数点后面需要一个1，然后才是1）；最小值为1.0…0。尾数的表示范围 -1&lt;= M &lt;= -(1/2+2^(-n))</li>
 </ul>
-<h3 id="IEEE754"><a href="#IEEE754" class="headerlink" title="IEEE754"></a>IEEE754</h3><p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211019142430106.png" alt="image-20211019142430106"></p>
+<h3 id="IEEE754"><a href="#IEEE754" class="headerlink" title="IEEE754"></a>IEEE754</h3><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211019142430106.png" alt="image-20211019142430106"></p>
 <blockquote>
 <p>阶码全0，全1用作特殊用途</p>
 </blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211019142524479.png" alt="image-20211019142524479"></p>
+<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211019142524479.png" alt="image-20211019142524479"></p>
 <p>由浮点数确定真值（阶码不是全0和全1）</p>
 <ol>
 <li>根据 “某浮点数” 确定数符，阶码，尾数的分布</li>
@@ -261,7 +261,7 @@
 <li>尾数全为0，表示 <strong>±无穷</strong></li>
 <li>尾数不全为0，表示<strong>非数值 “NaN”</strong></li>
 </ul>
-<h4 id="浮点数加减运算"><a href="#浮点数加减运算" class="headerlink" title="浮点数加减运算"></a>浮点数加减运算</h4><p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211019150600241.png" alt="image-20211019150600241"></p>
+<h4 id="浮点数加减运算"><a href="#浮点数加减运算" class="headerlink" title="浮点数加减运算"></a>浮点数加减运算</h4><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211019150600241.png" alt="image-20211019150600241"></p>
 <p><strong>舍入</strong></p>
 <p><strong>“0” 舍 “1” 入法：</strong>在尾数右移时，被移去的最高数值位为0，则舍去；被移去的最高数值位为1，则在尾数的末位加1.（但是可能会让尾数溢出，需要再做右规）</p>
 <p><strong>恒置 ”1“ 法：</strong>尾数右移时，不论丢掉的最高数值位是 ”1“ 还是 “0” 都使右移后的尾数末位恒置 “1”，（可能会使尾数变大或变小）</p>
@@ -270,14 +270,14 @@
 <p>int：表示整数，范围是 -2^31—2^(31-1)，有效数字32位</p>
 <p>float：表示整数及小数，范围 [ 2^(-126)—— 2^127(2-2^(-23)) ]</p>
 <p>如果是int转float肯定会有精度丢失，因为int有31个数值位，float只有24个尾数位。float转int一样会有精度丢失，int会把小数点之后的数字丢失。</p>
-<h2 id="算数逻辑单元ALU"><a href="#算数逻辑单元ALU" class="headerlink" title="算数逻辑单元ALU"></a>算数逻辑单元ALU</h2><p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211019163305455.png" alt="image-20211019163305455"></p>
-<h3 id="一位全加器"><a href="#一位全加器" class="headerlink" title="一位全加器"></a>一位全加器</h3><p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211019172231738.png" alt="image-20211019172231738"></p>
-<h3 id="串行加法器"><a href="#串行加法器" class="headerlink" title="串行加法器"></a>串行加法器</h3><p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211019172429386.png" alt="image-20211019172429386"></p>
+<h2 id="算数逻辑单元ALU"><a href="#算数逻辑单元ALU" class="headerlink" title="算数逻辑单元ALU"></a>算数逻辑单元ALU</h2><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211019163305455.png" alt="image-20211019163305455"></p>
+<h3 id="一位全加器"><a href="#一位全加器" class="headerlink" title="一位全加器"></a>一位全加器</h3><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211019172231738.png" alt="image-20211019172231738"></p>
+<h3 id="串行加法器"><a href="#串行加法器" class="headerlink" title="串行加法器"></a>串行加法器</h3><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211019172429386.png" alt="image-20211019172429386"></p>
 <p>进位触发器存放进位的值，每次运算的时候将进位的值加进去运算（0/1）</p>
 <p>只有一个全加器，数据逐位串行送入加法器中jji进行运算。进位触发器用来寄存进位信号，以便下一次运算（操作数为n，那么就要加n次）</p>
-<h3 id="并行加法器"><a href="#并行加法器" class="headerlink" title="并行加法器"></a>并行加法器</h3><p><img src="https://cdn.jsdelivr.net/gh/yvenxx/blog_img@main/images/image-20211019172636212.png" alt="image-20211019172636212"></p>
+<h3 id="并行加法器"><a href="#并行加法器" class="headerlink" title="并行加法器"></a>并行加法器</h3><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211019172636212.png" alt="image-20211019172636212"></p>
 <p><strong>串行进位的并行加法器</strong>：把n个全加器串接起来，就可以j进行两个n位数的相加。不过，虽然输入可以n个进行输入，但是还是要等低位的进行运算，然后将进位送到下一个运算器，才能进行下一次计算。</p>
-</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>计算机组成原理-第二章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-10-21</p><p><span>最后更新：</span>2022-04-09</p><p><span>原始链接：</span><a href="/2021/计算机组成原理-第二章/">https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%8C%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%8C%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%8C%E7%AB%A0/" data-id="cl1ra5bri001yycu36oztbm5y" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEm0lEQVR42u3aS27rSBAEQN//0hrgbTWiMqtoQC0HV4Ysk91BA/Xrn5/4evy7nn9OvvN4up4/f/XN52ddr+RxeV2v/4YLEyZMmDB9JFN+63zR14tLoJPXMINI7vM/d8CECRMmTIcz5be7/ts2wO8hrtffphQvP8eECRMmTH+AaVMVJuVumxy0iHnqgAkTJkyYMM3CcJ4c5GTJq2qLZEyYMGHC9H1MmxA7a9cmI8/8ty3iL/bCMWHChAnThzFtDu6c/vPNFyZMmDBh+jCmWbm4GXbmw8vZi2zbytGuMWHChAnTsUxJWdge6JmNFe9t8m6eWHQIMGHChAnTxzNtjuy04TwZf+aJxYagvTMmTJgwYfpupryMbLc0a8jOhpGr0h0TJkyYMB3OlCxrc8Alaby2CUc+nryhZYwJEyZMmI5lSlq97cPa7bUpxays3bSYMWHChAnT6UzJkZe7lp4PIPdlcDuyfbMeTJgwYcJ0OFM+vGxj5eb7bVCfta2j+2PChAkTpmOZ8i0l4TMPzHnZnKcIm5I7wsWECRMmTMcybRqgSVhtW7qzoWlbwLcvCRMmTJgwncWUHxJttzfbQHs0Nm8W54PSojeACRMmTJgOZ5q1UNvl5tlKm17sB6VRQoAJEyZMmA5hapfSHutJ+H67/G6TgyhrwIQJEyZMH8w0GzTWAXWxyXwD+0M8NwwyMWHChAnTRzLlLdT9oHEGOgvnybPyY0mYMGHChOlEpnbDm7Cal76ztvKm2H7zdEyYMGHC9BVMSSqQfN4mGXnSkNx51siuG7uYMGHChOkQplkIzx+T19/746fta14lDZgwYcKE6RCmfCT5G2G1TQjuWkPLhwkTJkyYzmXat1/3xfPP4moPzrZ3Lv6nMGHChAnTRzLNisNZ27ctZdu2b97ebVMNTJgwYcL0HUyzEH4XRHKH9gVcrzP/LSZMmDBhOpepHT1uBpnXd9gc1hk2bUsHTJgwYcJ0IlPeeG0XmuO2zeLZwDUf374sfTFhwoQJ0+FMs7Izf/CsCbsfXu5fACZMmDBhOpcpKVbbJbbt13Y82a4zWVXxwjBhwoQJ04FMyS3yIjlpobZPz0H3ycqbVAATJkyYMB3FlBeEbVDPQ/5+8FlPbst0ARMmTJgwnc60WdYseLc5y2bD7S4wYcKECdM3MeWjwXbweVebuG0it8d36qodEyZMmDAdyDQrd6+3nbd3N68kbx+3z3oz1MSECRMmTIcwzba6L4aTVzJr1M6K5DeImDBhwoTpK5hmB3eSwjW/f1vEtqlA/jJeTn0xYcKECdNRTJtwnpfHbdhuh5HDWn+U7mDChAkTprOYHuXVHsdpj/Xko8c2LcjL7/p8EyZMmDBh+mCm9rxKHh/bwJwH701pvXkWJkyYMGE6lylPAmZHavJGbdtQbpOSzTEjTJgwYcJ0OlMbeme4beM1x9pnPW+KZ0yYMGHC9AeYNoVrO1DcN23vavhiwoQJE6a/xpSPAPNFzEru/TizSB0wYcKECdPhTHkRmxSf+0Fj8kl7GGgziMWECRMmTOcybRqgs7KzXWhbNuejzdmzMGHChAnTIUz/AdPBD5Auz+pYAAAAAElFTkSuQmCC">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0/">计算机组成原理-第三章</a><a class="next" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%80%E7%AB%A0/">计算机组成原理-第一章</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' == 'true' ? true : false;
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>计算机组成原理-第二章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-10-21</p><p><span>最后更新：</span>2023-02-11</p><p><span>原始链接：</span><a href="/2021/计算机组成原理-第二章/">https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%8C%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%8C%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%8C%E7%AB%A0/" data-id="cl1ra5bri001yycu36oztbm5y" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEm0lEQVR42u3aS27rSBAEQN//0hrgbTWiMqtoQC0HV4Ysk91BA/Xrn5/4evy7nn9OvvN4up4/f/XN52ddr+RxeV2v/4YLEyZMmDB9JFN+63zR14tLoJPXMINI7vM/d8CECRMmTIcz5be7/ts2wO8hrtffphQvP8eECRMmTH+AaVMVJuVumxy0iHnqgAkTJkyYMM3CcJ4c5GTJq2qLZEyYMGHC9H1MmxA7a9cmI8/8ty3iL/bCMWHChAnThzFtDu6c/vPNFyZMmDBh+jCmWbm4GXbmw8vZi2zbytGuMWHChAnTsUxJWdge6JmNFe9t8m6eWHQIMGHChAnTxzNtjuy04TwZf+aJxYagvTMmTJgwYfpupryMbLc0a8jOhpGr0h0TJkyYMB3OlCxrc8Alaby2CUc+nryhZYwJEyZMmI5lSlq97cPa7bUpxays3bSYMWHChAnT6UzJkZe7lp4PIPdlcDuyfbMeTJgwYcJ0OFM+vGxj5eb7bVCfta2j+2PChAkTpmOZ8i0l4TMPzHnZnKcIm5I7wsWECRMmTMcybRqgSVhtW7qzoWlbwLcvCRMmTJgwncWUHxJttzfbQHs0Nm8W54PSojeACRMmTJgOZ5q1UNvl5tlKm17sB6VRQoAJEyZMmA5hapfSHutJ+H67/G6TgyhrwIQJEyZMH8w0GzTWAXWxyXwD+0M8NwwyMWHChAnTRzLlLdT9oHEGOgvnybPyY0mYMGHChOlEpnbDm7Cal76ztvKm2H7zdEyYMGHC9BVMSSqQfN4mGXnSkNx51siuG7uYMGHChOkQplkIzx+T19/746fta14lDZgwYcKE6RCmfCT5G2G1TQjuWkPLhwkTJkyYzmXat1/3xfPP4moPzrZ3Lv6nMGHChAnTRzLNisNZ27ctZdu2b97ebVMNTJgwYcL0HUyzEH4XRHKH9gVcrzP/LSZMmDBhOpepHT1uBpnXd9gc1hk2bUsHTJgwYcJ0IlPeeG0XmuO2zeLZwDUf374sfTFhwoQJ0+FMs7Izf/CsCbsfXu5fACZMmDBhOpcpKVbbJbbt13Y82a4zWVXxwjBhwoQJ04FMyS3yIjlpobZPz0H3ycqbVAATJkyYMB3FlBeEbVDPQ/5+8FlPbst0ARMmTJgwnc60WdYseLc5y2bD7S4wYcKECdM3MeWjwXbweVebuG0it8d36qodEyZMmDAdyDQrd6+3nbd3N68kbx+3z3oz1MSECRMmTIcwzba6L4aTVzJr1M6K5DeImDBhwoTpK5hmB3eSwjW/f1vEtqlA/jJeTn0xYcKECdNRTJtwnpfHbdhuh5HDWn+U7mDChAkTprOYHuXVHsdpj/Xko8c2LcjL7/p8EyZMmDBh+mCm9rxKHh/bwJwH701pvXkWJkyYMGE6lylPAmZHavJGbdtQbpOSzTEjTJgwYcJ0OlMbeme4beM1x9pnPW+KZ0yYMGHC9AeYNoVrO1DcN23vavhiwoQJE6a/xpSPAPNFzEru/TizSB0wYcKECdPhTHkRmxSf+0Fj8kl7GGgziMWECRMmTOcybRqgs7KzXWhbNuejzdmzMGHChAnTIUz/AdPBD5Auz+pYAAAAAElFTkSuQmCC">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0/">计算机组成原理-第三章</a><a class="next" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%80%E7%AB%A0/">计算机组成原理-第一章</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' == 'true' ? true : false;
 var verify = 'false' == 'true' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = 'nick,mail,link'.split(',').filter(function(item){
@@ -295,4 +295,4 @@ window.valine = new Valine({
   guest_info:guest_info,
   pageSize:'10'
 })
-</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%BF%E6%B2%BB/">政治</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E8%AE%A1%E7%AE%97/">数据结构-时间复杂度的计算</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BF%AB%E6%8E%92%E4%BC%98%E5%8C%96/">快排优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E4%BB%A3%E7%A0%81%E8%A1%A8%E7%A4%BA/">程序的机器级代码表示</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/HTML-CSS/">HTML+CSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E6%80%9D%E4%BF%AE%E6%B3%95%E5%9F%BA/">徐涛-基础班-思修法基</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E5%8F%B2%E7%BA%B2/">徐涛-基础班-史纲</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E6%AF%9B%E4%B8%AD%E7%89%B9/">徐涛-基础班-毛中特</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E9%A9%AC%E5%8E%9F/">徐涛-基础班-马原</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a><ul></ul><a href="https://wjjhui.github.io/" title="兔哦鸡" target="_blank">兔哦鸡</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2022 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="https://yvenxx.github.io/yvenxx"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%94%BF%E6%B2%BB/">政治</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a><span class="category-list-count">6</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2022/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E8%AE%A1%E7%AE%97/">数据结构-时间复杂度的计算</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BF%AB%E6%8E%92%E4%BC%98%E5%8C%96/">快排优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E4%BB%A3%E7%A0%81%E8%A1%A8%E7%A4%BA/">程序的机器级代码表示</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/HTML-CSS/">HTML+CSS</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E6%80%9D%E4%BF%AE%E6%B3%95%E5%9F%BA/">徐涛-基础班-思修法基</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E5%8F%B2%E7%BA%B2/">徐涛-基础班-史纲</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E6%AF%9B%E4%B8%AD%E7%89%B9/">徐涛-基础班-毛中特</a></li><li class="post-list-item"><a class="post-list-link" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E9%A9%AC%E5%8E%9F/">徐涛-基础班-马原</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/">数据库原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://blog.yvenxx.cn/" title="懒人瑜恩" target="_blank">懒人瑜恩</a><ul></ul><a href="https://wjjhui.github.io/" title="兔哦鸡" target="_blank">兔哦鸡</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2023 <a href="/." rel="nofollow">懒人瑜恩.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
