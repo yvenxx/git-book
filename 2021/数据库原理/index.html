@@ -86,7 +86,7 @@
 <li><strong>属性（attribute）</strong>：描述实体自身的属性。通常有多个属性。关键要看应用环境，学生年龄的属性……，而有时需要建立联系之后会有额外的属性，例如学生与课程建立联系，就有成绩的属性，但成绩不属于这两个的任意一个实体</li>
 </ul>
 <p><strong>ER模型的符号</strong></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211205182125052.png" alt="image-20211205182125052"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211205182125052.png" alt="image-20211205182125052"></p>
 <p><strong>ER模型设计</strong></p>
 <ol>
 <li>分 E-R模型，设计系统的子系统</li>
@@ -106,13 +106,13 @@
 <p><strong>E-R模型扩展</strong></p>
 <p>例如：这样一种情况，会员有注册会员，正式会员，高级会员。只有一个会员实体没法表达。因为他们的属性不一样</p>
 <p>子类，超类：超类可以理解为 一个类，子类继承超类。（JAVA中的类）</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211205183343723.png" alt="image-20211205183343723"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211205183343723.png" alt="image-20211205183343723"></p>
 <p><strong>弱实体</strong></p>
 <p>弱实体是强实体的依赖。</p>
 <p>例如一个公司中，员工需要填子女的名字，给子女福利。那么子女就是弱实体。相应的员工为强实体。之间是依赖关系。</p>
 <h2 id="关系数据模型"><a href="#关系数据模型" class="headerlink" title="关系数据模型"></a>关系数据模型</h2><p>这里我们和 SQL语言结合进行理解更为简单。所以后面一部分SQL内容会在这里写出。</p>
 <h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><p><strong>关系数据模型：</strong>以规范化的二维表格结构表示实体集，以外码表示实体间联系，以三类完整性表示语义约束的数据模型</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211208210415420.png" alt="image-20211208210415420"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211208210415420.png" alt="image-20211208210415420"></p>
 <ul>
 <li><p><strong>元组（tuple）</strong>：每一行一个为一个元组</p>
 </li>
@@ -182,7 +182,7 @@
 </li>
 </ul>
 <h3 id="关系代数"><a href="#关系代数" class="headerlink" title="关系代数"></a>关系代数</h3><p><strong>代数表达式会省略</strong>，用SQL语句来方便理解含义。</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211208205938517.png" alt="image-20211208205938517"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211208205938517.png" alt="image-20211208205938517"></p>
 <ul>
 <li><p>并(union) ： 将A，B的数据放在一块，消除重复的元组</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> A <span class="keyword">union</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> B;</span><br></pre></td></tr></table></figure></li>
@@ -202,11 +202,11 @@
 <li><p>除</p>
 <p>引用书上的例子（数据库原理与应用）</p>
 <p>找到选修了 001 学号同学 所选修课程的所有同学的学号，利用除操作，过程如下。先找到001同学的选课，在用选课来找学号</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211208211553856.png" alt="image-20211208211553856"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211208211553856.png" alt="image-20211208211553856"></p>
 </li>
 </ul>
 <h2 id="关系数据库查询语言"><a href="#关系数据库查询语言" class="headerlink" title="关系数据库查询语言"></a>关系数据库查询语言</h2><p>注意：关系型数据库有很多，下面不语句不唯一，但是具体用法差不多。</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211219155811477.png" alt="image-20211219155811477"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211219155811477.png" alt="image-20211219155811477"></p>
 <h3 id="DDL"><a href="#DDL" class="headerlink" title="DDL"></a>DDL</h3><p><strong>Create table</strong></p>
 <ul>
 <li>主键约束  primary key</li>
@@ -272,7 +272,7 @@
 
 
 <h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><p>从一个表或多个基本表中导出的虚拟表。有和表一样的逻辑结构，但没有实际的数据存储。数据还是基本表的数据。</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211219170829688.png" alt="image-20211219170829688"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211219170829688.png" alt="image-20211219170829688"></p>
 <p>优点</p>
 <ol>
 <li>无需保存数据，因此可以节省存储设备的容量。</li>
@@ -527,23 +527,23 @@
 </ol>
 <blockquote>
 <p>chase例题</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/8249F0AC8974C4BE11ED2BD8F0E22C11.jpg" alt="img"></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/92C9A16AD1D7F773D0E9D6000A3C36F8.jpg" alt="img"></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/0D41B7CB10DEBA63D80AF661E5920383.jpg" alt="img"></p>
+<p><img src="https://pic.yvenxx.cn/images/8249F0AC8974C4BE11ED2BD8F0E22C11.jpg" alt="img"></p>
+<p><img src="https://pic.yvenxx.cn/images/92C9A16AD1D7F773D0E9D6000A3C36F8.jpg" alt="img"></p>
+<p><img src="https://pic.yvenxx.cn/images/0D41B7CB10DEBA63D80AF661E5920383.jpg" alt="img"></p>
 </blockquote>
 <p>第二种的做法</p>
 <p>给定关系关系模式α={R1,R2}，当且仅当以下两个函数依赖中至少有一个成立时，α是无损连接的分解：(R1∩R2)-&gt;(R1-R2)          (R1∩R2)-&gt;(R2-R1)</p>
 <h4 id="保护函数依赖"><a href="#保护函数依赖" class="headerlink" title="保护函数依赖"></a>保护函数依赖</h4><p>模式分解的另一个标准：保持函数依赖要求关系模式R的每一个不平凡函数依赖在分解过程中都保留下来</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211220210736945.png" alt="image-20211220210736945"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211220210736945.png" alt="image-20211220210736945"></p>
 <blockquote>
 <p>给定关系R(city , street , zip)，以及R上的一个函数依赖集 F={(city , street)-&gt;zip , zip-&gt;city}</p>
 <p>1，判断无损连接（省略）</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/6F241CEAE74F31613196B9261F598B47.jpg" alt="img"></p>
+<p><img src="https://pic.yvenxx.cn/images/6F241CEAE74F31613196B9261F598B47.jpg" alt="img"></p>
 </blockquote>
 <h3 id="规范化"><a href="#规范化" class="headerlink" title="规范化"></a>规范化</h3><p><strong>范式：</strong>是满足特定要求的关系模式。从低到高有，第一范式(1NF) , 2NF , 3NF , BCNF范式 , 4NF , 5NF</p>
 <p><strong>函数依赖图</strong>如下</p>
 <p>假设关系模式R的一个函数依赖集F={S#-&gt;Sname , S#-&gt;City , City-&gt;Status}</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211222184419963.png" alt="image-20211222184419963"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211222184419963.png" alt="image-20211222184419963"></p>
 <ul>
 <li><strong>1NF</strong>：对于关系模式R的任一实例，其元组的每一个属性值都只含有一个值</li>
 <li><strong>2NF：</strong>当且仅当R属于1NF，且R的每一个非主属性都完全函数依赖于主码时，则R属于2NF<ul>
@@ -559,12 +559,12 @@
 <p><strong>规范化算法</strong></p>
 <p>无损连接并且保持函数依赖的分解到3NF算法</p>
 <p><strong>1算法：保持函数依赖的分解到3NF</strong></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/C770EDCD610844D715FFBB4EF6823F3F.jpg" alt="img"></p>
+<p><img src="https://pic.yvenxx.cn/images/C770EDCD610844D715FFBB4EF6823F3F.jpg" alt="img"></p>
 <p><strong>2算法：无损连接并且保持函数依赖的分解到3NF</strong></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/6F7F9E27227DDDB04A819704A5CA0857.jpg" alt="img"></p>
+<p><img src="https://pic.yvenxx.cn/images/6F7F9E27227DDDB04A819704A5CA0857.jpg" alt="img"></p>
 <p><strong>3算法 无损连接的分解到BCNF算法</strong></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/732C5E260F2C8A557044FD7D30A20B0C.jpg" alt="img"></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/C0F696A482EC7F661DF4CECD60D03ADF.jpg" alt="img"></p>
+<p><img src="https://pic.yvenxx.cn/images/732C5E260F2C8A557044FD7D30A20B0C.jpg" alt="img"></p>
+<p><img src="https://pic.yvenxx.cn/images/C0F696A482EC7F661DF4CECD60D03ADF.jpg" alt="img"></p>
 <h4 id="规范化过程总结"><a href="#规范化过程总结" class="headerlink" title="规范化过程总结"></a>规范化过程总结</h4><ol>
 <li>对1NF模式投影，消除非主属性对主码的局部函数依赖，可将关系模式规范化到2NF</li>
 <li>对2NF模式投影，消除非主属性对主码的传递函数依赖，可将关系模式规范化到3NF</li>
@@ -572,7 +572,7 @@
 <li>若要求保持函数依赖，则总可以分解到满足3NF，但不一定满足BCNF，即BCNF可以达到无损连接，但不一定保持函数依赖</li>
 <li>若要求保持函数依赖和无损连接，则总可以达到3NF，但不一定满足BCNF</li>
 </ol>
-</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>数据库原理</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-12-27</p><p><span>最后更新：</span>2023-02-11</p><p><span>原始链接：</span><a href="/2021/数据库原理/">https://yvenxx.github.io/yvenxx/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" data-id="cl1ra5brr002dycu3ex9pepyg" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACoElEQVR42u3aQW7jMAwF0N7/0u22QBL1kxSDFHheBa7G1tMAIk3q6yu+vn9dj/fPvzfGX77w8PDwBlN/vF695tWdfAnmy3eeMx4eHt42r7eJv3xo8PzzEveCBB4eHt5/4Z0363MAqI7Ew8PD+1+8fPvOE/Q8SODh4eF9Gi+ZUC/lnTw/v3+h1oKHh4cX8/Iu0uf8Xunv4eHh4Y276nlb63x/UoAYzRYPDw9vgXfr6EDeysqPIPSOGjz5V3h4eHgLvMlmPToOVUyUq6EIDw8Pb5vX+65PxucJd37sYFS0xcPDwxvz5olvTsqbZJNjDXh4eHjv4d3a+vOSxHyZrp2MwMPDw+vPudBqSj77q4cAboUWPDw8vPfwqq/Pk9rzk/OWW6/Ii4eHh3eXNyHNw0m+3TcbXXh4eHgLvOoWXH1Z77hAoUR76/8QDw8Pr8jLW/u99n+eiM/H/wHGw8PDu8TLN99JojwpQPSOFODh4eFt8OaYPI+9GxjOT8DDw8Pb4xUGxRt6cghgsljlwwd4eHh4C7w8na0WWKvZfb4oefKNh4eHd5dX3Y6TRleeBCdNr+qhq+iLAQ8PD2+ZF0WV1hPyZlt1nnh4eHh7vDmsmlLf+l0to+Dh4eHd5fVKt/nrq8/speZ/dPnw8PDwFni9xlWSEFeT6V6weTkeDw8Pb5lX3ZTnI6tvLxea8fDw8NZ4k2ZY3qzKCw3zmeDh4eFt8L6LV3Xj7v21d1j2yQzx8PDwFnh7ASDf+ieljXlgw8PDw+vx8mCQr9C59JC3vnqBAQ8PD+89vOoUJ/Gnmrj3lhIPDw/vc3jVImyVkYSQQqDCw8PD+2BeckSg94S8n4WHh4f3Tl5ejJjAJg226hg8PDy8PV71g793v8q7lXzj4eHhXeX9AB1iT8zxhpdBAAAAAElFTkSuQmCC">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E9%A9%AC%E5%8E%9F/">徐涛-基础班-马原</a><a class="next" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' == 'true' ? true : false;
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>数据库原理</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-12-27</p><p><span>最后更新：</span>2023-05-18</p><p><span>原始链接：</span><a href="/2021/数据库原理/">https://yvenxx.github.io/yvenxx/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8E%9F%E7%90%86/" data-id="cl1ra5brr002dycu3ex9pepyg" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACoElEQVR42u3aQW7jMAwF0N7/0u22QBL1kxSDFHheBa7G1tMAIk3q6yu+vn9dj/fPvzfGX77w8PDwBlN/vF695tWdfAnmy3eeMx4eHt42r7eJv3xo8PzzEveCBB4eHt5/4Z0363MAqI7Ew8PD+1+8fPvOE/Q8SODh4eF9Gi+ZUC/lnTw/v3+h1oKHh4cX8/Iu0uf8Xunv4eHh4Y276nlb63x/UoAYzRYPDw9vgXfr6EDeysqPIPSOGjz5V3h4eHgLvMlmPToOVUyUq6EIDw8Pb5vX+65PxucJd37sYFS0xcPDwxvz5olvTsqbZJNjDXh4eHjv4d3a+vOSxHyZrp2MwMPDw+vPudBqSj77q4cAboUWPDw8vPfwqq/Pk9rzk/OWW6/Ii4eHh3eXNyHNw0m+3TcbXXh4eHgLvOoWXH1Z77hAoUR76/8QDw8Pr8jLW/u99n+eiM/H/wHGw8PDu8TLN99JojwpQPSOFODh4eFt8OaYPI+9GxjOT8DDw8Pb4xUGxRt6cghgsljlwwd4eHh4C7w8na0WWKvZfb4oefKNh4eHd5dX3Y6TRleeBCdNr+qhq+iLAQ8PD2+ZF0WV1hPyZlt1nnh4eHh7vDmsmlLf+l0to+Dh4eHd5fVKt/nrq8/speZ/dPnw8PDwFni9xlWSEFeT6V6weTkeDw8Pb5lX3ZTnI6tvLxea8fDw8NZ4k2ZY3qzKCw3zmeDh4eFt8L6LV3Xj7v21d1j2yQzx8PDwFnh7ASDf+ieljXlgw8PDw+vx8mCQr9C59JC3vnqBAQ8PD+89vOoUJ/Gnmrj3lhIPDw/vc3jVImyVkYSQQqDCw8PD+2BeckSg94S8n4WHh4f3Tl5ejJjAJg226hg8PDy8PV71g793v8q7lXzj4eHhXeX9AB1iT8zxhpdBAAAAAElFTkSuQmCC">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2022/%E5%BE%90%E6%B6%9B-%E5%9F%BA%E7%A1%80%E7%8F%AD-%E9%A9%AC%E5%8E%9F/">徐涛-基础班-马原</a><a class="next" href="/2021/Redis%E5%9F%BA%E7%A1%80/">Redis基础</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' == 'true' ? true : false;
 var verify = 'false' == 'true' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = 'nick,mail,link'.split(',').filter(function(item){

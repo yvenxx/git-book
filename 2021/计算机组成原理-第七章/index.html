@@ -7,8 +7,8 @@
   })();
 </script><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">计算机组成原理-第七章</h1><a id="logo" href="/.">懒人瑜恩</a><p class="description">sometimes code, sometimes English</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/tags/"><i class="fa fa-tag"> 标签</i></a><a href="/history/"><i class="fa fa-book"> 历史</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">计算机组成原理-第七章</h1><div class="post-meta">2021-11-09<span> | </span><span class="category"><a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></span><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><a class="disqus-comment-count" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/#vcomment"><span class="valine-comment-count" data-xid="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/"></span><span> 条评论</span></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#I-O%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">I&#x2F;O系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E6%BC%94%E5%8F%98%E8%BF%87%E7%A8%8B"><span class="toc-number">1.0.1.</span> <span class="toc-text">CPU演变过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="toc-number">1.0.2.</span> <span class="toc-text">IO系统基本组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IO%E6%96%B9%E5%BC%8F%E7%AE%80%E4%BB%8B"><span class="toc-number">1.0.3.</span> <span class="toc-text">IO方式简介</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E8%AE%BE%E5%A4%87"><span class="toc-number">1.1.</span> <span class="toc-text">外部设备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">外存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">磁盘存储器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">1.2.2.</span> <span class="toc-text">磁盘的性能指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E5%9C%B0%E5%9D%80"><span class="toc-number">1.2.3.</span> <span class="toc-text">磁盘地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.4.</span> <span class="toc-text">磁盘的工作过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97"><span class="toc-number">1.2.5.</span> <span class="toc-text">磁盘阵列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%89%E7%9B%98"><span class="toc-number">1.2.6.</span> <span class="toc-text">光盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BA%E6%80%81"><span class="toc-number">1.2.7.</span> <span class="toc-text">固态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.3.</span> <span class="toc-text">IO接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#IO%E6%8E%A5%E5%8F%A3%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.1.</span> <span class="toc-text">IO接口的类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text">IO方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.1.</span> <span class="toc-text">程序查询方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">流程图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.2.</span> <span class="toc-text">程序中断方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E8%AF%B7%E6%B1%82%E6%A0%87%E8%AE%B0"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">中断请求标记</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%88%A4%E4%BC%98"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">中断判优</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E9%87%8D%E4%B8%AD%E6%96%AD"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">多重中断</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8D%95%E9%87%8D%E4%B8%8E%E5%A4%9A%E9%87%8D%E6%B5%81%E7%A8%8B%E5%AF%B9%E6%AF%94"><span class="toc-number">1.4.2.3.1.</span> <span class="toc-text">单重与多重流程对比</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD%E6%8A%80%E6%9C%AF"><span class="toc-number">1.4.2.3.2.</span> <span class="toc-text">中断屏蔽技术</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%AD%E6%96%AD%E4%BD%9C%E7%94%A8"><span class="toc-number">1.4.3.</span> <span class="toc-text">程序中断作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DMA%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.4.</span> <span class="toc-text">DMA方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DMA%E4%BC%A0%E9%80%81%E8%BF%87%E7%A8%8B"><span class="toc-number">1.4.4.1.</span> <span class="toc-text">DMA传送过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DMA%E7%89%B9%E7%82%B9"><span class="toc-number">1.4.4.2.</span> <span class="toc-text">DMA特点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DMA%E6%96%B9%E5%BC%8F%E5%92%8C%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.5.</span> <span class="toc-text">DMA方式和中断方式</span></a></li></ol></li></ol></li></ol></div></div><div class="post-content"><a id="more"></a>
 
-<h1 id="I-O系统"><a href="#I-O系统" class="headerlink" title="I/O系统"></a>I/O系统</h1><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027160249052.png" alt="image-20211027160249052"></p>
-<h3 id="CPU演变过程"><a href="#CPU演变过程" class="headerlink" title="CPU演变过程"></a>CPU演变过程</h3><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027160354207.png" alt="image-20211027160354207"></p>
+<h1 id="I-O系统"><a href="#I-O系统" class="headerlink" title="I/O系统"></a>I/O系统</h1><p><img src="https://pic.yvenxx.cn/images/image-20211027160249052.png" alt="image-20211027160249052"></p>
+<h3 id="CPU演变过程"><a href="#CPU演变过程" class="headerlink" title="CPU演变过程"></a>CPU演变过程</h3><p><img src="https://pic.yvenxx.cn/images/image-20211027160354207.png" alt="image-20211027160354207"></p>
 <h3 id="IO系统基本组成"><a href="#IO系统基本组成" class="headerlink" title="IO系统基本组成"></a>IO系统基本组成</h3><p><strong>IO软件</strong>：包括驱动程序，用户程序，管理程序，升级补丁等</p>
 <p>通常采用IO指令和通道指令实现CPU和IO设备的信息交换</p>
 <ul>
@@ -29,8 +29,8 @@
 </li>
 </ul>
 <p><strong>IO硬件</strong>：包括外部设备，设备控制器和接口，IO总线等</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027160737220.png" alt="image-20211027160737220"></p>
-<h3 id="IO方式简介"><a href="#IO方式简介" class="headerlink" title="IO方式简介"></a>IO方式简介</h3><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027161017484.png" alt="image-20211027161017484"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027160737220.png" alt="image-20211027160737220"></p>
+<h3 id="IO方式简介"><a href="#IO方式简介" class="headerlink" title="IO方式简介"></a>IO方式简介</h3><p><img src="https://pic.yvenxx.cn/images/image-20211027161017484.png" alt="image-20211027161017484"></p>
 <h2 id="外部设备"><a href="#外部设备" class="headerlink" title="外部设备"></a>外部设备</h2><p><strong>输入设备</strong></p>
 <p>键盘的输入：查出按下的是哪个键，将该键翻译成能被主机接收的编码，如ASCII码，将编码传送给主机</p>
 <p>鼠标（机械式，光电式）</p>
@@ -84,9 +84,9 @@
 <li><p>激光打印机</p>
 </li>
 </ul>
-<h2 id="外存储器"><a href="#外存储器" class="headerlink" title="外存储器"></a>外存储器</h2><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027175100104.png" alt="image-20211027175100104"></p>
+<h2 id="外存储器"><a href="#外存储器" class="headerlink" title="外存储器"></a>外存储器</h2><p><img src="https://pic.yvenxx.cn/images/image-20211027175100104.png" alt="image-20211027175100104"></p>
 <p>又称辅助存储器，目前主要是磁表面存储器，是指把某些磁性材料薄薄的涂在金属铝或塑料表面上作为载磁体来存储信息。磁盘存储器，磁带存储器和磁鼓存储器均属于磁表面存储器</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027172018115.png" alt="image-20211027172018115"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027172018115.png" alt="image-20211027172018115"></p>
 <h3 id="磁盘存储器"><a href="#磁盘存储器" class="headerlink" title="磁盘存储器"></a>磁盘存储器</h3><p>由磁盘驱动器，磁盘控制器和盘片组成</p>
 <p>磁盘驱动器：核心部件是磁头组件和盘片组件，温彻斯特盘是一种可移动头固定盘片的硬盘存储器。是硬盘存储器和主机的接口，主流的标准有IDE、SCSI、SATA等。</p>
 <p>存储区域：一块硬盘含有若干记录面，每个记录面划分为若干条磁道，而每条磁道又划分为若干扇区，扇区（也称块）是磁盘读写的最小单位，也就是磁盘按块存取</p>
@@ -95,9 +95,9 @@
 <li><strong>柱面数（Cylinders）</strong>：表示硬盘每一面盘片上有多少条磁道。在一个盘组中，不同记录面的相同编号（位置）的诸磁道构成一个圆柱面。</li>
 <li><strong>扇区数（Sectors）</strong> 表示每一条磁道上有多少个扇区。（橙色线指向的位置是扇区）</li>
 </ul>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027172401383.png" alt="image-20211027172401383"></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027172621486.png" alt="image-20211027172621486"></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027172647355.png" alt="image-20211027172647355"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027172401383.png" alt="image-20211027172401383"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027172621486.png" alt="image-20211027172621486"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027172647355.png" alt="image-20211027172647355"></p>
 <h3 id="磁盘的性能指标"><a href="#磁盘的性能指标" class="headerlink" title="磁盘的性能指标"></a>磁盘的性能指标</h3><ol>
 <li><p>磁盘的容量：一个磁盘所能存储的字节总数称为磁盘容量。有格式化和非格式化的分别</p>
 <ol>
@@ -106,7 +106,7 @@
 </ol>
 </li>
 <li><p>记录密度：记录密度指盘片单位面积上记录的二进制的信息量，通常以道密度，位密度，面密度表示（且不论长短，磁道的记录信息量是相等的）</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027173532077.png" alt="image-20211027173532077"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027173532077.png" alt="image-20211027173532077"></p>
 <ol>
 <li>道密度：沿磁盘半径方向单位长度上的磁道数</li>
 <li>位密度：磁道单位长度上能记录的二进制代码位数</li>
@@ -114,13 +114,13 @@
 </ol>
 </li>
 <li><p>平均存取时间 =  寻道时间（磁头移动到目的磁道）+ 旋转延迟时间（磁头定位到所在扇区）+传输时间（传输数据所花费的时间）</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027173354184.png" alt="image-20211027173354184"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027173354184.png" alt="image-20211027173354184"></p>
 </li>
 <li><p>数据传输率：磁盘存储器在单位时间内向主机传送数据的字节数，称为数据传输率</p>
 <p>假设磁盘转数为<em>r</em>（转/秒），每条磁道容量为<em>N</em>个字节，则数据传输率为<em>D</em>r=<em>rN</em></p>
 </li>
 </ol>
-<h3 id="磁盘地址"><a href="#磁盘地址" class="headerlink" title="磁盘地址"></a>磁盘地址</h3><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027173938415.png" alt="image-20211027173938415"></p>
+<h3 id="磁盘地址"><a href="#磁盘地址" class="headerlink" title="磁盘地址"></a>磁盘地址</h3><p><img src="https://pic.yvenxx.cn/images/image-20211027173938415.png" alt="image-20211027173938415"></p>
 <p>若系统中有4个驱动器，每个驱动器带一个磁盘，每个磁盘256个磁道，16个盘面，每个盘面划分为 16个扇区。</p>
 <p>求需要多少位二进制</p>
 <p>4个驱动器要2^2次方，256个磁道 2^8次方,后面也类似。则需要18个二进制位</p>
@@ -144,11 +144,11 @@
 <p>越往下可靠性越强。</p>
 <p>RAID通过同时使用多个磁盘，提高了传输率；通过在多个磁盘上并行存取来大幅提高存储系统的数据吞</p>
 <p>吐量；通过镜像功能，可以提高安全可靠性；通过数据校验，可以提供容错能力。</p>
-<h3 id="光盘"><a href="#光盘" class="headerlink" title="光盘"></a>光盘</h3><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027175019047.png" alt="image-20211027175019047"></p>
+<h3 id="光盘"><a href="#光盘" class="headerlink" title="光盘"></a>光盘</h3><p><img src="https://pic.yvenxx.cn/images/image-20211027175019047.png" alt="image-20211027175019047"></p>
 <h3 id="固态"><a href="#固态" class="headerlink" title="固态"></a>固态</h3><p>在微小型高档笔记本电脑中，采用高性能Flash Memory作为硬盘来记录数据，这种“硬盘”称固态硬盘。</p>
 <p>固态硬盘除了需要Flash Memory外，还需要其他硬件和软件的支持。</p>
 <p>注：闪存(Flash Memory)是在E2PROM的基础上发展起来的，本质上是只读存储器。</p>
-<h2 id="IO接口"><a href="#IO接口" class="headerlink" title="IO接口"></a>IO接口</h2><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027180638381.png" alt="image-20211027180638381"></p>
+<h2 id="IO接口"><a href="#IO接口" class="headerlink" title="IO接口"></a>IO接口</h2><p><img src="https://pic.yvenxx.cn/images/image-20211027180638381.png" alt="image-20211027180638381"></p>
 <p>主机和外设之间的交接j界面，通过接口可以实现主机和外设之间的信息交换</p>
 <p>接口的功能(具体操作) </p>
 <ol>
@@ -161,9 +161,9 @@
 <li><p>反映I/O设备的工作状态</p>
 </li>
 </ol>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027180328676.png" alt="image-20211027180328676"></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027180452317.png" alt="image-20211027180452317"></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027180523962.png" alt="image-20211027180523962"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027180328676.png" alt="image-20211027180328676"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027180452317.png" alt="image-20211027180452317"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027180523962.png" alt="image-20211027180523962"></p>
 <h3 id="IO接口的类型"><a href="#IO接口的类型" class="headerlink" title="IO接口的类型"></a>IO接口的类型</h3><p>按数据传送方式可分为</p>
 <ul>
 <li><p><strong>并行接口</strong>：一个字节或一个字所有位同时传送。</p>
@@ -191,18 +191,18 @@
 </li>
 </ul>
 <h2 id="IO方式"><a href="#IO方式" class="headerlink" title="IO方式"></a>IO方式</h2><h3 id="程序查询方式"><a href="#程序查询方式" class="headerlink" title="程序查询方式"></a>程序查询方式</h3><p>上面有一张这样差不多的图，唯一不同的是程序查询方式那里，这里分成两个阶段了。</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027180938506.png" alt="image-20211027180938506"></p>
-<h4 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h4><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027181026455.png" alt="image-20211027181026455"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027180938506.png" alt="image-20211027180938506"></p>
+<h4 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h4><p><img src="https://pic.yvenxx.cn/images/image-20211027181026455.png" alt="image-20211027181026455"></p>
 <p><strong>逻辑图</strong></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027181241615.png" alt="image-20211027181241615"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027181241615.png" alt="image-20211027181241615"></p>
 <p><strong>例题</strong></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211027181351714.png" alt="image-20211027181351714"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211027181351714.png" alt="image-20211027181351714"></p>
 <blockquote>
 <p><strong>这里32也可以改为 32/8b=4B</strong></p>
 </blockquote>
 <p><strong>独占查询</strong>：CPU 100%的时间都在查询IO状态，完全串行</p>
 <p><strong>定时查询：</strong>保证数据不丢失的情况下，每隔一段时间去查询IO状态，查询的间隔内CPU可以执行其他程序。</p>
-<h3 id="程序中断方式"><a href="#程序中断方式" class="headerlink" title="程序中断方式"></a>程序中断方式</h3><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028142202469.png" alt="image-20211028142202469"></p>
+<h3 id="程序中断方式"><a href="#程序中断方式" class="headerlink" title="程序中断方式"></a>程序中断方式</h3><p><img src="https://pic.yvenxx.cn/images/image-20211028142202469.png" alt="image-20211028142202469"></p>
 <p>基本概念：CPU在执行现有程序时，有某些异常请求或特殊请求需要进行处理。CPU暂时处理中断请求，执行完成后。再回到原来执行的断点，继续执行。</p>
 <p>工作流程</p>
 <ol>
@@ -242,7 +242,7 @@
 <p>实时设备优于普通设备</p>
 </blockquote>
 <h4 id="中断请求标记"><a href="#中断请求标记" class="headerlink" title="中断请求标记"></a>中断请求标记</h4><p>每个中断源向CPU发出中断请求的时间是随机的。为了记录中断事件并区分不同的中断源，中断系统需对每个中断源设置<strong>中断请求标记触发器INTR</strong>，当状态为1时，表示有中断源请求</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028123820739.png" alt="image-20211028123820739"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028123820739.png" alt="image-20211028123820739"></p>
 <p>对于<strong>外中断</strong>，CPU是在<strong>每条指令执行阶段结束前</strong>向接口<strong>发出中断查询信号</strong>，以获取IO的中断请求，也就是说<strong>CPU响应中断的时间</strong>是在每条<strong>指令执行阶段的结束时刻</strong></p>
 <p>CPU响应中断必须满足以下3个条件：</p>
 <ol>
@@ -250,10 +250,10 @@
 <li>CPU允许中断   即开中断</li>
 <li>一条指令执行完毕，且没有更紧迫的任务</li>
 </ol>
-<h4 id="中断判优"><a href="#中断判优" class="headerlink" title="中断判优"></a>中断判优</h4><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028135555822.png" alt="image-20211028135555822"></p>
+<h4 id="中断判优"><a href="#中断判优" class="headerlink" title="中断判优"></a>中断判优</h4><p><img src="https://pic.yvenxx.cn/images/image-20211028135555822.png" alt="image-20211028135555822"></p>
 <p>图中可知，就算是全1，但也是最高优先级先使用</p>
 <p>处理过程</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028135838864.png" alt="image-20211028135838864"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028135838864.png" alt="image-20211028135838864"></p>
 <p>中断服务程序：</p>
 <ol>
 <li><p><strong>保护现场：</strong></p>
@@ -281,20 +281,20 @@
 <blockquote>
 <p>通过100…..0的中断信号，中断向量地址形成部件  计算出向量地址，找到响应的位置</p>
 </blockquote>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028140502486.png" alt="image-20211028140502486"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028140502486.png" alt="image-20211028140502486"></p>
 <p><strong>中断处理过程</strong></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028140944281.png" alt="image-20211028140944281"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028140944281.png" alt="image-20211028140944281"></p>
 <h4 id="多重中断"><a href="#多重中断" class="headerlink" title="多重中断"></a>多重中断</h4><p>单重中断：执行中断服务程序时不响应新的中断请求</p>
 <p>多重中断：中断嵌套，执行中断服务程序时可响应新的中断请求（套娃）</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028141043439.png" alt="image-20211028141043439"></p>
-<h5 id="单重与多重流程对比"><a href="#单重与多重流程对比" class="headerlink" title="单重与多重流程对比"></a>单重与多重流程对比</h5><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028141422668.png" alt="image-20211028141422668"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028141043439.png" alt="image-20211028141043439"></p>
+<h5 id="单重与多重流程对比"><a href="#单重与多重流程对比" class="headerlink" title="单重与多重流程对比"></a>单重与多重流程对比</h5><p><img src="https://pic.yvenxx.cn/images/image-20211028141422668.png" alt="image-20211028141422668"></p>
 <h5 id="中断屏蔽技术"><a href="#中断屏蔽技术" class="headerlink" title="中断屏蔽技术"></a>中断屏蔽技术</h5><ol>
 <li>在中断服务程序中提前设备开中断命令</li>
 <li>优先级别高的中断源有权中断优先级别低的中断源</li>
 </ol>
 <p>在原来的基础上，每个位置多加了个信号（屏蔽触发器）。</p>
 <p>1表示屏蔽该中断源的请求，0表示可以正常申请。所有屏蔽触发器组合在一起，构成一个屏蔽字寄存器，屏蔽字寄存器的内容称为屏蔽字</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028141719091.png" alt="image-20211028141719091"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028141719091.png" alt="image-20211028141719091"></p>
 <p>屏蔽字设置规律</p>
 <ol>
 <li>一般用’1’ 表示屏蔽，0表示正常申请</li>
@@ -302,10 +302,10 @@
 <li>屏蔽字中 ‘1’越多，优先级越高。每个屏蔽字中至少有一个 ‘1’（屏蔽自身的中断）</li>
 </ol>
 <p><strong>例题</strong></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028142145789.png" alt="image-20211028142145789"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028142145789.png" alt="image-20211028142145789"></p>
 <p><strong>例题</strong></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028142709112.png" alt="image-20211028142709112"></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028142728133.png" alt="image-20211028142728133"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028142709112.png" alt="image-20211028142709112"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028142728133.png" alt="image-20211028142728133"></p>
 <h3 id="程序中断作用"><a href="#程序中断作用" class="headerlink" title="程序中断作用"></a>程序中断作用</h3><p>程序中断的作用如下：</p>
 <p>① 实现CPU与I/O设备的并行工作。</p>
 <p>② 处理硬件故障和软件错误。</p>
@@ -314,9 +314,9 @@
 <p>⑤ 实时处理需要借助中断系统来实现快速响应。</p>
 <p>⑥ 实现应用程序和操作系统（管态程序）的切换，称为“软中断”。</p>
 <p>⑦ 多处理器系统中各处理器之间的信息交流和任务切换。</p>
-<h3 id="DMA方式"><a href="#DMA方式" class="headerlink" title="DMA方式"></a>DMA方式</h3><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028145313762.png" alt="image-20211028145313762"></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028143247832.png" alt="image-20211028143247832"></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028143303469.png" alt="image-20211028143303469"></p>
+<h3 id="DMA方式"><a href="#DMA方式" class="headerlink" title="DMA方式"></a>DMA方式</h3><p><img src="https://pic.yvenxx.cn/images/image-20211028145313762.png" alt="image-20211028145313762"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028143247832.png" alt="image-20211028143247832"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028143303469.png" alt="image-20211028143303469"></p>
 <p>DMA方式中当I/O设备需要进行数据传送时，通过DMA控制器（DMA接口）向CPU提出DMA传送请求，CPU响应之后将让出系统总线，由DMA控制器接管总线进行数据传送。主要功能是</p>
 <ul>
 <li>传送前<ol>
@@ -334,11 +334,11 @@
 </ul>
 </li>
 </ul>
-<h4 id="DMA传送过程"><a href="#DMA传送过程" class="headerlink" title="DMA传送过程"></a>DMA传送过程</h4><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028144016020.png" alt="image-20211028144016020"></p>
+<h4 id="DMA传送过程"><a href="#DMA传送过程" class="headerlink" title="DMA传送过程"></a>DMA传送过程</h4><p><img src="https://pic.yvenxx.cn/images/image-20211028144016020.png" alt="image-20211028144016020"></p>
 <p>其中数据传送过程细化如下。</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028144048542.png" alt="image-20211028144048542"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028144048542.png" alt="image-20211028144048542"></p>
 <p>其中因为CPU和DMAk控制器访问主存可能会产生冲突。所以有如下</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028144747246.png" alt="image-20211028144747246"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028144747246.png" alt="image-20211028144747246"></p>
 <h4 id="DMA特点"><a href="#DMA特点" class="headerlink" title="DMA特点"></a>DMA特点</h4><p>主存和DMA接口之间有一条数据通路，由于DMA方式传送数据不经过CPU，因此不必中断现行程序，<strong>I/O与主机并行工作，程序和传送并行工作</strong></p>
 <ol>
 <li>使主存与CPU的固定联系脱钩，主存即可以被CPU访问，又可被外设访问</li>
@@ -348,10 +348,10 @@
 <li>DMA在传送开始前要通过程序进行预处理，结束后要通过中断方式进行后处理</li>
 </ol>
 <p><strong>例题</strong></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028145231356.png" alt="image-20211028145231356"></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028145351157.png" alt="image-20211028145351157"></p>
-<h3 id="DMA方式和中断方式"><a href="#DMA方式和中断方式" class="headerlink" title="DMA方式和中断方式"></a>DMA方式和中断方式</h3><p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211028144818551.png" alt="image-20211028144818551"></p>
-</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>计算机组成原理-第七章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-11-09</p><p><span>最后更新：</span>2023-02-11</p><p><span>原始链接：</span><a href="/2021/计算机组成原理-第七章/">https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/" data-id="cl1ra5brg001tycu3h2ep5tmv" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEh0lEQVR42u3aS27kOBAFwL7/pT3AbG2X38ukgaIcWhnVapEMLsj8/PsXPx//P5//Tt75+PR8/v27Nz+P9XomHy+f1/M/8GDChAkTprdkyj+dT/r15BLoZBtmEMl3vvgCJkyYMGG6nCn/3Ov/2x7we4jX82+vFN/+jgkTJkyY/gBTHhsmoWm7AcklZnNNwYQJEyZMmPLjNk+/tinmWQ62DZIxYcKECdPzmE4dse1x/rrkmf9ri/iLuXBMmDBhwvRmTJvGndv/PvxgwoQJE6Y3Y5qFi0nCdF+8nG1km1aOVo0JEyZMmK5lSsLCtqFnEzCfSvJuRiwyBJgwYcKE6e2Z8v+WL7soEMZlzte/tATtlzFhwoQJ01OZ8snli5yVS8/OoS7KYsKECROmy5mSabXLS6a4SQHn5ckDKWNMmDBhwnQt06kQse14aZPL+7B2k2LGhAkTJky3MyUtL2cnmhQg92FwW7L9YXswYcKECdPlTC1BflZu3m8P9VkxNZohJkyYMGG6lml2LUhC2Ta920LMmoHyiw4mTJgwYXoS0yYBmreu7guov5eDLRLBmDBhwoTpEqa8SbRd3mwBeSCaXE32ZVpMmDBhwvRsplkKtZ1ufltprxebQikmTJgwYXoG02YqSTK3ndZvh9/t5SCKszFhwoQJ0xsztYfxsQM1XmT+nX0Tz7fvYMKECROmBzG1JclZsNoe/7PjPBkrakvChAkTJkyXM21CzbMXiPzwPtXMGo2OCRMmTJgewZRcBWbFzmRheco4b9NJrgURHyZMmDBhupapLQq2w+TQ+/bTdptXlwZMmDBhwnQJU1JETJKzq8CyHGs/h5YPEyZMmDDdy7RPv54Nns9Cb77/xRcwYcKECdOFTKeCw03AnDf9tKfzrJUHEyZMmDD9HaZNCTM5jPNAN8FtG4mK2WLChAkTpmuZ8kM0n+jrQHT/tX3ZchbSY8KECROmG5lm7TgblNk2zMqZLdy3I2LChAkTpkcwJUXBzcCzJOy+eLnfAEyYMGHCdC9TC9S+mbfpzAqcm0JsXi7FhAkTJky3M+2vBfs64KmWnf1l5YerACZMmDBhupZp1rizCVxPFT5nldv6EoMJEyZMmB7B1E5rdni3h/Fmwe0qMGHChAnTk5jyxp1ZyLpPE7dJ5LZ9p47XMWHChAnTI5hmx/AMevZmu5Gz7f/hQoAJEyZMmK5lykPTojPo5Sivf5lt1SzR/MX7mDBhwoTpEUynGnfaZG5Swtwf6slaoiQvJkyYMGG6imlWnmzJ2mO7LUYWQWzc7vMvfxUTJkyYML0x00f5tO04bVtPXnqcFVzzsb64N2HChAkTpguZZr0rw7tGvOwkTTwLrTdjYcKECROme5nyS0CdDC0Lh8m4bYi7L5RiwoQJE6ZnMLVtLm1wO0u85lj7W88P88eECRMmTH+Aqb0u7Dk2SdtTCV9MmDBhwvQ3mZKwNp9EG1qfKmcWG4kJEyZMmC5nao/8Wb00LzTOgudkzvlaDpQzMWHChAnTGzBtEqCzwfLptindtrR5+MGECRMmTO/F9B+Oh4nrYc4hFAAAAABJRU5ErkJggg==">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a><a class="next" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' == 'true' ? true : false;
+<p><img src="https://pic.yvenxx.cn/images/image-20211028145231356.png" alt="image-20211028145231356"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211028145351157.png" alt="image-20211028145351157"></p>
+<h3 id="DMA方式和中断方式"><a href="#DMA方式和中断方式" class="headerlink" title="DMA方式和中断方式"></a>DMA方式和中断方式</h3><p><img src="https://pic.yvenxx.cn/images/image-20211028144818551.png" alt="image-20211028144818551"></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>计算机组成原理-第七章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-11-09</p><p><span>最后更新：</span>2023-05-18</p><p><span>原始链接：</span><a href="/2021/计算机组成原理-第七章/">https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%83%E7%AB%A0/" data-id="cl1ra5brg001tycu3h2ep5tmv" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEh0lEQVR42u3aS27kOBAFwL7/pT3AbG2X38ukgaIcWhnVapEMLsj8/PsXPx//P5//Tt75+PR8/v27Nz+P9XomHy+f1/M/8GDChAkTprdkyj+dT/r15BLoZBtmEMl3vvgCJkyYMGG6nCn/3Ov/2x7we4jX82+vFN/+jgkTJkyY/gBTHhsmoWm7AcklZnNNwYQJEyZMmPLjNk+/tinmWQ62DZIxYcKECdPzmE4dse1x/rrkmf9ri/iLuXBMmDBhwvRmTJvGndv/PvxgwoQJE6Y3Y5qFi0nCdF+8nG1km1aOVo0JEyZMmK5lSsLCtqFnEzCfSvJuRiwyBJgwYcKE6e2Z8v+WL7soEMZlzte/tATtlzFhwoQJ01OZ8snli5yVS8/OoS7KYsKECROmy5mSabXLS6a4SQHn5ckDKWNMmDBhwnQt06kQse14aZPL+7B2k2LGhAkTJky3MyUtL2cnmhQg92FwW7L9YXswYcKECdPlTC1BflZu3m8P9VkxNZohJkyYMGG6lml2LUhC2Ta920LMmoHyiw4mTJgwYXoS0yYBmreu7guov5eDLRLBmDBhwoTpEqa8SbRd3mwBeSCaXE32ZVpMmDBhwvRsplkKtZ1ufltprxebQikmTJgwYXoG02YqSTK3ndZvh9/t5SCKszFhwoQJ0xsztYfxsQM1XmT+nX0Tz7fvYMKECROmBzG1JclZsNoe/7PjPBkrakvChAkTJkyXM21CzbMXiPzwPtXMGo2OCRMmTJgewZRcBWbFzmRheco4b9NJrgURHyZMmDBhupapLQq2w+TQ+/bTdptXlwZMmDBhwnQJU1JETJKzq8CyHGs/h5YPEyZMmDDdy7RPv54Nns9Cb77/xRcwYcKECdOFTKeCw03AnDf9tKfzrJUHEyZMmDD9HaZNCTM5jPNAN8FtG4mK2WLChAkTpmuZ8kM0n+jrQHT/tX3ZchbSY8KECROmG5lm7TgblNk2zMqZLdy3I2LChAkTpkcwJUXBzcCzJOy+eLnfAEyYMGHCdC9TC9S+mbfpzAqcm0JsXi7FhAkTJky3M+2vBfs64KmWnf1l5YerACZMmDBhupZp1rizCVxPFT5nldv6EoMJEyZMmB7B1E5rdni3h/Fmwe0qMGHChAnTk5jyxp1ZyLpPE7dJ5LZ9p47XMWHChAnTI5hmx/AMevZmu5Gz7f/hQoAJEyZMmK5lykPTojPo5Sivf5lt1SzR/MX7mDBhwoTpEUynGnfaZG5Swtwf6slaoiQvJkyYMGG6imlWnmzJ2mO7LUYWQWzc7vMvfxUTJkyYML0x00f5tO04bVtPXnqcFVzzsb64N2HChAkTpguZZr0rw7tGvOwkTTwLrTdjYcKECROme5nyS0CdDC0Lh8m4bYi7L5RiwoQJE6ZnMLVtLm1wO0u85lj7W88P88eECRMmTH+Aqb0u7Dk2SdtTCV9MmDBhwvQ3mZKwNp9EG1qfKmcWG4kJEyZMmC5nao/8Wb00LzTOgudkzvlaDpQzMWHChAnTGzBtEqCzwfLptindtrR5+MGECRMmTO/F9B+Oh4nrYc4hFAAAAABJRU5ErkJggg==">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E7%AC%AC%E4%B8%80%E7%AB%A0/">操作系统-第一章</a><a class="next" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%85%AD%E7%AB%A0/">计算机组成原理-第六章</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' == 'true' ? true : false;
 var verify = 'false' == 'true' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = 'nick,mail,link'.split(',').filter(function(item){

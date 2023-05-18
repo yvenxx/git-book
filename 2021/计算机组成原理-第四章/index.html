@@ -15,20 +15,20 @@
 <p>堆栈计算机，两个操作数隐含存放在栈顶和次栈顶，计算结果压回栈顶</p>
 </li>
 <li><p>一地址指令</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211020165247381.png" alt="image-20211020165247381"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211020165247381.png" alt="image-20211020165247381"></p>
 <p>只需要单操作数，如 加1，减1，取反，求补等。OP（A1）—&gt;A1，完成一条指令需要 3次访存：取指–》读A1—》写A1</p>
 <p>需要两个操作数：但其中一个操作数隐含在某个寄存器中，不需要取，例如ACC。(ACC) OP (A1)—-&gt;ACC 完成一条指令需要 2次访存：取指–》读A1</p>
 </li>
 <li><p>二地址指令</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211020165534846.png" alt="image-20211020165534846"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211020165534846.png" alt="image-20211020165534846"></p>
 <p>常用于需要两个操作数的算数运算，逻辑运算相关指令。指令含义：(A1)OP(A2)—-A1，完成一条指令需要访存4次：取指—》读A1—》读A2—》写A1</p>
 </li>
 <li><p>三地址指令</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211020165656426.png" alt="image-20211020165656426"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211020165656426.png" alt="image-20211020165656426"></p>
 <p>常用语需要两个操作数的算数运算，逻辑运算。指令含义：(A1)OP(A2)—&gt;A3，完成指令需要访存4次，取指—&gt;读A1—读A2—》写A3</p>
 </li>
 <li><p>四地址指令</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211020165817834.png" alt="image-20211020165817834"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211020165817834.png" alt="image-20211020165817834"></p>
 <p>指令含义：(A1)OP(A2)—&gt;A3，A4指向下一条需要执行指令的地址，正常情况执行完操作之后，PC+1，指向下一条指令。在四地址指令中：执行指令后，将PC的值修改为A4所指的地址</p>
 </li>
 </ul>
@@ -46,12 +46,12 @@
 <p><strong>可变长操作码</strong>：指令系统中各指令的操作码长度可变</p>
 <p>定长指令字结构+可变长操作码—-》扩展操作码指令格式</p>
 <p><strong>按操作类型分类</strong></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211020170617716.png" alt="image-20211020170617716"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211020170617716.png" alt="image-20211020170617716"></p>
 <h2 id="扩展操作码"><a href="#扩展操作码" class="headerlink" title="扩展操作码"></a>扩展操作码</h2><p>注：不允许短码是长码的前缀，也就是短操作码不能与长操作码的前面部分的代码相同。各指令的操作码一定不能重复</p>
 <p>通常对使用频率较高的指令，分配较短的操作码；对使用频率较低的指令，分配较长的操作码，尽可能减少指令译码和分析的时间</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021093816000.png" alt="image-20211021093816000"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021093816000.png" alt="image-20211021093816000"></p>
 <p>另一种扩展方法</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021094157897.png" alt="image-20211021094157897"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021094157897.png" alt="image-20211021094157897"></p>
 <p><strong>指令操作码</strong></p>
 <p>操作码指出指令中该指令应该执行什么性质的操作和具有何种功能</p>
 <p>分类</p>
@@ -76,12 +76,12 @@
 <li><strong>主存按字寻址</strong>：pc每次+1.为一个字</li>
 <li><strong>主存按字节寻址：</strong>如果为4个字节，就是2字。所以pc需要+2</li>
 </ul>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021114345613.png" alt="image-20211021114345613"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021114345613.png" alt="image-20211021114345613"></p>
 <h3 id="跳跃寻址"><a href="#跳跃寻址" class="headerlink" title="跳跃寻址"></a><strong>跳跃寻址</strong></h3><p><strong>由转移指令指出。</strong>例如 JMP 7，实际上不是pc+1了。实际上 JMP=无条件转移。将PC中的内容改为7的地址，类似与goto</p>
 <h2 id="数据寻址"><a href="#数据寻址" class="headerlink" title="数据寻址"></a>数据寻址</h2><p>这里是一地址指令，如果是二地址，后面的寻址特征和形式地址，也会相应的增加。</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021115007780.png" alt="image-20211021115007780"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021115007780.png" alt="image-20211021115007780"></p>
 <h3 id="直接寻址"><a href="#直接寻址" class="headerlink" title="直接寻址"></a>直接寻址</h3><p><strong>指令字中的形式地址A就是操作数的真实地址EA，即EA=A</strong>。直接对地址进行访存</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021115255216.png" alt="image-20211021115255216"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021115255216.png" alt="image-20211021115255216"></p>
 <h3 id="间接寻址"><a href="#间接寻址" class="headerlink" title="间接寻址"></a>间接寻址</h3><p>指令的地址字段给出的形式地址，不是操作数的真正地址，而是操作数y有效地址所在的存储单元的地址，也就是操作数地址的地址。也就是A中存放的不是真实地址，存的是主存的一个地址，主存的地址又指向其他地址。</p>
 <ul>
 <li><p>优：可扩大寻址范围（有效地址EA的位数大于形式地址A的位数），便于编址程序（用于间接寻址可以方便的完成子程序返回）</p>
@@ -89,15 +89,15 @@
 <li><p>缺：指令在执行阶段要多次访存（一次间接寻址需要两次访存，多次寻址需要根据存储字的最高位确定几次访存）</p>
 </li>
 </ul>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021115509120.png" alt="image-20211021115509120"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021115509120.png" alt="image-20211021115509120"></p>
 <h3 id="寄存器寻址"><a href="#寄存器寻址" class="headerlink" title="寄存器寻址"></a>寄存器寻址</h3><p>在指令字中直接给出操作数所在的寄存器编号，即EA=Ri，其操作数在由Ri所指的寄存器中。</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021141216818.png" alt="image-20211021141216818"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021141216818.png" alt="image-20211021141216818"></p>
 <h3 id="寄存器间接寻址"><a href="#寄存器间接寻址" class="headerlink" title="寄存器间接寻址"></a>寄存器间接寻址</h3><p>寄存器Ri中给出的不是一个操作数，而是操作数所在主存单元的地址，即EA=(Ri)</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021141551219.png" alt="image-20211021141551219"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021141551219.png" alt="image-20211021141551219"></p>
 <h3 id="隐含地址"><a href="#隐含地址" class="headerlink" title="隐含地址"></a>隐含地址</h3><p>不是明显的给出操作数的地址，而是指令隐含着操作数的地址。例如上面的一地址的时候，有一个情况是，取一个操作数和ACC中的数据进行操作。</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021141809437.png" alt="image-20211021141809437"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021141809437.png" alt="image-20211021141809437"></p>
 <h3 id="基址寻址-偏移寻址"><a href="#基址寻址-偏移寻址" class="headerlink" title="基址寻址-偏移寻址"></a>基址寻址-偏移寻址</h3><p>将CPU中基址寄存器（BR）或者是由通用寄存器 的内容加上指令格式中的形式地址A，而形成操作数的有效地址，即EA=(BR)+A</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021142217997.png" alt="image-20211021142217997"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021142217997.png" alt="image-20211021142217997"></p>
 <blockquote>
 <p>基址寄存器是<strong>面向操作系统</strong>的，其<strong>内容由操作系统或管理程序确定</strong>。在程序执行过程中，基址寄存器的内容不变（作为基地址），形式地址可变（作为偏移量）。</p>
 <p>当采用通用寄存器作为基址寄存器时，可由<strong>用户决定哪个寄存器作为基址寄存器</strong>，但其<strong>内容仍由操作系统确定</strong></p>
@@ -111,9 +111,9 @@
 <p><strong>变址寄存器是面向用户的，</strong>在程序执行过程中，变址寄存器的**内容可由用户改变（作为偏移量），形式地址A不变（作为基地址），如果没看懂就看下面的例子。</p>
 <p>优点：在数组处理过程中，可设定A为数组的首地址，不断改变变址寄存器IX的内容，便可很容易形成数组中任一数据的地址，特别<strong>适合编制循环程序</strong></p>
 <p><strong>注：右边的那个是基址寻址的图</strong></p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021143740973.png" alt="image-20211021143740973"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021143740973.png" alt="image-20211021143740973"></p>
 <p>例，还是上面的那个C语言程序。变址寄存器存放IX，A存放数组的a[0]，然后A每次加上IX偏移量。IX每次循环都会对应 i++，所以正好实现地址偏移。这样省去了直接寻址a数组需要 10个空间。</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021144355262.png" alt="image-20211021144355262"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021144355262.png" alt="image-20211021144355262"></p>
 <h4 id="变址-基址进行复合编址"><a href="#变址-基址进行复合编址" class="headerlink" title="变址+基址进行复合编址"></a>变址+基址进行复合编址</h4><p>在一个程序中，先进行基址，后进行变址。来进行寻址。EA = (IX) + ((BR)+A)。具体思路就是，A还是存的数组初始地址a[0]，基址寻址+A为上面图中的变址寻址的位置，然后再加上IX的偏移量，就可以得到a的数组后面的数据。</p>
 <h3 id="相对寻址-偏移寻址"><a href="#相对寻址-偏移寻址" class="headerlink" title="相对寻址-偏移寻址"></a>相对寻址-偏移寻址</h3><p>把<strong>程序计数器PC</strong>的内容加上指令格式中的形式地址A，而形成操作数的有效地址，即EA=(PC)+A，其中<strong>A是相对于PC</strong>所指地址的<strong>位移量</strong>可正可负，<strong>补码表示</strong></p>
 <blockquote>
@@ -121,9 +121,9 @@
 </blockquote>
 <p>优点：操作数的地址不是固定的，他随着PC值的变化而变化，并且与指令地址之间总是相差一个固定值，因此<strong>便于程序浮动</strong>（一段代码在程序内部的浮动），相对寻址<strong>广泛用于转移指令</strong>。</p>
 <p>例如C语言中的 if语句，如果成功就运行一些东西，而这些东西地址不一定跟if相连。所以可以相对寻址直接跳转。</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021150306322.png" alt="image-20211021150306322"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021150306322.png" alt="image-20211021150306322"></p>
 <h3 id="堆栈寻址"><a href="#堆栈寻址" class="headerlink" title="堆栈寻址"></a>堆栈寻址</h3><p>操作数存放在堆栈中，隐含使用堆栈指针（SP）作为操作数地址。</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021154430575.png" alt="image-20211021154430575"></p>
+<p><img src="https://pic.yvenxx.cn/images/image-20211021154430575.png" alt="image-20211021154430575"></p>
 <p>当前指针指向01，假如进行一个加法操作。R1先出栈进入ACC中，Sp+1，指向R2，R2再出栈。与ACC中的数据进行增加。然后将加出来的结果再入栈</p>
 <ul>
 <li><p>硬堆栈：在硬件中弄一个专用的寄存器</p>
@@ -138,8 +138,8 @@
 <p><strong>RISC:Reduced Instruction Set Computer</strong></p>
 <p>设计思路：一条指令完成一个基本 “动作”；多条指令组合完成一个复杂的基本功能（ARM架构，主要用于手机，平板）</p>
 <p>只提供整数的加减乘指令，一条指令一个电路，电路设计相对简单，功耗更低。“并行”，“流水线”</p>
-<p><img src="https://blog-1257997408.cos.ap-guangzhou.myqcloud.com/images/image-20211021155326300.png" alt="image-20211021155326300"></p>
-</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>计算机组成原理-第四章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-10-21</p><p><span>最后更新：</span>2023-02-11</p><p><span>原始链接：</span><a href="/2021/计算机组成原理-第四章/">https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%9B%9B%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%9B%9B%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%9B%9B%E7%AB%A0/" data-id="cl1ra5bqt000qycu35bk912ex" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEoElEQVR42u3ay07jQBAFUP7/pxlptgHn3iozkw4nKwSO3T6N1PX6+Ig/n38/jz8n13w+fB5//92Vj8+6Xsnn5ed6/Td8MGHChAnTSzLlt84Xfb24BDrZhhlEcp8v7oAJEyZMmA5nym93/d32gN9DXK+/DSm+/T0mTJgwYfoFTLPc8Hrp+Qbkz5qFKZgwYcKECdNdJd0kOMjJkiS2TZIxYcKECdP7MbW3yw/+WSOzfVaL+IO1cEyYMGHC9GJMm8Gd03/+R/NNmDBhwoTpPzHN0sXZd9vG52wj27JytGZMmDBhwnQsU5IW7huK+SvdVeTNB4+KtWHChAkTpgOZNo3M/LvJ9W0Zd0PQ3hkTJkyYML0r06Yw2h7PeUF21oycQWPChAkTpvdgapeV5IPt4E4bWLRp9qpkjAkTJkyYjmVqU8S2dJsEAe1WzdLaWar8MXskJkyYMGF6MaZ8NOfeY3UTjrQF5WRLnqwHEyZMmDAdyHTX6ExeWm2vbw/1pMmahz6YMGHChOl0pvzQTQq1eVuxHfrJQ4S8KNwWmjFhwoQJ04lMsy8nr9e2NvOX/Lka7LebhAkTJkyYjmXKC6/t681eYFYOzkd58mQ7GtnBhAkTJkyHMLVNwTYgmAUQeUKbPH3WKH1SIcCECRMmTAcyzYqkm8ZkO+6zSb/bFWLChAkTptOZ8gQyDw5mn/2z9kM8324VJkyYMGE6lmnfkszbhLNRnrY42xZw87EkTJgwYcJ0ItNsWCdPLNticX543zXMGj0dEyZMmDC9BVPe2mxfcnMwJyizYKL458CECRMmTMcytU3BTRDQbs8eZT/cgwkTJkyYTmfKxzTzwdO8ENwGBHcd7S0fJkyYMGE6l2kWO+zLqau0M4be3P/JJC8mTJgwYTqEKblpO8aaHNuz8KLdmNkoDyZMmDBhem+mu4Z4Woi82dm+8KzlWeT0mDBhwoTphZlmCeomuc0pZ4HIvqN7w/QTJkyYMGF6MabN8Z83Mjdws3Zme88nT8SECRMmTAcy5UXe2aHbJpz59Xm6vt8ATJgwYcJ0LlNeVM2Lwm35tW1PzrZtFkxE3pgwYcKE6YWZ9qnsrPeXD9O0Izv7YOWLb2HChAkTpmOZNoMym+GYzZa0zdSa4zoswIQJEyZMRzHlh26ejs6O57rkuvm/iAvBmDBhwoTpdKa8NZiPxeQl19nIzr3jO3XWjgkTJkyYjmJKlpsfsXddP3vVWVgTBTGYMGHChOlwpllhtD092y2ZFWpnSfITREyYMGHC9BZMs1wvSTiTv7b3nIUC+WZ8UQvHhAkTJkwHMm3ak3nDMoeYjQS1a8ubmsPJIEyYMGHC9DJMmzQ1OVDzgzy5T46SjwdFa8aECRMmTMcytbMrm7hjVn6dXdlu8+atMWHChAnT6zO17cZZATcJDjYF5Xbop27cYsKECROmw5naMZfrRbRXzoaB9kFMkTxjwoQJE6ZfwHTXkXxXM3V1wLfFZUyYMGHC9CuZkiM/WcQsVd63M4uNxIQJEyZMhzPNirwz+pavDT6S92rLx5gwYcKE6VymTQF0lnbOmqPt2FB7t/xZmDBhwoTpEKY/T8FXSNOnK+cAAAAASUVORK5CYII=">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a><a class="next" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0/">计算机组成原理-第三章</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' == 'true' ? true : false;
+<p><img src="https://pic.yvenxx.cn/images/image-20211021155326300.png" alt="image-20211021155326300"></p>
+</div><div class="post-copyright"><script type="text/javascript" src="/js/copyright.js?v=1.0.0" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copyright.css?v=1.0.0"><p><span>本文标题：</span>计算机组成原理-第四章</p><p><span>文章作者：</span>懒人瑜恩</p><p><span>发布时间：</span>2021-10-21</p><p><span>最后更新：</span>2023-05-18</p><p><span>原始链接：</span><a href="/2021/计算机组成原理-第四章/">https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%9B%9B%E7%AB%A0/</a><span class="copy-path"><i class="fa fa-clipboard" data-clipboard-text="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%9B%9B%E7%AB%A0/"></i></span></p><p><span>版权声明：</span>版权所有，转载请注明出处。</p></div><br><script type="text/javascript" src="/js/share.js?v=1.0.0" async></script><a class="article-share-link" data-url="https://yvenxx.github.io/yvenxx/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E5%9B%9B%E7%AB%A0/" data-id="cl1ra5bqt000qycu35bk912ex" data-qrcode="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEoElEQVR42u3ay07jQBAFUP7/pxlptgHn3iozkw4nKwSO3T6N1PX6+Ig/n38/jz8n13w+fB5//92Vj8+6Xsnn5ed6/Td8MGHChAnTSzLlt84Xfb24BDrZhhlEcp8v7oAJEyZMmA5nym93/d32gN9DXK+/DSm+/T0mTJgwYfoFTLPc8Hrp+Qbkz5qFKZgwYcKECdNdJd0kOMjJkiS2TZIxYcKECdP7MbW3yw/+WSOzfVaL+IO1cEyYMGHC9GJMm8Gd03/+R/NNmDBhwoTpPzHN0sXZd9vG52wj27JytGZMmDBhwnQsU5IW7huK+SvdVeTNB4+KtWHChAkTpgOZNo3M/LvJ9W0Zd0PQ3hkTJkyYML0r06Yw2h7PeUF21oycQWPChAkTpvdgapeV5IPt4E4bWLRp9qpkjAkTJkyYjmVqU8S2dJsEAe1WzdLaWar8MXskJkyYMGF6MaZ8NOfeY3UTjrQF5WRLnqwHEyZMmDAdyHTX6ExeWm2vbw/1pMmahz6YMGHChOl0pvzQTQq1eVuxHfrJQ4S8KNwWmjFhwoQJ04lMsy8nr9e2NvOX/Lka7LebhAkTJkyYjmXKC6/t681eYFYOzkd58mQ7GtnBhAkTJkyHMLVNwTYgmAUQeUKbPH3WKH1SIcCECRMmTAcyzYqkm8ZkO+6zSb/bFWLChAkTptOZ8gQyDw5mn/2z9kM8324VJkyYMGE6lmnfkszbhLNRnrY42xZw87EkTJgwYcJ0ItNsWCdPLNticX543zXMGj0dEyZMmDC9BVPe2mxfcnMwJyizYKL458CECRMmTMcytU3BTRDQbs8eZT/cgwkTJkyYTmfKxzTzwdO8ENwGBHcd7S0fJkyYMGE6l2kWO+zLqau0M4be3P/JJC8mTJgwYTqEKblpO8aaHNuz8KLdmNkoDyZMmDBhem+mu4Z4Woi82dm+8KzlWeT0mDBhwoTphZlmCeomuc0pZ4HIvqN7w/QTJkyYMGF6MabN8Z83Mjdws3Zme88nT8SECRMmTAcy5UXe2aHbJpz59Xm6vt8ATJgwYcJ0LlNeVM2Lwm35tW1PzrZtFkxE3pgwYcKE6YWZ9qnsrPeXD9O0Izv7YOWLb2HChAkTpmOZNoMym+GYzZa0zdSa4zoswIQJEyZMRzHlh26ejs6O57rkuvm/iAvBmDBhwoTpdKa8NZiPxeQl19nIzr3jO3XWjgkTJkyYjmJKlpsfsXddP3vVWVgTBTGYMGHChOlwpllhtD092y2ZFWpnSfITREyYMGHC9BZMs1wvSTiTv7b3nIUC+WZ8UQvHhAkTJkwHMm3ak3nDMoeYjQS1a8ubmsPJIEyYMGHC9DJMmzQ1OVDzgzy5T46SjwdFa8aECRMmTMcytbMrm7hjVn6dXdlu8+atMWHChAnT6zO17cZZATcJDjYF5Xbop27cYsKECROmw5naMZfrRbRXzoaB9kFMkTxjwoQJE6ZfwHTXkXxXM3V1wLfFZUyYMGHC9CuZkiM/WcQsVd63M4uNxIQJEyZMhzPNirwz+pavDT6S92rLx5gwYcKE6VymTQF0lnbOmqPt2FB7t/xZmDBhwoTpEKY/T8FXSNOnK+cAAAAASUVORK5CYII=">分享</a><div class="tags"></div><div class="post-nav"><a class="pre" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%BA%94%E7%AB%A0/">计算机组成原理-第五章</a><a class="next" href="/2021/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%AC%AC%E4%B8%89%E7%AB%A0/">计算机组成原理-第三章</a></div><div id="vcomment"></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script><script>var notify = 'false' == 'true' ? true : false;
 var verify = 'false' == 'true' ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
 var guest_info = 'nick,mail,link'.split(',').filter(function(item){
